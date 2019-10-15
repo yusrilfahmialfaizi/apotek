@@ -1,0 +1,69 @@
+CREATE table penjualan (
+	id_penjualan varchar(14) PRIMARY KEY NOT null,
+	id_user varchar(4),
+    tanggal date,
+    total_harga int,
+    bayar int,
+    kembalian int,
+    diskon int,
+	FOREIGN Key (id_user) REFERENCES user(id_user) on update cascade);
+CREATE table detail_penjualan (
+	id_det_penjualan varchar(11) primary key not null,
+	id_obat varchar(6),
+    qty int,
+    jenis enum('Biji','Lembar'),
+    harga int,
+    sub_total int,
+	FOREIGN Key (id_obat) REFERENCES obat(id_obat) on update cascade);
+CREATE or REPLACE table pasien (
+	no_rm varchar(8) PRIMARY KEY NOT null,
+	nama varchar(30),
+    jenis_kelamin ENUM('L','P'),
+	tgl_lahir date,
+	usia int(3),
+	alamat tinytext);
+CREATE or REPLACE table kunjungan (
+	id_kunjungan varchar(12) Primary Key NOT null,
+	no_rm varchar(8),
+    id_det_kunjungan int,
+	tgl_kunjungan datetime,
+	diagnosa_keperawatan text,
+	intervensi text,
+	tarif int,
+	FOREIGN KEY (no_rm) REFERENCES pasien(no_rm) ON UPDATE CASCADE,
+	FOREIGN KEY (id_det_kunjungan) REFERENCES detail_kunjungan(id_det_kunjungan) ON UPDATE CASCADE on DELETE CASCADE);
+CREATE or REPLACE table detail_kunjungan (
+	id_det_kunjungan int PRIMARY KEY NOT null,
+	id_obat varchar(6),
+    jenis ENUM('Biji','Lembar'),
+	qty int);
+CREATE or REPLACE table opname_obat (
+	id_opname varchar(8) PRIMARY KEY NOT null,
+	id_obat varchar(6),
+    stok int,
+	stok_nyata int,
+	selisih int,
+	ket tinytext);
+
+	CREATE OR REPLACE TABLE detail_pembelian(
+id_det_pembelian int AUTO_INCREMENT PRIMARY KEY,
+id_pembelian varchar(14),
+id_obat varchar(6),
+qty int,
+exp date,
+harga int,
+subtotal int,
+FOREIGN KEY (id_pembelian) REFERENCES pembelian(id_pembelian) ON UPDATE CASCADE ON DELETE CASCADE,
+FOREIGN KEY (id_obat) REFERENCES obat(id_obat) ON UPDATE CASCADE ON DELETE CASCADE);
+
+CREATE OR REPLACE TABLE detail_pembelian_obat_praktik(
+id_det_pembelian int AUTO_INCREMENT PRIMARY KEY,
+id_pembelian varchar(14),
+id_obat_praktik varchar(6),
+qty int,
+exp date,
+harga int,
+subtotal int,
+FOREIGN KEY (id_pembelian) REFERENCES pembelian_obat_praktik(id_pembelian) ON UPDATE CASCADE ON DELETE CASCADE,
+FOREIGN KEY (id_obat_praktik) REFERENCES obat_praktik(id_obat_praktik) ON UPDATE CASCADE ON DELETE CASCADE);
+    
