@@ -64,6 +64,9 @@
                         </ul>
                     </li>
                     <li>
+                        <a href=""><i class="material-icons">list</i><span>Opname Obat</span></a>
+                    </li>
+                    <li>
                         <a href=""><i class="material-icons">list</i><span>Kasir</span></a>
                     </li>
                     <li>
@@ -76,72 +79,10 @@
                                 <a href="<?php echo base_url("kepsek/data_guru") ?>">Data Penjualan Harian</a>
                             </li>
                             <li>
-                                <a href="<?php echo base_url("kepsek/absensi_guru") ?>"></a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">important_devices</i>
-                            <span>Tata Usaha</span>
-                        </a>
-                        <ul class="ml-menu">
-                            <li>
-                                <a href="">Data Tata Usaha</a>
+                                <a href="<?php echo base_url("kepsek/absensi_guru") ?>">Data Penjualan Bulanan</a>
                             </li>
                             <li>
-                                <a href="">Absensi Tata Usaha</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">payment</i>
-                            <span>Keuangan</span>
-                        </a>
-                        <ul class="ml-menu">
-                            <li>
-                                <a href="">SPP</a>
-                            </li>
-                            <li>
-                                <a href="">HR / Gaji Karyawan </a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0);" class="menu-toggle">
-                                    <span>KAS Sekolah</span>
-                                </a>
-                                <ul class="ml-menu">
-                                    <li>
-                                        <a href="javascript:void(0);">
-                                            <span>Pendapatan</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="">
-                                            <span>Pengeluaran </span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="">Tabungan Siswa</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">collections_bookmark</i>
-                            <span>Inventaris</span>
-                        </a>
-                        <ul class="ml-menu">
-                            <li>
-                                <a href="">Inventaris Perpustakaan Guru</a>
-                            </li>
-                            <li>
-                                <a href="">Inventaris Perpustakaan Anak</a>
-                            </li>
-                            <li>
-                                <a href="">Inventaris Benda </a>
+                                <a href="<?php echo base_url("kepsek/absensi_guru") ?>">Grafik Penjualan </a>
                             </li>
                         </ul>
                     </li>
