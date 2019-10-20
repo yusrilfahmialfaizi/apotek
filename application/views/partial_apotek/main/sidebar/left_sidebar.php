@@ -27,7 +27,7 @@
                 <ul class="list">
                 <li class="header">MAIN NAVIGATION</li>
                     <li class="active">
-                        <a href="<?php echo base_url("kepsek/dashboard") ?>">
+                        <a href="<?php echo base_url("kasir/dashboard") ?>">
                             <i class="material-icons">home</i>
                             <span>Home</span>
                         </a>
@@ -35,40 +35,48 @@
                     <li>
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">face</i>
-                            <span>Siswa</span>
+                            <span>Data</span>
                         </a>
                         <ul class="ml-menu">
                             <li>
-                                <a href="<?php echo base_url("kepsek/data_siswa") ?>">Data Siswa</a>
+                                <a href="<?php echo base_url("#") ?>"> Data Obat</a>
                             </li>
                             <li>
-                                <a href="<?php echo base_url("kepsek/absensi_siswa") ?>">Absensi Siswa</a>
+                                <a href="<?php echo base_url("#") ?>"> Stok Obat</a>
                             </li>
                             <li>
-                                <a href="<?php echo base_url("kepsek/data_orangtua_siswa") ?>">Data Orang Tua Siswa</a>
-                            </li>
-                            <li>
-                                <a href="#">Pencapaian</a>
-                            </li>
-                            <li>
-                                <a href="#">Data Tumbuh Kembang</a>
+                                <a href="<?php echo base_url("#") ?>"> Data Supplier</a>
                             </li>
                         </ul>
                     </li>
                     <li>
-                        <a href=""><i class="material-icons">list</i><span>Jadwal Pelajaran</span></a>
+                        <a href="javascript:void(0);" class="menu-toggle">
+                            <i class="material-icons">face</i>
+                            <span>Pembelian</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li>
+                                <a href="<?php echo base_url("owner/pembelianobat") ?>"> Pembelian Obat</a>
+                            </li>
+                            <li>
+                                <a href="<?php echo base_url("owner/datapembelian") ?>"> Data Pembelian</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href=""><i class="material-icons">list</i><span>Kasir</span></a>
                     </li>
                     <li>
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">record_voice_over</i>
-                            <span>Guru</span>
+                            <span>Laporan</span>
                         </a>
                         <ul class="ml-menu">
                             <li>
-                                <a href="<?php echo base_url("kepsek/data_guru") ?>">Data Guru</a>
+                                <a href="<?php echo base_url("kepsek/data_guru") ?>">Data Penjualan Harian</a>
                             </li>
                             <li>
-                                <a href="<?php echo base_url("kepsek/absensi_guru") ?>">Absensi Guru</a>
+                                <a href="<?php echo base_url("kepsek/absensi_guru") ?>"></a>
                             </li>
                         </ul>
                     </li>
