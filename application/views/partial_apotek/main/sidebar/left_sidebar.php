@@ -34,7 +34,7 @@
                     </li>
                     <li>
                         <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">face</i>
+                            <i class="material-icons">assignment</i>
                             <span>Data</span>
                         </a>
                         <ul class="ml-menu">
@@ -51,7 +51,7 @@
                     </li>
                     <li>
                         <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">face</i>
+                            <i class="material-icons">shopping_cart</i>
                             <span>Pembelian</span>
                         </a>
                         <ul class="ml-menu">
@@ -64,14 +64,14 @@
                         </ul>
                     </li>
                     <li>
-                        <a href=""><i class="material-icons">list</i><span>Opname Obat</span></a>
+                        <a href=""><i class="material-icons">local_hospital</i><span>Opname Obat</span></a>
                     </li>
                     <li>
-                        <a href=""><i class="material-icons">list</i><span>Kasir</span></a>
+                        <a href=""><i class="material-icons">attach_money</i><span>Kasir</span></a>
                     </li>
                     <li>
                         <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">record_voice_over</i>
+                            <i class="material-icons">content_paste</i>
                             <span>Laporan</span>
                         </a>
                         <ul class="ml-menu">
