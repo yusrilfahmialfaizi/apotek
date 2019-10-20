@@ -109,7 +109,9 @@
 
 			foreach ($query as $key) {
 				# code...
-				$data = array('jumlah_stok' => $key->jumlah_stok );
+				$data = array(
+					'jumlah_stok' => $key->jumlah_stok,
+					'jumlah_biji' => $key->jumlah_biji );
 			}
         	return $data;
 		}

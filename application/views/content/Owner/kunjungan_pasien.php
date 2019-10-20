@@ -88,6 +88,16 @@
                                   </div>
                                 </div>
                                 <div class="form-group">
+                                  <label class="control-label col-md-3 col-sm-3 col-xs-12">Per <span class="required">*</span></label>
+                                  <div class="col-md-4 col-sm-9 col-xs-12">
+                                    <select class="form-control" id="per" name="per">
+                                      <option value="&nbsp">--Pilih--</option>
+                                      <option>Biji</option>
+                                      <option>Lembar</option>
+                                    </select>
+                                  </div>
+                                </div>
+                                <div class="form-group">
                                   <label class="control-label col-md-3 col-sm-3 col-xs-12">Exp<span class="required">*</span></label>
                                   <div class="col-md-4 col-sm-9 col-xs-12">
                                     <select class="form-control" id="category_exp" name="category_exp">
@@ -106,16 +116,6 @@
                                   <label class="control-label col-md-3 col-sm-3 col-xs-12">Qty <span class="required">*</span></label>
                                   <div class="col-md-4 col-sm-9 col-xs-12">
                                     <input type="number" min="0" class="form-control" id="qty" name="qty" placeholder="Qty" value="1" required="required">
-                                  </div>
-                                </div>
-                                <div class="form-group">
-                                  <label class="control-label col-md-3 col-sm-3 col-xs-12">Per <span class="required">*</span></label>
-                                  <div class="col-md-4 col-sm-9 col-xs-12">
-                                    <select class="form-control" id="per" name="per">
-                                      <option value="&nbsp">--Pilih--</option>
-                                      <option>Biji</option>
-                                      <option>Lembar</option>
-                                    </select>
                                   </div>
                                 </div>
                                 <div class="form-group">
@@ -516,9 +516,12 @@
             });
             return false;
           });
-
+          $("#per").on('change', function(){
+            $("#stok").val("0");
+          })
           $("#category_exp").on('change', function(){
             var exp   = $("#category_exp").val();
+            var per   = $("#per").val();
             var id_obat_praktik = $("#obat").val();
             $.ajax({
               url       : "<?php echo base_url("owner/kunjungan/get_stok") ?>",
@@ -528,7 +531,12 @@
               cache     : false,
               success   : function(data){
                 $.each(data, function(stok){
-                  $("#stok").val(data.jumlah_stok);
+                  if (per == "Lembar") {
+                    $("#stok").val(data.jumlah_stok);
+                  }else if (per = "Biji") {
+                    $("#stok").val(data.jumlah_biji);
+                    
+                  }
                 });
               }
             })
