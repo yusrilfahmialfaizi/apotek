@@ -56,15 +56,15 @@
                         </a>
                         <ul class="ml-menu">
                             <li>
-                                <a href="<?php echo base_url("owner/pembelianobat") ?>"> Pembelian Obat</a>
+                                <a href="<?php echo base_url("kasir/Pembelian_obat") ?>"> Pembelian Obat</a>
                             </li>
                             <li>
-                                <a href="<?php echo base_url("owner/datapembelian") ?>"> Data Pembelian</a>
+                                <a href="<?php echo base_url("kasir/Data_pembelian") ?>"> Data Pembelian</a>
                             </li>
                         </ul>
                     </li>
                     <li>
-                        <a href=""><i class="material-icons">local_hospital</i><span>Opname Obat</span></a>
+                        <a href="<?php echo base_url("kasir/Opname_obat") ?>"><i class="material-icons">local_hospital</i><span>Opname Obat</span></a>
                     </li>
                     <li>
                         <a href=""><i class="material-icons">attach_money</i><span>Kasir</span></a>
