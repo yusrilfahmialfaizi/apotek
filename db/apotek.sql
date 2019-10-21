@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 20, 2019 at 04:44 PM
+-- Generation Time: Oct 21, 2019 at 06:43 PM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.10
 
@@ -388,6 +388,20 @@ CREATE TABLE `penjualan` (
   `bayar` int(11) DEFAULT NULL,
   `kembalian` int(11) DEFAULT NULL,
   `diskon` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `supplier`
+--
+
+CREATE TABLE `supplier` (
+  `id_supplier` varchar(5) NOT NULL,
+  `nama` varchar(30) NOT NULL,
+  `alamat` tinytext NOT NULL,
+  `no_telepon` varchar(12) NOT NULL,
+  `nama_pabrik` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
