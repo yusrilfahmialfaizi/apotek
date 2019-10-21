@@ -39,13 +39,13 @@
                         </a>
                         <ul class="ml-menu">
                             <li>
-                                <a href="<?php echo base_url("#") ?>"> Data Obat</a>
+                                <a href="<?php echo base_url("kasir/Data_obat") ?>"> Data Obat</a>
                             </li>
                             <li>
-                                <a href="<?php echo base_url("#") ?>"> Stok Obat</a>
+                                <a href="<?php echo base_url("kasir/Stock_obat") ?>"> Stok Obat</a>
                             </li>
                             <li>
-                                <a href="<?php echo base_url("#") ?>"> Data Supplier</a>
+                                <a href="<?php echo base_url("kasir/Data_supplier") ?>"> Data Supplier</a>
                             </li>
                         </ul>
                     </li>
