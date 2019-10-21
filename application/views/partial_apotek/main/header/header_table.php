@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-	<?php $this->load->view("partial_apotek/main/head") ?>
+	<?php $this->load->view("partial_apotek/main/head/head_table") ?>
 <body class="theme-teal">
 	<?php $this->load->view("partial_apotek/main/page_loader") ?>
 	<!-- Overlay For Sidebars -->

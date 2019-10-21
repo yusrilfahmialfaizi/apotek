@@ -234,14 +234,14 @@
                       </div>
                       <?php endforeach ?>
                     <form action="<?php echo base_url("owner/kunjungan/proses") ?>" method="post" class="form-horizontal ">
-
+              
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">ID Kunjungan  <span class="required">*</span></label>
                         <div class="col-md-2 col-sm-9 col-xs-12">
                           <input type="text" class="form-control" id="id_kunjungan" name="id_kunjungan" value="<?php echo $kode ?>" placeholder="ID Kunjungan" name="birthday" readonly="readonly" required="required">
                         </div>
                       </div>
-
+                      
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Tanggal <span class="required">*</span></label>
                         <div class="col-md-4 col-sm-9 col-xs-12">

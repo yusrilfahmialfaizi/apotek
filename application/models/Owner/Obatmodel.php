@@ -16,7 +16,7 @@
 		{
 			return $this->db->get('obat_praktik')->result();
 		}
-
+		
 		function data_obat($id_obat)
 		{
 			$this->db->where("id_obat_praktik", $id_obat);
@@ -55,7 +55,7 @@
 			}
 			return $data;
 		}
-
+		
 		function kode_obat()
 		{
 			$this->db->select('MAX(RIGHT(obat_praktik.id_obat_praktik,5)) AS id_obat', FALSE);
@@ -73,6 +73,7 @@
 			$batas = str_pad($id, 5,"0", STR_PAD_LEFT);
 			$id_barang_tampil = "B".$batas;
 			return $id_barang_tampil;
+			
 		}
 
 		function tambahdata($data)

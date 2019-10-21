@@ -3,7 +3,7 @@
 	/**
 	 * 
 	 */
-	class Opname_obat extends CI_Controller
+	class Datapenjualanbulanan extends CI_Controller
 	{
 		
 		function __construct()
@@ -15,9 +15,8 @@
 		function index()
 		{
 			$this->load->view("partial_apotek/main/header/header_table");
-			$this->load->view("content_apotek/kasir/opname_obat");
+			$this->load->view("content_apotek/kasir/datapenjualanbulanan");
 			$this->load->view("partial_apotek/main/footer/footer_table");
 		}
 
 	}
-?>

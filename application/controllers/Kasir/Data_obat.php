@@ -14,9 +14,9 @@
 
 		function index()
 		{
-			$this->load->view("partial_apotek/main/header");
+			$this->load->view("partial_apotek/main/header/header_table");
 			$this->load->view("content_apotek/kasir/data_obat");
-			$this->load->view("partial_apotek/main/footer");
+			$this->load->view("partial_apotek/main/footer/footer_table");
 		}
 
 	}
