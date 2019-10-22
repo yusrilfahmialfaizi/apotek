@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<?php $this->load->view("partial_apotek/main/head/head") ?>
-<body class="theme-teal">
+<body class="theme-indigo">
 	<?php $this->load->view("partial_apotek/main/page_loader") ?>
 	<!-- Overlay For Sidebars -->
     <div class="overlay"></div>
