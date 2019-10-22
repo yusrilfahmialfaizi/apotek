@@ -32,24 +32,86 @@
                                     <form>
                                         <div class="row clearfix">
                                             <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                                <label for="total_harga">Bayar</label>
+                                                <label for="total_harga">ID Barang</label>
+                                            </div>
+                                            <div class="col-lg-4 col-md-10 col-sm-8 col-xs-7">
+                                                <div class="form-group">
+                                                    <select class="form-control show-tick" data-live-search="true">
+                                                        <option>Hot Dog</option>
+                                                        <option>Burger, Shake and a Smile</option>
+                                                        <option>Sugar, Spice and all things nice</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row clearfix">
+                                            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                                                <label for="nama_paten">Nama Paten</label>
                                             </div>
                                             <div class="col-lg-4 col-md-10 col-sm-8 col-xs-7">
                                                 <div class="form-group">
                                                     <div class="form-line">
-                                                        <input type="number" id="total_harga" min="0" class="form-control" placeholder="Rp. " required>
+                                                        <input type="number" id="nama_paten" name="nama_paten" class="form-control" placeholder="Nama Paten" required>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row clearfix">
                                             <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                                <label for="total_harga">Kembali</label>
+                                                <label for="nama_generic">Nama Generic</label>
                                             </div>
                                             <div class="col-lg-4 col-md-10 col-sm-8 col-xs-7">
                                                 <div class="form-group">
                                                     <div class="form-line">
-                                                        <input type="number" id="total_harga" min="0" class="form-control" placeholder="Rp. " required>
+                                                        <input type="text" id="nama_generic" name="nama_generic" class="form-control" placeholder="Nama Generic" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row clearfix">
+                                            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                                                <label for="nama_pabrik">Nama Pabrik</label>
+                                            </div>
+                                            <div class="col-lg-4 col-md-10 col-sm-8 col-xs-7">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" id="nama_pabrik" name="nama_pabrik" class="form-control" placeholder="Nama Pabrik" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row clearfix">
+                                            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                                                <label for="qty">Qty</label>
+                                            </div>
+                                            <div class="col-lg-4 col-md-10 col-sm-8 col-xs-7">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="number" id="qty" name="qty" class="form-control" placeholder="Qty" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row clearfix">
+                                            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                                                <label for="total_harga">Per</label>
+                                            </div>
+                                            <div class="col-lg-4 col-md-10 col-sm-8 col-xs-7">
+                                                <div class="form-group">
+                                                    <select class="form-control show-tick">
+                                                        <option value="">--Pilih--</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row clearfix">
+                                            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                                                <label for="harga_barang">Harga</label>
+                                            </div>
+                                            <div class="col-lg-4 col-md-10 col-sm-8 col-xs-7">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="number" id="harga_barang" name="harga_barang" min="0" class="form-control" placeholder="Rp. " required>
                                                     </div>
                                                 </div>
                                             </div>
@@ -57,8 +119,8 @@
                                     </form>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-link waves-effect">SAVE CHANGES</button>
-                                    <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                                    <button type="button" class="btn btn-link waves-effect">Tambah</button>
+                                    <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">Tutup</button>
                                 </div>
                             </div>
                         </div>
