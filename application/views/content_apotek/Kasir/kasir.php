@@ -82,6 +82,42 @@
                                         </div>
                                         <div class="row clearfix">
                                             <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                                                <label for="expired">Expired</label>
+                                            </div>
+                                            <div class="col-lg-4 col-md-10 col-sm-8 col-xs-7">
+                                                <div class="form-group">
+                                                    <select class="form-control show-tick" id="expired" class="expired">
+                                                        <option value="">--Pilih--</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row clearfix">
+                                            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                                                <label for="per">Per</label>
+                                            </div>
+                                            <div class="col-lg-4 col-md-10 col-sm-8 col-xs-7" id="per" name="per">
+                                                <div class="form-group">
+                                                    <select class="form-control show-tick">
+                                                        <option value="">--Pilih--</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row clearfix">
+                                            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                                                <label for="stok">Stok</label>
+                                            </div>
+                                            <div class="col-lg-4 col-md-10 col-sm-8 col-xs-7">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="number" id="stok" name="stok" min="0" class="form-control" placeholder="Stok " required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row clearfix">
+                                            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
                                                 <label for="qty">Qty</label>
                                             </div>
                                             <div class="col-lg-4 col-md-10 col-sm-8 col-xs-7">
@@ -89,18 +125,6 @@
                                                     <div class="form-line">
                                                         <input type="number" id="qty" name="qty" class="form-control" placeholder="Qty" required>
                                                     </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row clearfix">
-                                            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                                <label for="total_harga">Per</label>
-                                            </div>
-                                            <div class="col-lg-4 col-md-10 col-sm-8 col-xs-7">
-                                                <div class="form-group">
-                                                    <select class="form-control show-tick">
-                                                        <option value="">--Pilih--</option>
-                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
@@ -159,6 +183,7 @@
                                                     <th>Nama Generic</th>
                                                     <th>Nama Pabrik</th>
                                                     <th>Qty</th>
+                                                    <th>Exp</th>
                                                     <th>Per</th>
                                                     <th>Harga</th>
                                                     <th>Subtotal</th>
@@ -172,6 +197,7 @@
                                                     <th>Nama Generic</th>
                                                     <th>Nama Pabrik</th>
                                                     <th>Qty</th>
+                                                    <th>Exp</th>
                                                     <th>Per</th>
                                                     <th>Harga</th>
                                                     <th>Subtotal</th>
@@ -185,18 +211,19 @@
                                                     <td>Eroxyanitus Dugomis</td>
                                                     <td>Kimia Farma</td>
                                                     <td>500</td>
+                                                    <td>2019-10-22</td>
                                                     <td>Lembar</td>
                                                     <td>5000</td>
                                                     <td>3500</td>
                                                     <td>
                                                         <div class="form-line">
                                                             <!-- <div class="form-line"> -->
-                                                            <button type="button" class="btn bg-yellow waves-effect">
+                                                            <button type="button" class="btn btn-sm bg-yellow waves-effect">
                                                                 <i class="material-icons">edit</i>
                                                             </button>
                                                             <!-- </div> -->
                                                             <!-- <div class="form-group"> -->
-                                                            <button type="button" class="btn bg-red waves-effect">
+                                                            <button type="button" class="btn btn-sm bg-red waves-effect">
                                                                 <i class="material-icons">delete</i>
                                                             </button>
                                                             <!-- </div> -->
