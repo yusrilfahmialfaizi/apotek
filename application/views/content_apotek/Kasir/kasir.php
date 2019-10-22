@@ -29,11 +29,32 @@
                                     <h4 class="modal-title" id="defaultModalLabel">Tambah Keranjang</h4>
                                 </div>
                                 <div class="modal-body">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales orci ante, sed ornare eros vestibulum ut. Ut accumsan
-                                    vitae eros sit amet tristique. Nullam scelerisque nunc enim, non dignissim nibh faucibus ullamcorper.
-                                    Fusce pulvinar libero vel ligula iaculis ullamcorper. Integer dapibus, mi ac tempor varius, purus
-                                    nibh mattis erat, vitae porta nunc nisi non tellus. Vivamus mollis ante non massa egestas fringilla.
-                                    Vestibulum egestas consectetur nunc at ultricies. Morbi quis consectetur nunc.
+                                    <form>
+                                        <div class="row clearfix">
+                                            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                                                <label for="total_harga">Bayar</label>
+                                            </div>
+                                            <div class="col-lg-4 col-md-10 col-sm-8 col-xs-7">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="number" id="total_harga" min="0" class="form-control" placeholder="Rp. " required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row clearfix">
+                                            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                                                <label for="total_harga">Kembali</label>
+                                            </div>
+                                            <div class="col-lg-4 col-md-10 col-sm-8 col-xs-7">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="number" id="total_harga" min="0" class="form-control" placeholder="Rp. " required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-link waves-effect">SAVE CHANGES</button>
@@ -75,8 +96,6 @@
                                                     <th>Nama Paten</th>
                                                     <th>Nama Generic</th>
                                                     <th>Nama Pabrik</th>
-                                                    <th>Jenis</th>
-                                                    <th>Kategori</th>
                                                     <th>Qty</th>
                                                     <th>Per</th>
                                                     <th>Harga</th>
@@ -90,8 +109,6 @@
                                                     <th>Nama Paten</th>
                                                     <th>Nama Generic</th>
                                                     <th>Nama Pabrik</th>
-                                                    <th>Jenis</th>
-                                                    <th>Kategori</th>
                                                     <th>Qty</th>
                                                     <th>Per</th>
                                                     <th>Harga</th>
@@ -105,13 +122,24 @@
                                                     <td>Diapet</td>
                                                     <td>Eroxyanitus Dugomis</td>
                                                     <td>Kimia Farma</td>
-                                                    <td>Kapsul</td>
-                                                    <td>Bebas</td>
                                                     <td>500</td>
                                                     <td>Lembar</td>
                                                     <td>5000</td>
                                                     <td>3500</td>
-                                                    <td></td>
+                                                    <td>
+                                                        <div class="form-line">
+                                                            <!-- <div class="form-line"> -->
+                                                            <button type="button" class="btn bg-yellow waves-effect">
+                                                                <i class="material-icons">edit</i>
+                                                            </button>
+                                                            <!-- </div> -->
+                                                            <!-- <div class="form-group"> -->
+                                                            <button type="button" class="btn bg-red waves-effect">
+                                                                <i class="material-icons">delete</i>
+                                                            </button>
+                                                            <!-- </div> -->
+                                                        </div>
+                                                    </td>
                                                 </tr>
                                             </tbody>
                                         </table>
