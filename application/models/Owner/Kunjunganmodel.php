@@ -72,9 +72,10 @@
 			return $this->db->insert('detail_kunjungan', $data_detail);
 		}
 
-		function kurang($qty, $id)
+		function update_jumlah_stok($where, $data)
 		{
-			$this->db->query("UPDATE obat_praktik SET jumlahstok = (SELECT jumlahstok FROM obat_praktik WHERE id_obat_praktik = '$id') - $qty WHERE id_obat_praktik = '$id'");
+			$this->db->where($where);
+			$this->db->update('detail_obat_praktik', $data);
 		}
 
 	}

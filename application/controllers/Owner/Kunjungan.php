@@ -60,7 +60,8 @@
 				'nama_pabrik'	=> $this->input->post("nama_pabrik"),
 				'jenis'			=> $this->input->post("jenis_obat"),
 				'kategori'		=> $this->input->post("kategori_obat"),
-				'per'			=> $this->input->post("per")
+				'per'			=> $this->input->post("per"),
+				'exp'			=> $this->input->post("exp")
 				);
 
 			$this->cart->insert($data);
@@ -82,6 +83,7 @@
                               <td>'.$items['kategori'].'</td>
                               <td>'.number_format($items['qty']).'</td>
                               <td>'.$items['per'].'</td>
+                              <td>'.$items['exp'].'</td>
                               <td>'.number_format($items['price']).'</td>
                               <td>'.number_format($items['subtotal']).'</td>
                               <td>
@@ -149,6 +151,10 @@
 			$proses = $this->Kunjunganmodel->kunjungan($data);
 			if ($this->cart->contents()){
 				# code...
+				// echo '<pre>';
+				// print_r($this->cart->contents());
+				// // echo 'Lembar ='.$qty;
+				// echo '</pre>';
 				foreach ($this->cart->contents() as $key) {
 					# code...
 					$data_detail 	= array(
@@ -157,12 +163,50 @@
 						'jenis'				=> $key['per'],
 						'qty'				=> $key['qty']
 					);
-					if ($key['per'] = "Lembar") {
-						# code...
-						$this->Kunjunganmodel->kurang($key['qty'],$key['id']);
-						$this->Kunjunganmodel->kunjungan_detail($data_detail);
-					}else{
-						$this->Kunjunganmodel->kunjungan_detail($data_detail);
+					$query = $this->Obatmodel->get_stok_op($key['id'],$key['exp']);
+					$biji_asli = $this->Obatmodel->get_biji($key['id']);
+					// echo '<pre>';
+					// // print_r($data_detail);
+					// echo '</pre>';
+					// echo '<pre>';
+					// print_r($query);
+					// echo '</pre>';
+					foreach ($query as $stok) {
+						foreach ($biji_asli as $biji) {
+							# code...
+							$where = array('id_obat_praktik' => $key['id'], 'exp'	=> $key['exp'] );
+							if ($key['per'] == "Lembar") {
+								# code...
+								# code...
+								// $qty = $stok->jumlah_stok - $key['qty'];
+								$dalam_biji	= $key['qty'] * $biji->jumlah_biji;
+								$qty		= $stok->jumlah_biji - $dalam_biji;
+								$stok_akhir = $qty / $biji->jumlah_biji ;
+								$data = array('jumlah_stok' => ceil($stok_akhir), 'jumlah_biji' => $qty );
+								// echo '<pre>';
+
+								// echo '<pre>';
+								// // print_r($stok->jumlah_stok);
+								// print_r($data);
+								// echo 'Lembar ='.$qty;
+								// echo 'Lembar ='.ceil($stok_akhir);
+								// echo 'biji ='.$stok_biji;
+								// echo '</pre>';
+								// $this->Kunjunganmodel->kurang($key['qty'],$key['id']);
+								$this->Kunjunganmodel->kunjungan_detail($data_detail);
+								$this->Kunjunganmodel->update_jumlah_stok($where, $data);
+							}else{
+								$qty = $stok->jumlah_biji - $key['qty'];
+								$stok_akhir = $qty / $biji->jumlah_biji;
+								$data = array('jumlah_stok' => ceil($stok_akhir), 'jumlah_biji' => $qty );
+								// echo '<pre>';
+								// print_r($data);
+								// echo 'stok akhir ='.ceil($stok_akhir);
+								// echo '</pre>';
+								$this->Kunjunganmodel->kunjungan_detail($data_detail);
+								$this->Kunjunganmodel->update_jumlah_stok($where, $data);
+							}
+						}
 					}
 					// print_r($data_detail);
 				}

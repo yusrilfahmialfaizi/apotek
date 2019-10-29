@@ -93,6 +93,7 @@
                                   <label class="control-label col-md-3 col-sm-3 col-xs-12">Username  <span class="required">*</span></label>
                                   <div class="col-md-4 col-sm-9 col-xs-12">
                                     <input type="text" class="form-control" id="username_isi" name="username_isi" placeholder="Username" required="required">
+                                    <p id="pesan"></p>
                                   </div>
                                 </div>
                                 <div class="form-group">
@@ -106,7 +107,7 @@
                                   <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                     <button type="reset" class="btn btn-primary">Reset</button>
-                                    <button type="submit" class="btn btn-success">Submit</button>
+                                    <button type="submit" id="submit" class="btn btn-success">Submit</button>
                                   </div>
                                 </div>    
                               </form>
@@ -175,7 +176,8 @@
                                 <div class="form-group">
                                   <label class="control-label col-md-3 col-sm-3 col-xs-12">Username  <span class="required">*</span></label>
                                   <div class="col-md-4 col-sm-9 col-xs-12">
-                                    <input type="text" class="form-control" id="username" name="username" value="<?php echo $key->username ?>" placeholder="Username" required="required">
+                                    <input type="text" class="form-control" id="username" name="username" oninput="check()" value="<?php echo $key->username ?>" placeholder="Username" required="required">
+                                    <p id="pesan_edit"></p>
                                   </div>
                                 </div>
                                 <div class="form-group">
@@ -189,7 +191,7 @@
                                   <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                     <button type="reset" class="btn btn-primary">Reset</button>
-                                    <button type="submit" class="btn btn-success">Submit</button>
+                                    <button type="submit" id="submit_edit" class="btn btn-success">Submit</button>
                                   </div>
                                 </div>    
                               </form>
@@ -248,3 +250,85 @@
       </div>
     </div>
     <?php $this->load->view("partials/main/js/js") ?>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('#username_isi').on("input", function(){
+          var username = $("#username_isi").val();
+          $.ajax({
+            url       : "<?php echo base_url("owner/datauser/check")?>",
+            type      : "POST",
+            dataType  : "JSON",
+            data      : { username: username},
+            cache     : false,
+            success   : function(msg){
+              if (msg.message == "True") {
+                pesan.innerHTML     = "Username telah dipakai";
+                pesan.style.color   ="#ff6666";
+                submit.disabled     ="true"
+              }else{
+                pesan.innerHTML     = "Username bisa dipakai";
+                pesan.style.color   ="#66cc66";
+                submit.disabled     =""
+
+              }
+            }
+          });
+        });
+
+        
+        
+        // $('#username').on("input", function(){
+        //   var username = $("#username").val();
+        //   alert(username);
+
+        //   $.ajax({
+        //     url       : "<?php echo base_url("owner/datauser/check")?>",
+        //     type      : "POST",
+        //     dataType  : "JSON",
+        //     data      : { username: username},
+        //     cache     : false,
+        //     success   : function(msg){
+        //       if (msg.message == "True") {
+        //         document.getElementById("pesan_edit").innerHTML     = "Username telah dipakai";
+        //         document.getElementById("pesan_edit").style.color   ="#ff6666";
+        //         document.getElementById("submit_edit").disabled     ="true"
+        //       }else{
+        //         document.getElementById("pesan_edit").innerHTML     = "Username bisa dipakai";
+        //         document.getElementById("pesan_edit").style.color   ="#66cc66";
+        //         document.getElementById("submit_edit").disabled     =""
+
+        //       }
+        //     }
+        //   });
+
+        // });
+
+      })
+    </script>
+    <script>
+    function check(){
+          var username = $("#username").val();
+          // alert(username);
+
+          $.ajax({
+            url       : "<?php echo base_url("owner/datauser/check")?>",
+            type      : "POST",
+            dataType  : "JSON",
+            data      : {username: username},
+            cache     : false,
+            success   : function(msg){
+              if (msg.message == "True") {
+                document.getElementById("pesan_edit").innerHTML     = "Username telah dipakai";
+                document.getElementById("pesan_edit").style.color   ="#ff6666";
+                document.getElementById("submit_edit").disabled     ="true"
+              }else{
+                document.getElementById("pesan_edit").innerHTML     = "Username bisa dipakai";
+                document.getElementById("pesan_edit").style.color   ="#66cc66";
+                document.getElementById("submit_edit").disabled     =""
+
+              }
+            }
+          });
+
+        };
+    </script>

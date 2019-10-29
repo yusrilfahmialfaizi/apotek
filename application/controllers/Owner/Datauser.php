@@ -86,5 +86,24 @@
 			$this->Usermodel->hapusdata($id_user);
 			redirect("owner/datauser");
 		}
+
+		function check()
+		{
+			$username 	= $this->input->post("username");
+			$data 		= array('username' => $username);
+
+			$proses		= $this->Usermodel->check_username($data)->num_rows();
+
+			if ($proses == 0) {
+				# code...
+				$message = "False";
+			}else{
+				$message = "True";
+			}
+
+			$msg = array('message' => $message);
+			echo json_encode($msg);
+		}
+
 	}
 ?>

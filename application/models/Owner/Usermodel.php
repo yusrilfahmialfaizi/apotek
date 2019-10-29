@@ -52,5 +52,11 @@
 			$this->db->where('id_user', $id_user);
 			return $this->db->delete("user");
 		}
+
+		function check_username($data)
+		{
+			return $this->db->get_where('user', $data);
+		}
+
 	}
 ?>
