@@ -321,6 +321,7 @@
                               <th>Kategori</th>
                               <th>Qty</th>
                               <th>Per</th>
+                              <th>Exp</th>
                               <th>Harga Obat</th>
                               <th>Subtotal</th>
                               <th>Action</th>

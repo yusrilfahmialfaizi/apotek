@@ -87,13 +87,12 @@
                               <td>'.number_format($items['price']).'</td>
                               <td>'.number_format($items['subtotal']).'</td>
                               <td>
-	                            <div class="form-group">
-	                              <div class="form-group">
-	                                   <button type="button" class="btn btn-primary btn-sm glyphicon glyphicon-pencil" data-toggle="modal" data-target=".edit_obat'.$items['rowid'].'"></button>
+								<div class="form-group">
+									<button type="button" class="btn btn-primary btn-sm glyphicon glyphicon-pencil" data-toggle="modal" data-target=".edit_obat'.$items['rowid'].'"></button>
 	                                
 	                                  
-	                                   <button type="button" class="btn btn-danger btn-sm glyphicon glyphicon-remove " id="remove_cart" data-id="'.$items['rowid'].'"></button>
-	                            </div>
+									<button type="button" class="btn btn-danger btn-sm glyphicon glyphicon-remove " id="remove_cart" data-id="'.$items['rowid'].'"></button>
+								</div>
 	                          </td>
                             </tr>
                         ';
