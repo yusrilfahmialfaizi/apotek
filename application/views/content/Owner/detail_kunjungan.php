@@ -3,18 +3,18 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Buku Kunjungan</h3>
+                <h3>Detail Kunjungan</h3>
               </div>
 
               <div class="title_right">
-                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                <!-- <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
                   <div class="input-group">
                     <input type="text" class="form-control" placeholder="Search for...">
                     <span class="input-group-btn">
                       <button class="btn btn-default" type="button">Go!</button>
                     </span>
                   </div>
-                </div>
+                </div> -->
               </div>
             </div>
 
@@ -24,6 +24,8 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
+                    <a href="<?php echo base_url("owner/datakunjungan") ?>" class="btn btn-link btn-lg fa fa-mail-reply">
+                    </a>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -32,38 +34,35 @@
                     </ul>
                     <div class="clearfix"></div>
                   </div>
-                  <div class="x_content">
-                    <a href="" class="btn btn-success btn-sm glyphicon glyphicon-print"> Print</a>
-                    <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">                  
-                      <thead>
-                        <tr>
-                          <th>No.</th>
-                          <th>ID Kunjungan</th>
-                          <th>No. RM</th>
-                          <th>Nama Pasien</th>
-                          <th>Tanggal Kunjungan</th>
-                          <th>Dignosa Keperawatan</th>
-                          <th>Intervensi</th>
-                          <th>Tarif</th>
-                          <th>Action</th>
-                        </tr>
-                      </thead>
-                      <?php $no = 1; foreach ($kunjungan as $key) {?>
+                  <div class="x_content"></div>
+                    <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th>No.</th>
+                                <th>ID Kunjungan</th>
+                                <th>ID Obat</th>
+                                <th>Nama Paten</th>
+                                <th>Nama Generic</th>
+                                <th>Nama Pabrik</th>
+                                <th>Jenis Obat</th>
+                                <th>Jenis </th>
+                                <th>Qty</th>
+                            </tr>
+                        </thead>
                         <?php
-                           $id = $this->encryption->encrypt($key->id_kunjungan); ?>
+                            $no = 1;
+                            foreach ($data as $key) {?>
                       <tbody>
                         <tr>
                           <td><?php echo $no++ ?></td>
                           <td><?php echo $key->id_kunjungan ?></td>
-                          <td><?php echo $key->no_rm ?></td>
-                          <td><?php echo $key->nama ?></td>
-                          <td><?php echo $key->tgl_kunjungan ?></td>
-                          <td><?php echo $key->diagnosa_keperawatan ?></td>
-                          <td><?php echo $key->intervensi ?></td>
-                          <td><?php echo $key->tarif ?></td>
-                          <td>
-                            <a href="<?php echo base_url("owner/detailKunjungan/index/$id") ?>" class="btn btn-info btn-sm"> Lihat</a>
-                          </td>
+                          <td><?php echo $key->id_obat_praktik ?></td>
+                          <td><?php echo $key->nama_paten ?></td>
+                          <td><?php echo $key->nama_generic ?></td>
+                          <td><?php echo $key->nama_pabrik ?></td>
+                          <td><?php echo $key->jenis_obat ?></td>
+                          <td><?php echo $key->jenis ?></td>
+                          <td><?php echo $key->qty ?></td>
                         </tr>
                       <?php }?>
                       </tbody>

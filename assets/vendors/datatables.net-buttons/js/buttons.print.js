@@ -71,7 +71,7 @@ DataTable.ext.buttons.print = {
 	className: 'buttons-print',
 
 	text: function ( dt ) {
-		return dt.i18n( 'buttons.print', 'Print' );
+		return dt.i18n( 'buttons.print', 'Printh' );
 	},
 
 	action: function ( e, dt, button, config ) {
@@ -112,7 +112,8 @@ DataTable.ext.buttons.print = {
 		}
 
 		if ( title.indexOf( '*' ) !== -1 ) {
-			title= title.replace( '*', $('title').text() );
+			// title= title.replace( '*', $('title').text() );
+			title= title.replace( '*'," abc" );
 		}
 
 		win.document.close();

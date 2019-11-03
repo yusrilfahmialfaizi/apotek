@@ -78,5 +78,22 @@
 			$this->db->update('detail_obat_praktik', $data);
 		}
 
+		function get_kunjungan()
+		{
+			return $this->db->query("SELECT kunjungan.id_kunjungan, kunjungan.no_rm, pasien.nama, 
+			kunjungan.tgl_kunjungan, kunjungan.diagnosa_keperawatan, kunjungan.intervensi, kunjungan.tarif 
+			From Kunjungan, Pasien WHERE kunjungan.no_rm = pasien.no_rm")->result();
+		}
+
+		function detail_kunjungan($id_kunjungan)
+		{
+			$this->db->select("detail_kunjungan.id_kunjungan, detail_kunjungan.id_obat_praktik, obat_praktik.nama_paten, obat_praktik.nama_generic, obat_praktik.nama_pabrik, obat_praktik.jenis as jenis_obat, detail_kunjungan.jenis, detail_kunjungan.qty");
+			$this->db->from("detail_kunjungan");
+			$this->db->where("id_kunjungan", $id_kunjungan);
+			$this->db->join("obat_praktik", "obat_praktik.id_obat_praktik = detail_kunjungan.id_obat_praktik", "left");
+			$query = $this->db->get()->result();
+			return $query;
+		}
+
 	}
 ?>
