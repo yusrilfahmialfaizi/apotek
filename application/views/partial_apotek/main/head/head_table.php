@@ -1,3 +1,4 @@
+<head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <title>Apotek</title>
@@ -46,3 +47,4 @@
 
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
     <link href="<?php echo base_url("assets_apotek/css/themes/all-themes.css") ?>" rel="stylesheet" />
+</head>

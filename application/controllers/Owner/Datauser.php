@@ -1,11 +1,11 @@
-<?php 
+<?php
 	defined('BASEPATH') OR exit('No direct script access allowed');
 	/**
-	 * 
+	 *
 	 */
 	class Datauser extends CI_Controller
 	{
-		
+
 		function __construct()
 		{
 			# code...
@@ -19,7 +19,7 @@
 				redirect("login");
 			}
 			$data['user'] = $this->Usermodel->ambil_data();
-			$data['kode'] = $this->Usermodel->id_user(); 
+			$data['kode'] = $this->Usermodel->id_user();
 			$this->load->view("partials/main/header/header_owner");
 			$this->load->view("content/owner/data_user",$data);
 			$this->load->view("partials/main/footer");
@@ -41,7 +41,7 @@
 				'nama_user'		=> $nama ,
 				'jenis_kelamin'	=> $jk ,
 				'alamat'		=> $alamat ,
-				'jabatan'		=> $jabatan , 
+				'jabatan'		=> $jabatan ,
 				'username'		=> $username ,
 				'password'		=> $password);
 
@@ -68,7 +68,7 @@
 				'nama_user'		=> $nama ,
 				'jenis_kelamin'	=> $jk ,
 				'alamat'		=> $alamat ,
-				'jabatan'		=> $jabatan , 
+				'jabatan'		=> $jabatan ,
 				'username'		=> $username ,
 				'password'		=> $password);
 

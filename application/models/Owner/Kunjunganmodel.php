@@ -95,5 +95,10 @@
 			return $query;
 		}
 
+		function get_id()
+		{
+			return $this->db->get("kunjungan")->result();
+		}
+
 	}
 ?>

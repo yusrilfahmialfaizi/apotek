@@ -1,11 +1,11 @@
-<?php 
+<?php
 	defined('BASEPATH') OR exit('No direct script access allowed');
 	/**
-	 * 
+	 *
 	 */
 	class Usermodel extends CI_Model
 	{
-		
+
 		function __construct()
 		{
 			# code...
@@ -18,7 +18,7 @@
 			$this->db->order_by('id_user','Desc');
 			$this->db->limit(1);
 			$query = $this->db->get('user');
-			
+
 			if ($query->num_rows() <> 0) {
 				# code...
 				$data = $query->row();
@@ -56,6 +56,7 @@
 		function check_username($data)
 		{
 			return $this->db->get_where('user', $data);
+			;
 		}
 
 	}

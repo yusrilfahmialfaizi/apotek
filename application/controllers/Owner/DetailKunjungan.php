@@ -8,9 +8,11 @@
             $this->load->model("owner/Kunjunganmodel");
         }
 
-        function index($id)
+        function index($id_kunjungan)
         {
-            $id_kunjungan   = $this->encryption->decrypt($id);
+            if($this->session->userdata('status') != "Login" || $this->session->userdata("jabatan") != "Owner"){
+				redirect("login");
+			}
             $data['data']   = $this->Kunjunganmodel->detail_kunjungan($id_kunjungan);
             $this->load->view("partials/main/header/header_owner");
             $this->load->view("content/owner/detail_kunjungan", $data);
