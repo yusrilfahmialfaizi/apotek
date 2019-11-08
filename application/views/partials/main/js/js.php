@@ -1,5 +1,7 @@
     <!-- jQuery -->
     <script src="<?php echo base_url("assets/vendors/jquery/dist/jquery.min.js")?>"></script>
+    <!-- Cahined -->
+    <script src="<?php echo base_url("assets_apotek/plugins/jQuery-Chained-Selects/jquery.chained.js") ?>"></script>
     <!-- Bootstrap -->
     <script src="<?php echo base_url("assets/vendors/bootstrap/dist/js/bootstrap.min.js")?>"></script>
     <!-- FastClick -->
@@ -55,7 +57,7 @@
     <!-- bootstrap-daterangepicker -->
     <script src="<?php echo base_url("assets/vendors/moment/min/moment.min.js")?>"></script>
     <script src="<?php echo base_url("assets/vendors/bootstrap-daterangepicker/daterangepicker.js")?>"></script>
-    <!-- bootstrap-datetimepicker -->    
+    <!-- bootstrap-datetimepicker -->
     <script src="<?php echo base_url("assets/vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js")?>"></script>
 
     <!-- bootstrap-daterangepicker -->
@@ -79,37 +81,37 @@
     <script src="<?php echo base_url("assets/vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js")?>"></script>
     <!-- starrr -->
     <script src="<?php echo base_url("assets/vendors/starrr/dist/starrr.js")?>"></script>
-    
+
 
     <!-- Custom Theme Scripts -->
     <script src="<?php echo base_url("assets/build/js/custom.min.js")?>"></script>
 
     <script>
         $('#myDatepicker').datetimepicker();
-        
+
         $('#myDatepicker2').datetimepicker({
             format: 'DD.MM.YYYY'
         });
-        
+
         $('#myDatepicker3').datetimepicker({
             format: 'hh:mm A'
         });
-        
+
         $('#myDatepicker4').datetimepicker({
             ignoreReadonly: true,
             allowInputToggle: true
         });
 
         $('#datetimepicker6').datetimepicker();
-        
+
         $('#datetimepicker7').datetimepicker({
             useCurrent: false
         });
-        
+
         $("#datetimepicker6").on("dp.change", function(e) {
             $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
         });
-        
+
         $("#datetimepicker7").on("dp.change", function(e) {
             $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
         });

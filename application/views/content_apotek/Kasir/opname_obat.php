@@ -300,7 +300,7 @@
         //     });
         //     return false;
         // });
-        $("#expired").chained("#id_obat");
+        // $("#expired").chained("#id_obat");
     });
 </script>
 <?php $this->load->view("partial_apotek/main/js/js_table") ?>
