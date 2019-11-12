@@ -33,9 +33,8 @@
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
-                  <button type="button" name="print" id="print" onclick="print_d()" class="btn btn-success btn-sm glyphicon glyphicon-print"> Print</button>
-                    <!-- <a href="<?php echo base_url("owner/datakunjungan/print") ?>" class="btn btn-success btn-sm glyphicon glyphicon-print"> Print</a> -->
-                    <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">                  
+                    <button type="button" name="print" id="print" onclick="print_d()" class="btn btn-success btn-sm glyphicon glyphicon-print"> Print</button>
+                    <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                       <thead>
                         <tr>
                           <th>No.</th>
@@ -49,26 +48,27 @@
                           <th>Action</th>
                         </tr>
                       </thead>
-                      <?php $no = 1; foreach ($kunjungan as $key) {?>
+                      <?php $no = 1;
+                      foreach ($kunjungan as $key) { ?>
                         <?php
-                        $id_kunjungan = $key->id_kunjungan;
-                        ?>
-                      <tbody>
-                        <tr>
-                          <td><?php echo $no++ ?></td>
-                          <td><?php echo $key->id_kunjungan ?></td>
-                          <td><?php echo $key->no_rm ?></td>
-                          <td><?php echo $key->nama ?></td>
-                          <td><?php echo $key->tgl_kunjungan ?></td>
-                          <td><?php echo $key->diagnosa_keperawatan ?></td>
-                          <td><?php echo $key->intervensi ?></td>
-                          <td><?php echo $key->tarif ?></td>
-                          <td>
-                            <a href="<?php echo base_url("owner/detailKunjungan/index/$id_kunjungan") ?>" class="btn btn-info btn-sm"> Lihat</a>
-                          </td>
-                        </tr>
-                      <?php }?>
-                      </tbody>
+                          $id_kunjungan = $key->id_kunjungan;
+                          ?>
+                        <tbody>
+                          <tr>
+                            <td><?php echo $no++ ?></td>
+                            <td><?php echo $key->id_kunjungan ?></td>
+                            <td><?php echo $key->no_rm ?></td>
+                            <td><?php echo $key->nama ?></td>
+                            <td><?php echo $key->tgl_kunjungan ?></td>
+                            <td><?php echo $key->diagnosa_keperawatan ?></td>
+                            <td><?php echo $key->intervensi ?></td>
+                            <td><?php echo $key->tarif ?></td>
+                            <td>
+                              <a href="<?php echo base_url("owner/detailKunjungan/index/$id_kunjungan") ?>" class="btn btn-info btn-sm"> Lihat</a>
+                            </td>
+                          </tr>
+                        <?php } ?>
+                        </tbody>
                     </table>
                   </div>
                 </div>
@@ -78,11 +78,11 @@
         </div>
         <!-- /page content -->
         <?php $this->load->view("partials/main/foot") ?>
-      </div>
-    </div>
-    <?php $this->load->view("partials/main/js/js") ?>
-    <script>
-        function print_d(){
-            window.open("<?php echo base_url("owner/datakunjungan/print") ?>","_blank");
-        }
-    </script>
+        </div>
+        </div>
+        <?php $this->load->view("partials/main/js/js") ?>
+        <script>
+          function print_d() {
+            window.open("<?php echo base_url("owner/datakunjungan/print") ?>", "_blank");
+          }
+        </script>

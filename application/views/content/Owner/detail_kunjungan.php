@@ -6,16 +6,7 @@
                 <h3>Detail Kunjungan</h3>
               </div>
 
-              <div class="title_right">
-                <!-- <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-                  <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for...">
-                    <span class="input-group-btn">
-                      <button class="btn btn-default" type="button">Go!</button>
-                    </span>
-                  </div>
-                </div> -->
-              </div>
+              <div class="title_right"></div>
             </div>
 
             <div class="clearfix"></div>
@@ -35,23 +26,24 @@
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content"></div>
-                    <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
-                        <thead>
-                            <tr>
-                                <th>No.</th>
-                                <th>ID Kunjungan</th>
-                                <th>ID Obat</th>
-                                <th>Nama Paten</th>
-                                <th>Nama Generic</th>
-                                <th>Nama Pabrik</th>
-                                <th>Jenis Obat</th>
-                                <th>Jenis </th>
-                                <th>Qty</th>
-                            </tr>
-                        </thead>
-                        <?php
-                            $no = 1;
-                            foreach ($data as $key) {?>
+                  <button type="button" name="print" id="print" onclick="print_d()" class="btn btn-success btn-sm glyphicon glyphicon-print"> Print</button>
+                  <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                    <thead>
+                      <tr>
+                        <th>No.</th>
+                        <th>ID Kunjungan</th>
+                        <th>ID Obat</th>
+                        <th>Nama Paten</th>
+                        <th>Nama Generic</th>
+                        <th>Nama Pabrik</th>
+                        <th>Jenis Obat</th>
+                        <th>Jenis </th>
+                        <th>Qty</th>
+                      </tr>
+                    </thead>
+                    <?php
+                    $no = 1;
+                    foreach ($data as $key) { ?>
                       <tbody>
                         <tr>
                           <td><?php echo $no++ ?></td>
@@ -64,17 +56,23 @@
                           <td><?php echo $key->jenis ?></td>
                           <td><?php echo $key->qty ?></td>
                         </tr>
-                      <?php }?>
+                      <?php } ?>
                       </tbody>
-                    </table>
-                  </div>
+                  </table>
                 </div>
               </div>
             </div>
           </div>
         </div>
+        </div>
         <!-- /page content -->
         <?php $this->load->view("partials/main/foot") ?>
-      </div>
-    </div>
-    <?php $this->load->view("partials/main/js/js") ?>
+        </div>
+        </div>
+        <?php $this->load->view("partials/main/js/js") ?>
+        <script>
+          function print_d() {
+            var id = <?php echo $this->uri->segment(4); ?>;
+            window.open("<?php echo base_url("owner/Detailkunjungan/print/") ?>" + id, "_blank");
+          }
+        </script>
