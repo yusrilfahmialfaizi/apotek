@@ -17,7 +17,7 @@
 		{
 			$data['obat'] 	= $this->Stock_Obat_Model->stok();
 			$this->load->view("partials/main/header/header_kasir");
-			$this->load->view("content_apotek/kasir/stock_obat", $data);
+			$this->load->view("content/kasir/stock_obat", $data);
 			$this->load->view("partials/main/footer");
 		}
 
