@@ -1,148 +1,86 @@
-<section class="content">
-    <div class="container-fluid">
-        <!-- Basic Examples -->
-        <div class="row clearfix">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="card">
-                    <div class="header">
-                        <h1>
-                            Stock Obat
-                        </h1>
-                        <ul class="header-dropdown m-r--5">
-                            <li class="dropdown">
-                                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                    <i class="material-icons">more_vert</i>
-                                </a>
-                                <ul class="dropdown-menu pull-right">
-                                    <li><a href="javascript:void(0);">Action</a></li>
-                                    <li><a href="javascript:void(0);">Another action</a></li>
-                                    <li><a href="javascript:void(0);">Something else here</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- Default Size -->
-                    <div class="modal fade" id="defaultModal" tabindex="-1" role="dialog">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h3 class="modal-title" id="defaultModalLabel">Tambah Stock Obat</h3>
-                                </div>
-                                <div class="modal-body">
-                                    <form>
-                                        <div class="row clearfix">
-                                            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                                <label for="total_harga">Id Obat</label>
-                                            </div>
-                                            <div class="col-lg-4 col-md-10 col-sm-8 col-xs-7">
-                                                <div class="form-group">
-                                                    <div class="form-line">
-                                                        <input type="number" id="id_obat" min="0" class="form-control" placeholder=" " required>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row clearfix">
-                                            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                                <label for="total_harga">Nama Obat</label>
-                                            </div>
-                                            <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                                <div class="form-group">
-                                                    <div class="form-line">
-                                                        <input type="text" id="nama_obat" min="0" class="form-control" placeholder=" " required>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row clearfix">
-                                            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                                <label for="total_harga">Expired</label>
-                                            </div>
-                                            <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                                <div class="form-group">
-                                                    <div class="form-line">
-                                                        <input type="date" id="expired" min="0" class="form-control" placeholder=" " required>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row clearfix">
-                                            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                                <label for="total_harga">Stock</label>
-                                            </div>
-                                            <div class="col-lg-4 col-md-10 col-sm-8 col-xs-7">
-                                                <div class="form-group">
-                                                    <div class="form-line">
-                                                        <input type="number" id="stock" min="0" class="form-control" placeholder=" " required>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-link waves-effect">SAVE CHANGES</button>
-                                    <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="body">
-                        <div class="form-group">
-                            <form>
-                                <div class="form-group">
-                                    <button type="button" class="btn btn-primary waves-effect m-r-20" data-toggle="modal" data-target="#defaultModal">Tambah Stock</button>
-                                </div>
-                                <div class="form-group">
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
-                                            <thead>
-                                        <tr>
-                                            <th>Id Obat</th>
-                                            <th>Nama Obat</th>
-                                            <th>Expied</th>
-                                            <th>Jumlah Stock</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>Id Obat</th>
-                                            <th>Nama Obat</th>
-                                            <th>Expied</th>
-                                            <th>Jumlah Stock</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </tfoot>
-                                    <tbody>
-                                        <tr>
-                                            <td>008763525</td>
-                                            <td>Mixagrip</td>
-                                            <td>20/10/2020</td>
-                                            <td>100</td>
-                                            <td>
-                                                <div class="form-line">
-                                                    <!-- <div class="form-line"> -->
-                                                    <button type="button" class="btn bg-yellow waves-effect">
-                                                        <i class="material-icons">edit</i>
-                                                    </button>
-                                                    <!-- </div> -->
-                                                    <!-- <div class="form-group"> -->
-                                                    <button type="button" class="btn bg-red waves-effect">
-                                                        <i class="material-icons">delete</i>
-                                                    </button>
-                                                    <!-- </div> -->
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                             </div>                               
-                         </div>
-                    </form>
+<!-- page content -->
+        <div class="right_col" role="main">
+          <div class="">
+            <div class="page-title">
+              <div class="title_left">
+                <h3>Data Stok Obat</h3>
+              </div>
+
+              <div class="title_right">
+                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                  <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search for...">
+                    <span class="input-group-btn">
+                      <button class="btn btn-default" type="button">Go!</button>
+                    </span>
+                  </div>
                 </div>
+              </div>
             </div>
+
+            <div class="clearfix"></div>
+
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2></h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                      <!-- <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <ul class="dropdown-menu" role="menu">
+                          <li><a href="#">Settings 1</a>
+                          </li>
+                          <li><a href="#">Settings 2</a>
+                          </li>
+                        </ul>
+                      </li> -->
+                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                              
+                    <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                      <thead>
+                        <tr>
+                          <th>ID Obat</th>
+                          <th>Nama Paten</th>
+                          <th>Nama Generic</th>
+                          <th>Nama Pabrik</th>
+                          <th>Jenis</th>
+                          <th>Kategori</th>
+                          <th>Exp</th>
+                          <th>Stok</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <?php foreach ($obat as $key): ?>
+                        <tr>
+                          <td><?php echo $key->id_obat_praktik ?></td>
+                          <td><?php echo $key->nama_paten ?></td>
+                          <td><?php echo $key->nama_generic ?></td>
+                          <td><?php echo $key->nama_pabrik ?></td>
+                          <td><?php echo $key->jenis ?></td>
+                          <td><?php echo $key->kategori ?></td>
+                          <td><?php echo $key->exp ?></td>
+                          <td><?php echo $key->jumlah_stok ?></td>
+                        </tr>
+                        <?php endforeach ?>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+        <!-- /page content -->
+        <?php $this->load->view("partials/main/foot") ?>
+      </div>
     </div>
-    </div>
-</section>
+    <?php $this->load->view("partials/main/js/js") ?>
+    
