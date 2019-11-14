@@ -38,34 +38,35 @@
                       <thead>
                         <tr>
                           <th>No.</th>
-                          <th>ID Kunjungan</th>
-                          <th>No. RM</th>
-                          <th>Nama Pasien</th>
-                          <th>Tanggal Kunjungan</th>
-                          <th>Dignosa Keperawatan</th>
-                          <th>Intervensi</th>
-                          <th>Tarif</th>
-                          <th>Action</th>
+                          <th>ID Penjualan</th>
+                          <th>Nama User</th>
+                          <th>Jabatan</th>
+                          <th>Tanggal</th>
+                          <th>Total Harga</th>
+                          <th>Bayar</th>
+                          <th>Kembalian</th>
+                          <th>Diskon</th>
                         </tr>
                       </thead>
-                      <!-- <?php $no = 1;
-                      foreach ($kunjungan as $key) { ?>
+                      <?php $no = 1;
+                      foreach ($laporan_bulanan as $key) { ?>
                         <?php
-                          $id_kunjungan = $key->id_kunjungan;
-                          ?> -->
+                          $id_penjualan = $key->id_penjualan;
+                          ?> 
                         <tbody>
                           <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>
+                            <td><?php echo $no++ ?></td>
+                            <td><?php echo $key->id_penjualan ?></td>
+                            <td><?php echo $key->nama_user ?></td>
+                            <td><?php echo $key->jabatan ?></td>
+                            <td><?php echo $key->tanggal ?></td>
+                            <td><?php echo $key->total_harga ?></td>
+                            <td><?php echo $key->bayar ?></td>
+                            <td><?php echo $key->kembalian ?></td>
+                            <td><?php echo $key->diskon ?></td>
+                            <!-- <td>
                               <a href="<?php echo base_url("owner/detailKunjungan/index/$id_kunjungan") ?>" class="btn btn-info btn-sm"> Lihat</a>
-                            </td>
+                            </td> -->
                           </tr>
                         <?php } ?>
                         </tbody>
@@ -83,6 +84,6 @@
         <?php $this->load->view("partials/main/js/js") ?>
         <script>
           function print_d() {
-            window.open("<?php echo base_url("kasir/LaporanBulanan/print") ?>", "_blank");
+            window.open("<?php echo base_url("kasir/Laporan_bulanan/print") ?>", "_blank");
           }
         </script>
