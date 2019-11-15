@@ -14,6 +14,9 @@
 
 			function index()
 			{
+			if($this->session->userdata('status') != "Login" || $this->session->userdata("jabatan") != "Kasir"){
+				redirect("login");
+			}
 				$data['laporan_bulanan'] = $this->LaporanBulananModel->ambil_data();
 				$this->load->view("partials/main/header/header_kasir");
 				$this->load->view("content/kasir/laporan_bulanan", $data);

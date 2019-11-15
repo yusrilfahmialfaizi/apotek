@@ -15,6 +15,9 @@
 
 		function index()
 		{
+			if($this->session->userdata('status') != "Login" || $this->session->userdata("jabatan") != "Kasir"){
+				redirect("login");
+			}
 			$data['obat'] 	= $this->Stock_Obat_Model->stok();
 			$this->load->view("partials/main/header/header_kasir");
 			$this->load->view("content/kasir/stock_obat", $data);
