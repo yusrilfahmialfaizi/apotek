@@ -15,6 +15,9 @@
 
 		function index()
 		{
+			if($this->session->userdata('status') != "Login" || $this->session->userdata("jabatan") != "Kasir"){
+				redirect("login");
+			}
 			$data['pembelian']	= $this->PembelianModel->pembelian_data();
 			$data['dp']	= $this->PembelianModel->pembelian_detail();
 

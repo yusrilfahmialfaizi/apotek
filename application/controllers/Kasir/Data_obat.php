@@ -15,11 +15,15 @@ class Data_obat extends CI_Controller
 
 	function index()
 	{
+		if($this->session->userdata('status') != "Login" || $this->session->userdata("jabatan") != "Kasir"){
+				redirect("login");
+			}
 		$data['obat'] = $this->Dataobat_model->ambil_data();
 		$data['kode'] = $this->Dataobat_model->id_obat();
 		$this->load->view("partials/main/header/header_kasir");
 		$this->load->view("content/kasir/data_obat", $data);
 		$this->load->view("partials/main/footer");
+		
 	}
 
 	function tambah()

@@ -16,6 +16,9 @@ class Opname_obat extends CI_Controller
 
 	function index()
 	{
+		if($this->session->userdata('status') != "Login" || $this->session->userdata("jabatan") != "Kasir"){
+				redirect("login");
+			}
 		$data['opname'] = $this->Opnamemodel->get_opname();
 		$data['obat'] 	= $this->Obatmodel->get_obat();
 		$data['id'] 	= $this->Opnamemodel->id();
