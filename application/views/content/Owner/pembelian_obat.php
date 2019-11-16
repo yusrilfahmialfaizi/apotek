@@ -30,10 +30,10 @@
                   </div>
                   <div class="modal-body">
                     <form action="<?php echo base_url("owner/pembelianobat/tambah") ?>" method="post" class="form-horizontal form-label-left">
-                      <!-- <div class="form-group">
+                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Kode Pembelian</label>
                         <div class="col-md-4 col-sm-9 col-xs-12">
-                          <input type="text" class="form-control" id="kode_isi" name="id_obat_isi" value="<?php //echo $kode ?>"  required="required">
+                          <input type="text" class="form-control" id="kode_isi" name="id_obat_isi" value="<?php  $kode ?>"  required="required">
                         </div>
                       </div> -->
                       <div class="form-group">
@@ -110,10 +110,10 @@
                       </div>    
                     </form>
                   </div>
-                  <!-- <div class="modal-footer">
+                   <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-primary">Save changes</button>
-                  </div> -->
+                  </div>
 
                 </div>
               </div>
@@ -130,7 +130,7 @@
                     <h4 class="modal-title" id="myModalLabel">Obat</h4>
                   </div>
                   <div class="modal-body">
-                    <!-- <form action="<?php //echo base_url("owner/kunjungan/keranjang_obat") ?>" method="post" class="form-horizontal form-label-left"> -->
+                     <form action="<?php echo base_url("owner/kunjungan/keranjang_obat") ?>" method="post" class="form-horizontal form-label-left"> -->
                     <form class="form-horizontal form-label-left">
                       <?php $cart   = $this->cart->get_item($key['rowid']) ?>
                       <div class="form-group">
@@ -201,10 +201,10 @@
                       </div>    
                     </form>
                   </div>
-                  <!-- <div class="modal-footer">
+                   <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-primary">Save changes</button>
-                  </div> -->
+                  </div>
 
                 </div>
               </div>
@@ -243,7 +243,7 @@
                           </div>
                         </div>
                         <div class="form-group">
-                          <!-- <div class="col-md-10"></div> -->
+                           <div class="col-md-10"></div> -->
                           <div class="col-md-12">
                             <div class="form-group">
                             <button type="button" class="btn btn-primary btn-round" data-toggle="modal" data-target=".bs-example-modal-lg"> + Tambah Data</button>
@@ -271,7 +271,7 @@
                           <tbody id="pembelian"></tbody>
                         </table>
                       </div>
-                      <!-- <div class="form-group">
+                       <div class="form-group">
                         <div class="col-md-6"></div>
                         <div class="col-md-6"> 
                           <div class="form-group">
@@ -281,7 +281,7 @@
                               </div>
                           </div>
                         </div>
-                      </div> -->
+                      </div>
                       <div class="form-group">
                         <div class="col-md-9 col-sm-9 col-xs-12 ">
                           <button type="submit"  id="submit" name="submit" class="btn btn-success">Submit</button>
@@ -323,7 +323,7 @@
                   $("#nama_pabrik_isi").val(data.nama_pabrik);
                   $("#jenis_obat_isi").val(data.jenis);
                   $("#kategori_obat_isi").val(data.kategori);
-                  // $("#harga_beli_isi").val(data.harga_beli);
+                  $("#harga_beli_isi").val(data.harga_beli);
                 });
               }
             })
@@ -346,7 +346,7 @@
                 data    : {obat: obat, nama_paten: nama_paten, qty: qty, harga: harga, nama_generic : nama_generic, nama_pabrik : nama_pabrik, jenis_obat : jenis_obat, kategori_obat : kategori_obat, exp : exp},
                 success: function(data){
                   $('#pembelian').html(data);
-                  // window.load();
+                  window.load();
                   $("#id_obat_isi").val(null);
                   $("#nama_paten_isi").val("");
                   $("#jumlah_stok_isi").val("");
@@ -369,7 +369,7 @@
                 data    : {rowid: rowid, qty: qty, exp: exp},
                 success: function(data){
                   $('#pembelian').html(data);
-                  // window.load();
+                 window.load();
                   $("#id_obat_edit").val(null);
                   $("#nama_paten_edit").val("");
                   $("#jumlah_stok_edit").val("");
