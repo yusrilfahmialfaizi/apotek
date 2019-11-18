@@ -47,4 +47,88 @@ class Penjualan extends CI_Controller
 		$data = $this->Dataobat_model->get_stok($id_obat, $exp);
 		echo json_encode($data);
 	}
+
+	function keranjang_belanja()
+	{
+		$tgl 			= $this->input->post("exp");
+		$exp 			= date("Y-m-d", strtotime($tgl));
+		$data 			= array(
+			'id' 			=> $this->input->post('id_obat'),
+			'name' 			=> $this->input->post("nama_paten"),
+			'qty'			=> $this->input->post("qty"),
+			'price'			=> $this->input->post("harga"),
+			'nama_generic'	=> $this->input->post("nama_generic"),
+			'nama_pabrik'	=> $this->input->post("nama_pabrik"),
+			'jenis'			=> $this->input->post("jenis_obat"),
+			'exp'			=> $exp
+		);
+
+		$this->cart->insert($data);
+		echo  $this->show_cart();
+	}
+
+	function show_cart()
+	{
+		$output = '';
+		foreach ($this->cart->contents() as $key) {
+			$output	.= '<tr>
+	                          <td>' . $key['id'] . '</td>
+	                          <td>' . $key['name'] . '</td>
+	                          <td>' . $key['nama_generic'] . '</td>
+	                          <td>' . $key['nama_pabrik'] . '</td>
+	                          <td>' . $key['jenis'] . '</td>
+	                          <td>' . number_format($key['price']) . '</td>
+	                          <td>' . $key['exp'] . '</td>
+	                          <td>' . $key['qty'] . '</td>
+	                          <td>' . number_format($key['subtotal']) . '</td>
+	                          <td>
+	                            <div class="form-group">
+	                              <div class="form-group">
+	                                   <button type="button" class="btn btn-primary btn-sm glyphicon glyphicon-pencil" data-toggle="modal" data-target=".edit_obat' . $key['rowid'] . '"></button>
+
+
+	                                   <button type="button" class="btn btn-danger btn-sm glyphicon glyphicon-remove " id="remove_cart" data-id="' . $key['rowid'] . '"></button>
+	                            </div>
+	                          </td>
+	                        </tr>';
+		}
+		$output .= '
+				<tr>
+					<th colspan="8"><h3>Total Harga</h3></th>
+					<th colspan="2"><h3>' . 'Rp ' . number_format($this->cart->total()) . '</h3></th>
+				</tr>
+			';
+		return $output;
+	}
+
+	function load_cart()
+	{
+		echo $this->show_cart();
+	}
+
+	function updatekeranjang()
+	{
+		$rowid 	= $this->input->post('rowid');
+		$qty 	= $this->input->post('qty');
+		$exp 	= $this->input->post('exp');
+		$data 	= array(
+			'rowid'	=> $rowid,
+			'qty'	=> $qty,
+			'exp'	=> $exp
+		);
+		$this->cart->update($data);
+		echo $this->show_cart();
+	}
+
+	function hapus_cart()
+	{
+		$rowid	= $this->input->post('row_id');
+
+		$data 	= array(
+			'rowid' 	=> $rowid,
+			'qty'		=> 0
+		);
+		$this->cart->update($data);
+		echo $this->show_cart();
+	}
 }
