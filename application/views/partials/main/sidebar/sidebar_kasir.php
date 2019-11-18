@@ -28,7 +28,7 @@
                     </ul>
                   </li>
                   <li><a href="<?php echo base_url("kasir/Opname_obat") ?>"><i class="fa fa-edit"></i> Stok Opname</a></li>
-                  <li><a href="<?php echo base_url("dashboard") ?>"><i class="fa fa-shopping-cart"></i> Kasir</a></li>
+                  <li><a href="<?php echo base_url("kasir/penjualan") ?>"><i class="fa fa-shopping-cart"></i> Kasir</a></li>
                   <li><a><i class="fa fa-archive"></i> Laporan <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li>
