@@ -138,13 +138,6 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="control-label col-md-8 col-sm-3 col-xs-12">Discount % <span class="required">*</span></label>
-                                <div class="col-md-4 col-sm-9 col-xs-12">
-                                    <input type="number" class="form-control" min="0" id="disc" name="disc" placeholder="Discount" required="required">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
                                 <label class="control-label col-md-8 col-sm-3 col-xs-12">Kembali Rp. <span class="required">*</span></label>
                                 <div class="col-md-4 col-sm-9 col-xs-12">
                                     <input type="number" class="form-control" min="0" id="kembali" name="kembali" placeholder="Kembali Rp." required="required">
@@ -154,7 +147,8 @@
                             <div class="ln_solid"></div>
                             <div class="form-group">
                                 <div class="col-md-2 col-sm-9 col-xs-12 col-md-offset-8">
-                                    <button type="submit" class="btn btn-success">Submit</button>
+                                    <button type="submit" class="btn btn-success">
+                                        <i class="fa fa-print"></i> Selesai</button>
                                 </div>
                             </div>
                         </form>
@@ -375,6 +369,7 @@
                     $("#harga_per_lembar").val("");
                     $("#exp").val("");
                     $("#jumlah_stok").val("");
+                    document.getElementById("submit").disabled = true;
                 }
             });
         });
@@ -425,6 +420,14 @@
                     $('#penjualan').html(data);
                 }
             });
+        });
+
+        $("#bayar").on("input", function() {
+            var total = "<?php echo $this->cart->total(); ?>";
+            var bayar = $('#bayar').val();
+            var bayar_default = 0;
+            var hasil = (bayar_default + bayar) - total;
+            $('#kembali').val(hasil);
         });
 
     });
