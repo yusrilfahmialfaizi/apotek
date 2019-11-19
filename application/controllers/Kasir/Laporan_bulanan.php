@@ -29,5 +29,20 @@
 				$this->load->view("content/kasir/print_laporan_bulanan", $data);
 				$this->load->view("partials/main/footer");
 			}
+			function laporanbulanan()
+			{
+				$year = $this->input->post('tahun');
+				$month = $this->input->post('bulan');
+				if ($year == null && $month == null) {
+					# code...
+					$data['all'] = $this->LaporanBulananModel->get_laporan();
+				}else{
+					$data['all'] = $this->LaporanBulananModel->getTransaksiMonth($year,$month);
+				}
+				$data['year'] = $this->LaporanBulananModel->getYear();
+				$this->load->view("partials/main/header/header_kasir");
+				$this->load->view("content/kasir/laporan_bulanan", $data);
+				$this->load->view("partials/main/footer");
+			}
 		}
 ?>

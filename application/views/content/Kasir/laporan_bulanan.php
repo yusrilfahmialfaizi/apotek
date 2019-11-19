@@ -34,6 +34,37 @@
                   </div>
                   <div class="x_content">
                     <button type="button" name="print" id="print" onclick="print_d()" class="btn btn-success btn-sm glyphicon glyphicon-print"> Print</button>
+                    <div class="col-md-offset-10">
+                      <div class="input-group">
+                            <select class="form-control" id="bulan" name="bulan" required="required">
+                                                              <option value="01">Januari</option>
+                                                              <option value="02">Februari</option>
+                                                              <option value="03">Maret</option>
+                                                              <option value="04">April</option>
+                                                              <option value="05">Mei</option>
+                                                              <option value="06">Juni</option>
+                                                              <option value="07">Juli</option>
+                                                              <option value="08">Agustus</option>
+                                                              <option value="09">September</option>
+                                                              <option value="10">Oktober</option>
+                                                              <option value="11">November</option>
+                                                              <option value="12">Desember</option>
+                                                          </select>
+                                                          <select class="form-control" id="tahun" name="tahun" required="required">
+                                                            <?php foreach ($year as $key): ?>
+                                                              <option value="<?php echo $key->year ?>"><?php echo $key->year ?></option>
+                                                            <?php endforeach ?>
+                                                          </select>
+                            <!-- <input type="date" id="tanggal" name="tanggal" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1"> -->
+                            <div class="input-group-prepend">
+                              <button type="submit" class="btn btn-primary btn-md">
+                                <i class="fas fa-filter"></i>
+                                Filter
+                              </button>
+                            </div>
+                          </div>
+                      </div>
+
                     <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                       <thead>
                         <tr>
