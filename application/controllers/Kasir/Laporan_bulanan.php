@@ -29,10 +29,6 @@ class Laporan_bulanan extends CI_Controller
 		$this->load->view("partials/main/header/header_kasir");
 		$this->load->view("content/kasir/laporan_bulanan", $data);
 		$this->load->view("partials/main/footer");
-		// $data['laporan_bulanan'] = $this->LaporanBulananModel->ambil_data();
-		// $this->load->view("partials/main/header/header_kasir");
-		// $this->load->view("content/kasir/laporan_bulanan", $data);
-		// $this->load->view("partials/main/footer");
 	}
 	function print()
 	{
@@ -40,16 +36,5 @@ class Laporan_bulanan extends CI_Controller
 		$this->load->view("partials/main/header/header_print");
 		$this->load->view("content/kasir/print_laporan_bulanan", $data);
 		$this->load->view("partials/main/footer");
-	}
-	function laporanbulanan()
-	{ }
-
-	function test()
-	{
-		$data = $this->LaporanBulananModel->getYear();
-
-		echo "<pre>";
-		print_r($data);
-		echo "</pre>";
 	}
 }
