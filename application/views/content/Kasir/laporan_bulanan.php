@@ -33,80 +33,89 @@
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
-                    <button type="button" name="print" id="print" onclick="print_d()" class="btn btn-success btn-sm glyphicon glyphicon-print"> Print</button>
-                    <div class="col-md-offset-10">
-                      <div class="input-group">
-                            <select class="form-control" id="bulan" name="bulan" required="required">
-                                                              <option value="01">Januari</option>
-                                                              <option value="02">Februari</option>
-                                                              <option value="03">Maret</option>
-                                                              <option value="04">April</option>
-                                                              <option value="05">Mei</option>
-                                                              <option value="06">Juni</option>
-                                                              <option value="07">Juli</option>
-                                                              <option value="08">Agustus</option>
-                                                              <option value="09">September</option>
-                                                              <option value="10">Oktober</option>
-                                                              <option value="11">November</option>
-                                                              <option value="12">Desember</option>
-                                                          </select>
-                                                          <select class="form-control" id="tahun" name="tahun" required="required">
-                                                            <?php foreach ($year as $key): ?>
-                                                              <option value="<?php echo $key->year ?>"><?php echo $key->year ?></option>
-                                                            <?php endforeach ?>
-                                                          </select>
-                            <!-- <input type="date" id="tanggal" name="tanggal" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1"> -->
-                            <div class="input-group-prepend">
-                              <button type="submit" class="btn btn-primary btn-md">
-                                <i class="fas fa-filter"></i>
-                                Filter
-                              </button>
-                            </div>
-                          </div>
+                    <div class="col-md-2">
+                      <div class="form-group">
+                        <button type="button" name="print" id="print" onclick="print_d()" class="btn btn-success btn-md glyphicon glyphicon-print"> Print</button>
                       </div>
+                    </div>
+                    <div class="col-md-2 col-md-offset-6">
+                      <div class="form-group">
+                        <label for="">Bulan</label>
+                        <select class="form-control" id="bulan" name="bulan" required="required">
+                          <option value="01">Januari</option>
+                          <option value="02">Februari</option>
+                          <option value="03">Maret</option>
+                          <option value="04">April</option>
+                          <option value="05">Mei</option>
+                          <option value="06">Juni</option>
+                          <option value="07">Juli</option>
+                          <option value="08">Agustus</option>
+                          <option value="09">September</option>
+                          <option value="10">Oktober</option>
+                          <option value="11">November</option>
+                          <option value="12">Desember</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-2">
+                      <div class="form-group">
+                        <label for="">Tahun</label>
+                        <div class="input-group">
+                          <select class="form-control" id="tahun" name="tahun" required="required">
+                            <?php foreach ($year as $key) : ?>
+                              <option value="<?php echo $key->year ?>"><?php echo $key->year ?></option>
+                            <?php endforeach ?>
+                          </select>
+                          <span class="input-group-btn">
+                            <button type="button" class="btn btn-primary">Go!</button>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
 
-                    <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
-                      <thead>
+                  <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                    <thead>
+                      <tr>
+                        <th>No.</th>
+                        <th>ID Penjualan</th>
+                        <th>Nama User</th>
+                        <th>Jabatan</th>
+                        <th>Tanggal</th>
+                        <th>Total Harga</th>
+                        <th>Bayar</th>
+                        <th>Kembalian</th>
+                        <th>Diskon</th>
+                      </tr>
+                    </thead>
+                    <?php $no = 1;
+                    foreach ($laporan_bulanan as $key) { ?>
+                      <?php
+                        $id_penjualan = $key->id_penjualan;
+                        ?>
+                      <tbody>
                         <tr>
-                          <th>No.</th>
-                          <th>ID Penjualan</th>
-                          <th>Nama User</th>
-                          <th>Jabatan</th>
-                          <th>Tanggal</th>
-                          <th>Total Harga</th>
-                          <th>Bayar</th>
-                          <th>Kembalian</th>
-                          <th>Diskon</th>
-                        </tr>
-                      </thead>
-                      <?php $no = 1;
-                      foreach ($laporan_bulanan as $key) { ?>
-                        <?php
-                          $id_penjualan = $key->id_penjualan;
-                          ?> 
-                        <tbody>
-                          <tr>
-                            <td><?php echo $no++ ?></td>
-                            <td><?php echo $key->id_penjualan ?></td>
-                            <td><?php echo $key->nama_user ?></td>
-                            <td><?php echo $key->jabatan ?></td>
-                            <td><?php echo $key->tanggal ?></td>
-                            <td><?php echo $key->total_harga ?></td>
-                            <td><?php echo $key->bayar ?></td>
-                            <td><?php echo $key->kembalian ?></td>
-                            <td><?php echo $key->diskon ?></td>
-                            <!-- <td>
+                          <td><?php echo $no++ ?></td>
+                          <td><?php echo $key->id_penjualan ?></td>
+                          <td><?php echo $key->nama_user ?></td>
+                          <td><?php echo $key->jabatan ?></td>
+                          <td><?php echo $key->tanggal ?></td>
+                          <td><?php echo $key->total_harga ?></td>
+                          <td><?php echo $key->bayar ?></td>
+                          <td><?php echo $key->kembalian ?></td>
+                          <td><?php echo $key->diskon ?></td>
+                          <!-- <td>
                               <a href="<?php echo base_url("owner/detailKunjungan/index/$id_kunjungan") ?>" class="btn btn-info btn-sm"> Lihat</a>
                             </td> -->
-                          </tr>
-                        <?php } ?>
-                        </tbody>
-                    </table>
-                  </div>
+                        </tr>
+                      <?php } ?>
+                      </tbody>
+                  </table>
                 </div>
               </div>
             </div>
           </div>
+        </div>
         </div>
         <!-- /page content -->
         <?php $this->load->view("partials/main/foot") ?>
