@@ -31,13 +31,13 @@
             <thead>
                 <tr>
                     <th style="text-align :center; padding : 5px">No.</th>
-                    <th style="text-align :center; padding : 5px">ID Kunjungan</th>
-                    <th style="text-align :center; padding : 5px">No. RM</th>
-                    <th style="text-align :center; padding : 5px">Nama Pasien</th>
-                    <th style="text-align :center; padding : 5px">Tanggal Kunjungan</th>
-                    <th style="text-align :center; padding : 5px">Dignosa Keperawatan</th>
-                    <th style="text-align :center; padding : 5px">Intervensi</th>
-                    <th style="text-align :center; padding : 5px">Tarif</th>
+                    <th style="text-align :center; padding : 5px">ID Penjualan</th>
+                    <th style="text-align :center; padding : 5px">Nama User</th>
+                    <th style="text-align :center; padding : 5px">Jabatan</th>
+                    <th style="text-align :center; padding : 5px">Tanggal</th>
+                    <th style="text-align :center; padding : 5px">Bayar</th>
+                    <th style="text-align :center; padding : 5px">Kembalian</th>
+                    <th style="text-align :center; padding : 5px">Diskon</th>
                 </tr>
             </thead>
             <?php $no = 1;
@@ -45,13 +45,13 @@
                 <tbody>
                     <tr>
                         <td style="text-align :center; padding : 5px"><?php echo $no++ ?></td>
-                        <td style="text-align :center; padding : 5px"><?php echo $key->id_kunjungan ?></td>
-                        <td style="text-align :center; padding : 5px"><?php echo $key->no_rm ?></td>
-                        <td style="text-align :center; padding : 5px"><?php echo $key->nama ?></td>
-                        <td style="text-align :center; padding : 5px"><?php echo $key->tgl_kunjungan ?></td>
-                        <td style="text-align :center; padding : 5px"><?php echo $key->diagnosa_keperawatan ?></td>
-                        <td style="text-align :center; padding : 5px"><?php echo $key->intervensi ?></td>
-                        <td style="text-align :center; padding : 5px"><?php echo $key->tarif ?></td>
+                        <td style="text-align :center; padding : 5px"><?php echo $key->id_penjualan ?></td>
+                        <td style="text-align :center; padding : 5px"><?php echo $key->nama_user ?></td>
+                        <td style="text-align :center; padding : 5px"><?php echo $key->jabatan ?></td>
+                        <td style="text-align :center; padding : 5px"><?php echo $key->tanggal ?></td>
+                        <td style="text-align :center; padding : 5px"><?php echo $key->bayar ?></td>
+                        <td style="text-align :center; padding : 5px"><?php echo $key->kembalian ?></td>
+                        <td style="text-align :center; padding : 5px"><?php echo $key->diskon ?></td>
                     </tr>
                 </tbody>
             <?php } ?>

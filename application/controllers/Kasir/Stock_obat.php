@@ -10,13 +10,18 @@
 		{
 			# code...
 			parent::__construct();
+			$this->load->model("kasir/Stock_Obat_Model");
 		}
 
 		function index()
 		{
-			$this->load->view("partial_apotek/main/header/header_table");
-			$this->load->view("content_apotek/kasir/stock_obat");
-			$this->load->view("partial_apotek/main/footer/footer_table");
+			if($this->session->userdata('status') != "Login" || $this->session->userdata("jabatan") != "Kasir"){
+				redirect("login");
+			}
+			$data['obat'] 	= $this->Stock_Obat_Model->stok();
+			$this->load->view("partials/main/header/header_kasir");
+			$this->load->view("content/kasir/stock_obat", $data);
+			$this->load->view("partials/main/footer");
 		}
 
 	}

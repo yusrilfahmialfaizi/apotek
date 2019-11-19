@@ -15,6 +15,9 @@ class Data_supplier extends CI_Controller
 
 	function index()
 	{
+		if($this->session->userdata('status') != "Login" || $this->session->userdata("jabatan") != "Kasir"){
+				redirect("login");
+			}
 		$data['supplier'] = $this->Supplier_model->ambil_data();
 		$data['kode'] = $this->Supplier_model->id_supplier();
 		$this->load->view("partials/main/header/header_kasir");

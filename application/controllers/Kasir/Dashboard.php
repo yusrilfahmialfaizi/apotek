@@ -14,6 +14,9 @@
 
 		function index()
 		{
+			if($this->session->userdata('status') != "Login" || $this->session->userdata("jabatan") != "Kasir"){
+				redirect("login");
+			}
 			$this->load->view("partials/main/header/header_kasir");
 			$this->load->view("content/kasir/dashboard");
 			$this->load->view("partials/main/footer");

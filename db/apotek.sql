@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.1
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 07, 2019 at 07:50 PM
--- Server version: 10.4.8-MariaDB
--- PHP Version: 7.3.10
+-- Generation Time: Nov 14, 2019 at 02:42 PM
+-- Server version: 10.1.36-MariaDB
+-- PHP Version: 7.2.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -213,8 +213,8 @@ CREATE TABLE `kunjungan` (
   `id_kunjungan` varchar(12) NOT NULL,
   `no_rm` varchar(8) DEFAULT NULL,
   `tgl_kunjungan` datetime DEFAULT NULL,
-  `diagnosa_keperawatan` text DEFAULT NULL,
-  `intervensi` text DEFAULT NULL,
+  `diagnosa_keperawatan` text,
+  `intervensi` text,
   `tarif` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -226,6 +226,23 @@ INSERT INTO `kunjungan` (`id_kunjungan`, `no_rm`, `tgl_kunjungan`, `diagnosa_kep
 ('201909260002', 'RM000001', '2019-09-26 01:17:09', 'asd', 'asd', 123),
 ('201910290001', 'RM000001', '2019-10-29 10:11:34', 'asda', 'asd', 123),
 ('201910290002', 'RM000001', '2019-10-29 10:20:44', 'asdsad', 'asdsad', 123123213);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `laporan_bulanan`
+-- (See below for the actual view)
+--
+CREATE TABLE `laporan_bulanan` (
+`id_penjualan` varchar(14)
+,`nama_user` varchar(30)
+,`jabatan` enum('Owner','Apoteker','Kasir')
+,`tanggal` date
+,`total_harga` int(11)
+,`bayar` int(11)
+,`kembalian` int(11)
+,`diskon` int(11)
+);
 
 -- --------------------------------------------------------
 
@@ -294,7 +311,7 @@ CREATE TABLE `opname_obat` (
   `stok` int(11) DEFAULT NULL,
   `stok_nyata` int(11) DEFAULT NULL,
   `selisih` int(11) DEFAULT NULL,
-  `ket` tinytext DEFAULT NULL
+  `ket` tinytext
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -317,7 +334,7 @@ CREATE TABLE `opname_obat_praktik` (
   `stok` int(11) DEFAULT NULL,
   `stok_nyata` int(11) DEFAULT NULL,
   `selisih` int(11) DEFAULT NULL,
-  `ket` tinytext DEFAULT NULL
+  `ket` tinytext
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -340,7 +357,7 @@ CREATE TABLE `pasien` (
   `jenis_kelamin` enum('Laki - laki','Perempuan') DEFAULT NULL,
   `tgl_lahir` date DEFAULT NULL,
   `usia` int(3) DEFAULT NULL,
-  `alamat` tinytext DEFAULT NULL
+  `alamat` tinytext
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -413,6 +430,13 @@ CREATE TABLE `penjualan` (
   `diskon` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `penjualan`
+--
+
+INSERT INTO `penjualan` (`id_penjualan`, `id_user`, `tanggal`, `total_harga`, `bayar`, `kembalian`, `diskon`) VALUES
+('11', 'A001', '2019-11-05', 500000, 500000, 0, 0);
+
 -- --------------------------------------------------------
 
 --
@@ -458,7 +482,16 @@ INSERT INTO `user` (`id_user`, `nama_user`, `jenis_kelamin`, `alamat`, `jabatan`
 --
 DROP TABLE IF EXISTS `detail_pembelian_op`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `detail_pembelian_op`  AS  select `dp`.`id_det_pembelian` AS `id_det_pembelian`,`dp`.`id_pembelian` AS `id_pembelian`,`dp`.`id_obat_praktik` AS `id_obat_praktik`,`dp`.`qty` AS `qty`,`dp`.`exp` AS `exp`,`dp`.`harga` AS `harga`,`dp`.`subtotal` AS `subtotal`,`op`.`nama_paten` AS `nama_paten`,`op`.`nama_generic` AS `nama_generic`,`op`.`nama_pabrik` AS `nama_pabrik`,`op`.`jenis` AS `jenis`,`op`.`kategori` AS `kategori` from (`detail_pembelian_obat_praktik` `dp` join `obat_praktik` `op`) where `dp`.`id_obat_praktik` = `op`.`id_obat_praktik` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `detail_pembelian_op`  AS  select `dp`.`id_det_pembelian` AS `id_det_pembelian`,`dp`.`id_pembelian` AS `id_pembelian`,`dp`.`id_obat_praktik` AS `id_obat_praktik`,`dp`.`qty` AS `qty`,`dp`.`exp` AS `exp`,`dp`.`harga` AS `harga`,`dp`.`subtotal` AS `subtotal`,`op`.`nama_paten` AS `nama_paten`,`op`.`nama_generic` AS `nama_generic`,`op`.`nama_pabrik` AS `nama_pabrik`,`op`.`jenis` AS `jenis`,`op`.`kategori` AS `kategori` from (`detail_pembelian_obat_praktik` `dp` join `obat_praktik` `op`) where (`dp`.`id_obat_praktik` = `op`.`id_obat_praktik`) ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `laporan_bulanan`
+--
+DROP TABLE IF EXISTS `laporan_bulanan`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `laporan_bulanan`  AS  select `penjualan`.`id_penjualan` AS `id_penjualan`,`user`.`nama_user` AS `nama_user`,`user`.`jabatan` AS `jabatan`,`penjualan`.`tanggal` AS `tanggal`,`penjualan`.`total_harga` AS `total_harga`,`penjualan`.`bayar` AS `bayar`,`penjualan`.`kembalian` AS `kembalian`,`penjualan`.`diskon` AS `diskon` from (`user` join `penjualan`) where (`user`.`id_user` = `penjualan`.`id_user`) ;
 
 --
 -- Indexes for dumped tables

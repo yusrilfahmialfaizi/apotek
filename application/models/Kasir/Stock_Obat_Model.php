@@ -3,7 +3,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 /**
  *
  */
-class Obatmodel extends CI_Model
+class Stock_Obat_Model extends CI_Model
 {
 
 	function __construct()
@@ -119,6 +119,14 @@ class Obatmodel extends CI_Model
 	function get_stok_op($id_obat_praktik, $exp)
 	{
 		return $this->db->get_where('detail_obat_praktik', array('id_obat_praktik' => $id_obat_praktik, 'exp' => $exp))->result();
+
+		// foreach ($query as $key) {
+		// 	# code...
+		// 	$data = array(
+		// 		'jumlah_stok' => $key->jumlah_stok,
+		// 		'jumlah_biji' => $key->jumlah_biji );
+		// }
+		// return $data;
 	}
 
 	function get_id()
@@ -199,4 +207,5 @@ class Obatmodel extends CI_Model
 		}
 		return $data;
 	}
+
 }
