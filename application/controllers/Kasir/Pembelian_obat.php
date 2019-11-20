@@ -8,19 +8,16 @@
 
 		function __construct()
 		{
-			# code...
 			parent::__construct();
-		}
+			$this->load->model('kasir/Pembelianobat_model');
 
 		function index()
+
+			if($this-session->userdata('status') != "Login" || $this->session->userdata("jabatan");
 		{
-			if($this->session->userdata('status') != "Login" || $this->session->userdata("jabatan") != "Kasir"){
-				redirect("login");
-			}
 			$this->load->view("partials/main/header/header_kasir");
 			$this->load->view("content/kasir/pembelian_obat");
 			$this->load->view("partials/main/footer");
 		}
 
 	}
-?>

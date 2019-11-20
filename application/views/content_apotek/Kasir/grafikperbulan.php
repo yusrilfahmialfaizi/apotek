@@ -6,7 +6,7 @@
                 <div class="card">
                     <div class="header">
                         <h1>
-                            Laporan Penjualan Harian
+                        Laporan Penjualan Harian
                         </h1>
                         <ul class="header-dropdown m-r--5">
                             <li class="dropdown">
@@ -36,15 +36,15 @@
                                     </tr>
                                 </thead>
                                 <tfoot>
-                                    <tr>
-                                        <th>ID Penjualan</th>
-                                        <th>Nama Pegawai</th>
-                                        <th>Tanggal</th>
-                                        <th>Total Harga</th>
-                                        <th>Bayar</th>
-                                        <th>Kembalian</th>
-                                        <th>Discount (%)</th>
-                                    </tr>
+                                <tr>
+                                    <th>ID Penjualan</th>
+                                    <th>Nama Pegawai</th>
+                                    <th>Tanggal</th>
+                                    <th>Total Harga</th>
+                                    <th>Bayar</th>
+                                    <th>Kembalian</th>
+                                    <th>Discount (%)</th>
+                                </tr>
                                 </tfoot>
                                 <tbody>
                                     <tr>
