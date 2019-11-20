@@ -17,7 +17,16 @@
 			if($this->session->userdata('status') != "Login" || $this->session->userdata("jabatan") != "Kasir"){
 				redirect("login");
 			}
-				$data['laporan_bulanan'] = $this->LaporanHarianModel->ambil_data();
+				$year = $this->input->post('tahun');
+				$month = $this->input->post('bulan');
+				$day = $this->input->post('hari');
+				if ($year == null && $month == null) {
+			# code...
+			$data['all'] = $this->LaporanBulananModel->get_laporan();
+			} else {
+			$data['all'] = $this->LaporanBulananModel->getTransaksiMonth($year, $month, $day);
+		}	
+				$data['year'] = $this->LaporanHarianModel->get_year();
 				$this->load->view("partials/main/header/header_kasir");
 				$this->load->view("content/kasir/laporan_harian", $data);
 				$this->load->view("partials/main/footer");
@@ -30,4 +39,3 @@
 				$this->load->view("partials/main/footer");
 			}
 		}
-?>

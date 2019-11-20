@@ -1,8 +1,8 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 /**
- *
- */
+*
+*/
 class Laporan_bulanan extends CI_Controller
 {
 	function __construct()
@@ -11,7 +11,6 @@ class Laporan_bulanan extends CI_Controller
 		parent::__construct();
 		$this->load->model("kasir/LaporanBulananModel");
 	}
-
 	function index()
 	{
 		if ($this->session->userdata('status') != "Login" || $this->session->userdata("jabatan") != "Kasir") {
@@ -32,7 +31,7 @@ class Laporan_bulanan extends CI_Controller
 	}
 	function print()
 	{
-		$data['data'] 	= $this->LaporanBulananModel->get_laporan();
+			$data['data'] 	= $this->LaporanBulananModel->get_laporan();
 		$this->load->view("partials/main/header/header_print");
 		$this->load->view("content/kasir/print_laporan_bulanan", $data);
 		$this->load->view("partials/main/footer");
