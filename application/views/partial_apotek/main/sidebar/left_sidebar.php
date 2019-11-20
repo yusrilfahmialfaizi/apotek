@@ -82,7 +82,7 @@
                         <a href="<?php echo base_url("kasir/laporanbulanan") ?>">Data Penjualan Bulanan</a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url("kasir/absensi_guru") ?>">Grafik Penjualan </a>
+                        <a href="<?php echo base_url("kasir/grafikperbulan") ?>">Grafik Penjualan </a>
                     </li>
                 </ul>
             </li>
