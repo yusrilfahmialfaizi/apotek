@@ -84,10 +84,7 @@ class Penjualan extends CI_Controller
 	                          <td>
 	                            <div class="form-group">
 	                              <div class="form-group">
-	                                   <button type="button" class="btn btn-primary btn-sm glyphicon glyphicon-pencil" data-toggle="modal" data-target=".edit_obat' . $key['rowid'] . '"></button>
-
-
-	                                   <button type="button" class="btn btn-danger btn-sm glyphicon glyphicon-remove " id="remove_cart" data-id="' . $key['rowid'] . '"></button>
+	                                   <button type="button" class="btn btn-danger btn-sm glyphicon glyphicon-remove " id="remove_cart" data-id="' . $key['rowid'] . '"> Cancel</button>
 	                            </div>
 	                          </td>
 	                        </tr>';
@@ -95,8 +92,11 @@ class Penjualan extends CI_Controller
 		$output .= '
 				<tr>
 					<th colspan="8"><h3>Total Harga</h3></th>
-					<th colspan="2"><h3>' . 'Rp ' . number_format($this->cart->total()) . '</h3></th>
-				</tr>
+					<th colspan="2">
+						<h3>' . 'Rp ' . number_format($this->cart->total()) . '</h3>
+						<input type = "hidden" class = "form-control" min = "0" id = "total" name = "total" value = "' . $this->cart->total() . '"  required = "required" >
+					</th>
+					</tr>
 			';
 		return $output;
 	}
@@ -130,5 +130,53 @@ class Penjualan extends CI_Controller
 		);
 		$this->cart->update($data);
 		echo $this->show_cart();
+	}
+
+	function save()
+	{
+		date_default_timezone_set("Asia/Jakarta");
+		$id_penjualan 	= $this->input->post("id_penjualan");
+		$id_user		= $this->session->userdata("id_user");
+		$tanggal 		= date("Y-m-d h:i:s");
+		$total_harga	= $this->input->post("total");
+		$bayar 			= $this->input->post("bayar");
+		$kembali 		= $this->input->post("kembali");
+
+		$data_penjualan  = array(
+			'id_penjualan'	=> $id_penjualan,
+			'id_user'		=> $id_user,
+			'tanggal'		=> $tanggal,
+			'total_harga'	=> $total_harga,
+			'bayar'			=> $bayar,
+			'kembalian'		=> $kembali
+		);
+
+
+		if ($this->cart->contents()) {
+			# code...
+			foreach ($this->cart->contents() as $cart) {
+				# code...
+				$keranjang = array(
+					'id_penjualan' 	=> $id_penjualan,
+					'id_obat'		=> $cart['id'],
+					'qty'			=> $cart['qty'],
+					'harga'			=> $cart['price'],
+					'sub_total'		=> $cart['subtotal']
+				);
+			}
+			if ($data_penjualan != null && $keranjang != null) {
+				# code...
+				$this->Penjualanmodel->data_penjualan($data_penjualan);
+				$this->Penjualanmodel->detail_penjualan($keranjang);
+				$this->cart->destroy();
+				$msg = "success";
+				$data = array('msg' => $msg,);
+				echo json_encode($data);
+			} else {
+				$msg = "denied";
+				$data = array('msg' => $msg,);
+				echo json_encode($data);
+			}
+		}
 	}
 }
