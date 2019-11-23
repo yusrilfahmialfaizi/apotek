@@ -1,11 +1,11 @@
-<?php 
+<?php
 	defined('BASEPATH') OR exit('No direct script access allowed');
 	/**
-	 * 
+	 *
 	 */
 	class Kunjungan extends CI_Controller
 	{
-		
+
 		function __construct()
 		{
 			# code...
@@ -65,7 +65,6 @@
 				);
 
 			$this->cart->insert($data);
-			// redirect("owner/kunjungan");
 			echo  $this->show_cart();
 		}
 
@@ -89,8 +88,8 @@
                               <td>
 								<div class="form-group">
 									<button type="button" class="btn btn-primary btn-sm glyphicon glyphicon-pencil" data-toggle="modal" data-target=".edit_obat'.$items['rowid'].'"></button>
-	                                
-	                                  
+
+
 									<button type="button" class="btn btn-danger btn-sm glyphicon glyphicon-remove " id="remove_cart" data-id="'.$items['rowid'].'"></button>
 								</div>
 	                          </td>
@@ -146,14 +145,8 @@
 				'intervensi'			=> $intervensi,
 				'tarif'					=> $tarif
 			);
-			// print_r($data);
 			$proses = $this->Kunjunganmodel->kunjungan($data);
 			if ($this->cart->contents()){
-				# code...
-				// echo '<pre>';
-				// print_r($this->cart->contents());
-				// // echo 'Lembar ='.$qty;
-				// echo '</pre>';
 				foreach ($this->cart->contents() as $key) {
 					# code...
 					$data_detail 	= array(
@@ -164,50 +157,28 @@
 					);
 					$query = $this->Obatmodel->get_stok_op($key['id'],$key['exp']);
 					$biji_asli = $this->Obatmodel->get_biji($key['id']);
-					// echo '<pre>';
-					// // print_r($data_detail);
-					// echo '</pre>';
-					// echo '<pre>';
-					// print_r($query);
-					// echo '</pre>';
 					foreach ($query as $stok) {
 						foreach ($biji_asli as $biji) {
 							# code...
 							$where = array('id_obat_praktik' => $key['id'], 'exp'	=> $key['exp'] );
 							if ($key['per'] == "Lembar") {
-								# code...
-								# code...
-								// $qty = $stok->jumlah_stok - $key['qty'];
 								$dalam_biji	= $key['qty'] * $biji->jumlah_biji;
 								$qty		= $stok->jumlah_biji - $dalam_biji;
 								$stok_akhir = $qty / $biji->jumlah_biji ;
 								$data = array('jumlah_stok' => ceil($stok_akhir), 'jumlah_biji' => $qty );
-								// echo '<pre>';
 
-								// echo '<pre>';
-								// // print_r($stok->jumlah_stok);
-								// print_r($data);
-								// echo 'Lembar ='.$qty;
-								// echo 'Lembar ='.ceil($stok_akhir);
-								// echo 'biji ='.$stok_biji;
-								// echo '</pre>';
-								// $this->Kunjunganmodel->kurang($key['qty'],$key['id']);
 								$this->Kunjunganmodel->kunjungan_detail($data_detail);
 								$this->Kunjunganmodel->update_jumlah_stok($where, $data);
 							}else{
 								$qty = $stok->jumlah_biji - $key['qty'];
 								$stok_akhir = $qty / $biji->jumlah_biji;
 								$data = array('jumlah_stok' => ceil($stok_akhir), 'jumlah_biji' => $qty );
-								// echo '<pre>';
-								// print_r($data);
-								// echo 'stok akhir ='.ceil($stok_akhir);
-								// echo '</pre>';
+
 								$this->Kunjunganmodel->kunjungan_detail($data_detail);
 								$this->Kunjunganmodel->update_jumlah_stok($where, $data);
 							}
 						}
 					}
-					// print_r($data_detail);
 				}
 			}
 			$this->cart->destroy();
@@ -231,4 +202,3 @@
 		}
 
 	}
-?>
