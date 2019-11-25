@@ -43,4 +43,9 @@ class Penjualanmodel extends CI_Model
 	{
 		$this->db->insert('detail_penjualan', $keranjang);
 	}
+
+	function get_data($id_penjualan)
+	{
+		return $this->db->get_where('penjualan', array('id_penjualan' => $id_penjualan))->result();
+	}
 }

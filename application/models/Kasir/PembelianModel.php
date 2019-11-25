@@ -1,11 +1,11 @@
-<?php 
+<?php
 	defined('BASEPATH') OR exit('No direct script access allowed');
 	/**
-	 * 
+	 *
 	 */
 	class PembelianModel extends CI_Model
 	{
-		
+
 		function __construct()
 		{
 			# code...
@@ -19,7 +19,7 @@
 			$this->db->order_by('id_pembelian','Desc');
 			$this->db->limit(1);
 			$query = $this->db->get('pembelian_obat_praktik');
-			
+
 			if ($query->num_rows() <> 0) {
 				# code...
 				$data = $query->row();
@@ -66,8 +66,7 @@
 
 		function pembelian_detail()
 		{
-			return $this->db->get("detail_pembelian_op")->result();	
+			return $this->db->get("detail_pembelian_op")->result();
 		}
 
 	}
-?>
