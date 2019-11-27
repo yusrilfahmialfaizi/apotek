@@ -22,4 +22,11 @@ class Pembelian_obat extends CI_Controller
 		$this->load->view("content/kasir/pembelian_obat", $data);
 		$this->load->view("partials/main/footer");
 	}
+	function data_obat()
+	{
+		$id_obat	= $this->input->post("id_obat");
+
+		$data = $this->Pembelianobat_model->get_data($id_obat);
+		echo json_encode($data);
+	}
 }

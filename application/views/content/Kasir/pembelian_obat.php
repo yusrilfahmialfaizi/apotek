@@ -22,33 +22,26 @@
 
                     <div class="form-group">
                       <label class="control-label col-md-3 col-sm-3 col-xs-12">ID Obat</label>
-                      <div class="col-md-4 col-sm-9 col-xs-12">
+                      <div class="col-md-2 col-sm-9 col-xs-12">
                         <select class="form-control" id="id_obat_isi" name="id_obat_isi">
-                          <option value="&nbsp"> -- Pilih -- </option>
-                          <?php foreach ($id as $kode) { ?>
-                            <option value="<?php echo $kode->id_obat ?>"> <?php echo $kode->id_obat ?></option>
-                          <?php } ?>
+                          <option value="&nbsp"></option>
+                          <?php foreach ($id as $key) : ?>
+                            <option><?php echo $key->id_obat ?></option>
+
+                          <?php endforeach ?>
+                        </select>
                       </div>
                     </div>
-
-                    <div class="form-group">
-                      <label class="control-label col-md-3 col-sm-3 col-xs-12">Nama Generic<span class="required">*</span></label>
-                      <div class="col-md-4 col-sm-9 col-xs-12">
-                        <input type="text" class="form-control" id="nama_generic_isi" name="nama_generic_isi" placeholder="Nama Generic" required="required" readonly="readonly">
-                      </div>
-                    </div>
-
-                    <div class="form-group">
-                      <label class="control-label col-md-3 col-sm-3 col-xs-12">Nama Generic<span class="required">*</span></label>
-                      <div class="col-md-4 col-sm-9 col-xs-12">
-                        <input type="text" class="form-control" id="nama_generic_isi" name="nama_generic_isi" placeholder="Nama Generic" required="required" readonly="readonly">
-                      </div>
-                    </div>
-
                     <div class="form-group">
                       <label class="control-label col-md-3 col-sm-3 col-xs-12">Nama Paten<span class="required">*</span></label>
                       <div class="col-md-4 col-sm-9 col-xs-12">
                         <input type="text" class="form-control" id="nama_paten_isi" name="nama_paten_isi" placeholder="Nama Paten" required="required" readonly="readonly">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12">Nama Generic<span class="required">*</span></label>
+                      <div class="col-md-4 col-sm-9 col-xs-12">
+                        <input type="text" class="form-control" id="nama_generic_isi" name="nama_generic_isi" placeholder="Nama Generic" required="required" readonly="readonly">
                       </div>
                     </div>
 
@@ -66,8 +59,8 @@
                     </div>
                     <div class="form-group">
                       <label class="control-label col-md-3 col-sm-3 col-xs-12">Kategori <span class="required">*</span></label>
-                      <div class="col-md-4 col-sm-9 col-xs-12">
-                        <input type="text" class="form-control" id="kategori_obat_isi" name="kategori_obat_isi" placeholder="Kategori Obat" required="required" readonly="readonly">
+                      <div class="col-md-4 col-sm-9 col-xs-1">
+                        <input type=" text" class="form-control" id="kategori_obat_isi" name="kategori_obat_isi" placeholder="Kategori Obat" required="required" readonly="readonly">
                       </div>
                     </div>
                     <div class="form-group">
@@ -281,3 +274,33 @@
       </div>
       </div>
       <?php $this->load->view("partials/main/js/js") ?>
+      <script>
+        $(document).ready(function() {
+          $("#id_obat_isi").select2({
+            placeholder: "Masukkan no Kode Obat",
+            allowClear: true,
+            minimumInputLength: 3
+          });
+          $("#id_obat_isi").on("change", function() {
+            var id_obat = $("#id_obat_isi").val();
+
+            $.ajax({
+              url: "<?php echo base_url("kasir/pembelian_obat/data_obat") ?>",
+              type: "POST",
+              dataType: "JSON",
+              data: {
+                id_obat: id_obat
+              },
+              cache: false,
+              success: function(data) {
+                $("#nama_generic_isi").val(data.nama_generic);
+                $("#nama_paten_isi").val(data.nama_paten);
+                $("#nama_pabrik_isi").val(data.nama_pabrik);
+                $("#jenis_obat_isi").val(data.jenis);
+                $("#kategori_obat_isi").val(data.kategori);
+                // $("#").val(data.);
+              }
+            })
+          })
+        });
+      </script>

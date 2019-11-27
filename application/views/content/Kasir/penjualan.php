@@ -291,6 +291,8 @@
                     $("#harga_per_lembar").val("");
                     $("#exp").val("");
                     $("#jumlah_stok").val("");
+                    $("#bayar").val("");
+                    $("#kembali").val("");
 
                     document.getElementById("submit").disabled = true;
                 }
@@ -375,7 +377,7 @@
                 cache: false,
                 success: function(data) {
                     if (data.msg == "success") {
-                        window.open("<?php echo base_url("owner/datakunjungan/print") ?>", "_blank");
+                        window.open("<?php echo base_url("kasir/invoice/index/") ?>" + $("#no_invoice").val(), "_blank ");
                         location.reload(true);
                     }
                 }

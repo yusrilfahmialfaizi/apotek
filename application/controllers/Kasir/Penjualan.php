@@ -170,7 +170,7 @@ class Penjualan extends CI_Controller
 				$this->Penjualanmodel->detail_penjualan($keranjang);
 				$this->cart->destroy();
 				$msg = "success";
-				$data = array('msg' => $msg,);
+				$data = array('msg' => $msg, 'no_invoice' => $id_penjualan);
 				echo json_encode($data);
 			} else {
 				$msg = "denied";
