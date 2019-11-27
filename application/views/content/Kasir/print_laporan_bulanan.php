@@ -37,7 +37,6 @@
                     <th style="text-align :center; padding : 5px">Tanggal</th>
                     <th style="text-align :center; padding : 5px">Bayar</th>
                     <th style="text-align :center; padding : 5px">Kembalian</th>
-                    <th style="text-align :center; padding : 5px">Diskon</th>
                 </tr>
             </thead>
             <?php $no = 1;
@@ -51,7 +50,6 @@
                         <td style="text-align :center; padding : 5px"><?php echo $key->tanggal ?></td>
                         <td style="text-align :center; padding : 5px"><?php echo $key->bayar ?></td>
                         <td style="text-align :center; padding : 5px"><?php echo $key->kembalian ?></td>
-                        <td style="text-align :center; padding : 5px"><?php echo $key->diskon ?></td>
                     </tr>
                 </tbody>
             <?php } ?>

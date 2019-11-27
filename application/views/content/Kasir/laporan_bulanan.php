@@ -88,7 +88,6 @@
                         <th>Total Harga</th>
                         <th>Bayar</th>
                         <th>Kembalian</th>
-                        <th>Diskon</th>
                       </tr>
                     </thead>
                     <?php $no = 1;
@@ -106,7 +105,6 @@
                           <td><?php echo $key->total_harga ?></td>
                           <td><?php echo $key->bayar ?></td>
                           <td><?php echo $key->kembalian ?></td>
-                          <td><?php echo $key->diskon ?></td>
                         </tr>
                       <?php } ?>
                       </tbody>

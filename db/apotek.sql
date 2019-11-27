@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 19, 2019 at 04:02 AM
+-- Generation Time: Nov 27, 2019 at 01:33 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.10
 
@@ -186,22 +186,25 @@ CREATE TABLE `detail_pembelian_op` (
 --
 
 CREATE TABLE `detail_penjualan` (
-  `id_det_penjualan` varchar(11) NOT NULL,
+  `id_det_penjualan` int(11) NOT NULL,
   `id_penjualan` varchar(14) DEFAULT NULL,
   `id_obat` varchar(6) DEFAULT NULL,
   `qty` int(11) DEFAULT NULL,
-  `jenis` enum('Biji','Lembar') DEFAULT NULL,
   `harga` int(11) DEFAULT NULL,
   `sub_total` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Triggers `detail_penjualan`
+-- Dumping data for table `detail_penjualan`
 --
-DELIMITER $$
-CREATE TRIGGER `obat_jual` AFTER INSERT ON `detail_penjualan` FOR EACH ROW update obat set obat.stok_obat = obat.stok_obat - new.qty WHERE detail_penjualan.id_obat = obat.id_obat
-$$
-DELIMITER ;
+
+INSERT INTO `detail_penjualan` (`id_det_penjualan`, `id_penjualan`, `id_obat`, `qty`, `harga`, `sub_total`) VALUES
+(9, '20191123000001', 'B00001', 1, 1500, 1500),
+(10, '20191123000002', 'B00001', 1, 1500, 1500),
+(11, '20191123000003', 'B00001', 1, 1500, 1500),
+(12, '20191124000001', 'B00001', 1, 1500, 1500),
+(13, '20191125000001', 'B00001', 1, 1500, 1500),
+(14, '20191125000002', 'B00001', 1, 1500, 1500);
 
 -- --------------------------------------------------------
 
@@ -235,13 +238,13 @@ INSERT INTO `kunjungan` (`id_kunjungan`, `no_rm`, `tgl_kunjungan`, `diagnosa_kep
 --
 CREATE TABLE `laporan_bulanan` (
 `id_penjualan` varchar(14)
+,`id_user` varchar(4)
 ,`nama_user` varchar(30)
 ,`jabatan` enum('Owner','Apoteker','Kasir')
 ,`tanggal` date
 ,`total_harga` int(11)
 ,`bayar` int(11)
 ,`kembalian` int(11)
-,`diskon` int(11)
 );
 
 -- --------------------------------------------------------
@@ -434,16 +437,20 @@ CREATE TABLE `penjualan` (
   `tanggal` date DEFAULT NULL,
   `total_harga` int(11) DEFAULT NULL,
   `bayar` int(11) DEFAULT NULL,
-  `kembalian` int(11) DEFAULT NULL,
-  `diskon` int(11) DEFAULT NULL
+  `kembalian` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `penjualan`
 --
 
-INSERT INTO `penjualan` (`id_penjualan`, `id_user`, `tanggal`, `total_harga`, `bayar`, `kembalian`, `diskon`) VALUES
-('11', 'A001', '2019-11-05', 500000, 500000, 0, 0);
+INSERT INTO `penjualan` (`id_penjualan`, `id_user`, `tanggal`, `total_harga`, `bayar`, `kembalian`) VALUES
+('20191123000001', 'A002', '2019-11-23', 1500, 2500, 1000),
+('20191123000002', 'A002', '2019-11-23', 1500, 5000, 3500),
+('20191123000003', 'A002', '2019-11-23', 1500, 5000, 3500),
+('20191124000001', 'A002', '2019-11-24', 1500, 2500, 1000),
+('20191125000001', 'A002', '2019-11-25', 1500, 0, -1500),
+('20191125000002', 'A002', '2019-11-25', 1500, 0, -1500);
 
 -- --------------------------------------------------------
 
@@ -499,7 +506,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `laporan_bulanan`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `laporan_bulanan`  AS  select `penjualan`.`id_penjualan` AS `id_penjualan`,`user`.`nama_user` AS `nama_user`,`user`.`jabatan` AS `jabatan`,`penjualan`.`tanggal` AS `tanggal`,`penjualan`.`total_harga` AS `total_harga`,`penjualan`.`bayar` AS `bayar`,`penjualan`.`kembalian` AS `kembalian`,`penjualan`.`diskon` AS `diskon` from (`user` join `penjualan`) where `user`.`id_user` = `penjualan`.`id_user` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `laporan_bulanan`  AS  select `p`.`id_penjualan` AS `id_penjualan`,`u`.`id_user` AS `id_user`,`u`.`nama_user` AS `nama_user`,`u`.`jabatan` AS `jabatan`,`p`.`tanggal` AS `tanggal`,`p`.`total_harga` AS `total_harga`,`p`.`bayar` AS `bayar`,`p`.`kembalian` AS `kembalian` from (`penjualan` `p` join `user` `u`) ;
 
 --
 -- Indexes for dumped tables
@@ -548,8 +555,8 @@ ALTER TABLE `detail_pembelian_obat_praktik`
 --
 ALTER TABLE `detail_penjualan`
   ADD PRIMARY KEY (`id_det_penjualan`),
-  ADD KEY `id_obat` (`id_obat`),
-  ADD KEY `id_penjualan` (`id_penjualan`);
+  ADD KEY `id_penjualan` (`id_penjualan`),
+  ADD KEY `id_obat` (`id_obat`);
 
 --
 -- Indexes for table `kunjungan`
@@ -660,6 +667,12 @@ ALTER TABLE `detail_pembelian_obat_praktik`
   MODIFY `id_det_pembelian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
 
 --
+-- AUTO_INCREMENT for table `detail_penjualan`
+--
+ALTER TABLE `detail_penjualan`
+  MODIFY `id_det_penjualan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
 -- Constraints for dumped tables
 --
 
@@ -700,8 +713,8 @@ ALTER TABLE `detail_pembelian_obat_praktik`
 -- Constraints for table `detail_penjualan`
 --
 ALTER TABLE `detail_penjualan`
-  ADD CONSTRAINT `detail_penjualan_ibfk_1` FOREIGN KEY (`id_obat`) REFERENCES `obat` (`id_obat`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `detail_penjualan_ibfk_2` FOREIGN KEY (`id_penjualan`) REFERENCES `penjualan` (`id_penjualan`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `detail_penjualan_ibfk_2` FOREIGN KEY (`id_penjualan`) REFERENCES `penjualan` (`id_penjualan`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `detail_penjualan_ibfk_3` FOREIGN KEY (`id_obat`) REFERENCES `obat` (`id_obat`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `kunjungan`
