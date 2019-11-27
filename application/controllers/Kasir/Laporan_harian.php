@@ -22,11 +22,11 @@
 				$day = $this->input->post('hari');
 				if ($year == null && $month == null) {
 			# code...
-			$data['all'] = $this->LaporanBulananModel->get_laporan();
+			$data['all'] = $this->LaporanHarianModel->get_laporan();
 			} else {
-			$data['all'] = $this->LaporanBulananModel->getTransaksiMonth($year, $month, $day);
+			$data['all'] = $this->LaporanharianModel->getTransaksiMonth($year, $month, $day);
 		}	
-				$data['year'] = $this->LaporanHarianModel->get_year();
+				$data['year'] = $this->LaporanHarianModel->getYear();
 				$this->load->view("partials/main/header/header_kasir");
 				$this->load->view("content/kasir/laporan_harian", $data);
 				$this->load->view("partials/main/footer");
