@@ -28,6 +28,6 @@ class LaporanBulananModel extends CI_Model
 	}
 	function getYear()
 	{
-		return $this->db->query("Select DISTINCT YEAR(tanggal) as year From laporan_bulanan")->result();
+		return $this->db->query("Select DISTINCT YEAR(tanggal) as year From laporan_bulanan ORDER BY year ASC")->result();
 	}
 }
