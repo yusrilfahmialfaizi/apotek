@@ -20,16 +20,18 @@
 		{
 			return $this->db->get("laporan_bulanan")->result();
 		}
-		function getTransaksiMonth($year, $month, $day)
+		function getTransaksiMonth($date)
 		{
-			$this->db->where('YEAR(tanggal)', $year);
-			$this->db->where('MONTH(tanggal)', $month);
-			$this->db->where('DAY(tanggal)', $day);
+			$this->db->where('DATE(tanggal)', $date);
 			return $this->db->get('laporan_bulanan')->result();
 		}
 		function getYear()
 		{
-			return $this->db->query("Select DISTINCT YEAR(tanggal as year From laporan_bulanan")->result();
+			return $this->db->query("Select DISTINCT YEAR(tanggal) as year From laporan_bulanan")->result();
+		}
+		function getDay()
+		{
+			return $this->db->query("Select DISTINCT DAY(tanggal) as day From laporan_bulanan")->result();
 		}
 	}
 ?>

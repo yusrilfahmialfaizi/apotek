@@ -14,19 +14,17 @@
 
 			function index()
 			{
-			if($this->session->userdata('status') != "Login" || $this->session->userdata("jabatan") != "Kasir"){
-				redirect("login");
-			}
-				$year = $this->input->post('tahun');
-				$month = $this->input->post('bulan');
-				$day = $this->input->post('hari');
-				if ($year == null && $month == null) {
-			# code...
-			$data['all'] = $this->LaporanHarianModel->get_laporan();
-			} else {
-			$data['all'] = $this->LaporanharianModel->getTransaksiMonth($year, $month, $day);
-		}	
-				$data['year'] = $this->LaporanHarianModel->getYear();
+				if($this->session->userdata('status') != "Login" || $this->session->userdata("jabatan") != "Kasir"){
+					redirect("login");
+				}
+				$tanggal = $this->input->post("tanggal");
+				$date = date("Y-m-d",strtotime($tanggal));
+				if ($tanggal == null) {
+					# code...
+					$data['all'] = $this->LaporanHarianModel->get_laporan();
+				} else {
+					$data['all'] = $this->LaporanHarianModel->getTransaksiMonth($date);
+				}	
 				$this->load->view("partials/main/header/header_kasir");
 				$this->load->view("content/kasir/laporan_harian", $data);
 				$this->load->view("partials/main/footer");
@@ -38,4 +36,20 @@
 				$this->load->view("content/kasir/print_laporan_harian", $data);
 				$this->load->view("partials/main/footer");
 			}
+
+			function coba()
+			{
+				$data = $this->input->post("tanggal");
+				$date = date("Y-m-d",strtotime($data));
+				// $year 	= "2019";
+				// $month 	= "11";
+				// $day 	= "23";
+
+				// $data = $this->LaporanHarianModel->getTransaksiMonth($year, $month, $day);
+
+				echo "<pre>";
+				print_r($date);
+				echo "</pre>";
+			}
+
 		}
