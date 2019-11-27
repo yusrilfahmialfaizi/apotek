@@ -51,6 +51,17 @@
       </div>
     </div>
   </div>
+
+  <?php
+        foreach($data as $data_penjualan){
+            $total_penjualan[] = $data_penjualan->total_penjualan;
+            $tanggal[] = $data_penjualan->tanggal;
+        }
+        foreach ($dataperbulan as $data_penjualan_perbulan) {
+            $ $total_penjualan_perbulan[] = $data_penjualan_perbulan->total_penjualan_perbulan;
+            $tanggal[] = $data_penjualan_perbulan->tanggal;
+        }
+    ?>
   <!-- /page content -->
   <?php $this->load->view("partials/main/foot") ?>
 </div>
@@ -62,7 +73,7 @@
     new Chart(f, {
       type: "line",
       data: {
-        labels: ["January", "February", "March", "April", "May", "June", "July"],
+        labels: <?php echo json_encode($tanggal) ?>,
         datasets: [{
           label: "Grafik penjualan per Bulan",
           backgroundColor: "rgba(38, 185, 154, 0.31)",
@@ -72,7 +83,7 @@
           pointHoverBackgroundColor: "#fff",
           pointHoverBorderColor: "rgba(220,220,220,1)",
           pointBorderWidth: 1,
-          data: [100, 0, 0, 0, 20, 85, 7]
+          data: <?php echo json_encode($total_penjualan);?>
         }]
       }
     })
@@ -82,7 +93,7 @@
     new Chart(f, {
       type: "line",
       data: {
-        labels: ["January", "February", "March", "April", "May", "June", "July"],
+        labels: <?php echo json_encode($tanggal) ?>,
         datasets: [{
           label: "Grafik penjualan per Tahun",
           backgroundColor: "rgba(38, 185, 154, 0.31)",
@@ -92,7 +103,7 @@
           pointHoverBackgroundColor: "#fff",
           pointHoverBorderColor: "rgba(220,220,220,1)",
           pointBorderWidth: 1,
-          data: [100, 0, 0, 0, 20, 85, 7]
+          data: <?php echo json_encode($total_penjualan);?>
         }]
       }
     })
