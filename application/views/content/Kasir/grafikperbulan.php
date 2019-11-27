@@ -53,15 +53,15 @@
   </div>
 
   <?php
-        foreach($data as $data_penjualan){
-            $total_penjualan[] = $data_penjualan->total_penjualan;
-            $tanggal[] = $data_penjualan->tanggal;
-        }
-        foreach ($dataperbulan as $data_penjualan_perbulan) {
-            $ $total_penjualan_perbulan[] = $data_penjualan_perbulan->total_penjualan_perbulan;
-            $tanggal[] = $data_penjualan_perbulan->tanggal;
-        }
-    ?>
+  foreach ($data as $data_penjualan) {
+    $total_penjualan[] = $data_penjualan->total_penjualan;
+    $tanggal[] = $data_penjualan->tanggal;
+  }
+  foreach ($dataperbulan as $data_penjualan_perbulan) {
+    $total_penjualan_perbulan[] = $data_penjualan_perbulan->total_penjualan;
+    $tanggal[] = $data_penjualan_perbulan->tanggal;
+  }
+  ?>
   <!-- /page content -->
   <?php $this->load->view("partials/main/foot") ?>
 </div>
@@ -83,7 +83,7 @@
           pointHoverBackgroundColor: "#fff",
           pointHoverBorderColor: "rgba(220,220,220,1)",
           pointBorderWidth: 1,
-          data: <?php echo json_encode($total_penjualan);?>
+          data: <?php echo json_encode($total_penjualan); ?>
         }]
       }
     })
@@ -103,7 +103,7 @@
           pointHoverBackgroundColor: "#fff",
           pointHoverBorderColor: "rgba(220,220,220,1)",
           pointBorderWidth: 1,
-          data: <?php echo json_encode($total_penjualan);?>
+          data: <?php echo json_encode($total_penjualan); ?>
         }]
       }
     })
