@@ -63,14 +63,12 @@ class Grafikperbulan extends CI_Controller
 
 	function coba(){
 		$x	=$this->Grafik_model->get_data_penjualan();
-		$y	=$this->Grafik_model->get_data_penjualan_perbulan();
 		foreach ($x as $data_penjualan) {
 		    $total_penjualan_pertahun[] = $data_penjualan->total_penjualan;
 		    $tanggal_pertahun[] = $data_penjualan->tanggal;
 		}
 		echo "<pre>";
 		print_r($x);
-		print_r($y);
 		echo "</pre>";
 	}
 }
