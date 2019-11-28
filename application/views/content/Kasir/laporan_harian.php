@@ -39,14 +39,16 @@
                       </div>
                     </div>
                     <form action="<?php echo base_url("kasir/Laporan_harian") ?>" method="post">
-                      <div class="col-md-offset-10">
+                      <div class="col-md-3 col-md-offset-9">
                         <div class="form-group">
-                          <input type="text" class="form-control has-feedback-left" id="single_cal2" placeholder="Expired" name="tanggal" aria-describedby="inputSuccess2Status4" required="required">
-                          <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
-                          <span id="inputSuccess2Status4" class="sr-only">(success)</span>
-                          <span class="input-group-btn">
-                            <button type="submit" class="btn btn-primary">Filter</button>
-                          </span>
+                          <div class="input-group">
+                            <input type="text" class="form-control has-feedback-left" id="single_cal2" placeholder="Expired" name="tanggal" aria-describedby="inputSuccess2Status4" required="required">
+                            <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+                            <span id="inputSuccess2Status4" class="sr-only">(success)</span>
+                            <span class="input-group-btn">
+                              <button type="submit" class="btn btn-primary">Filter</button>
+                            </span>
+                          </div>
                         </div>
                       </div>
                     </form>
