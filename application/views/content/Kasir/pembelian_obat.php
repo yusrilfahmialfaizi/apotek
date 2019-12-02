@@ -18,7 +18,7 @@
                   <h4 class="modal-title" id="myModalLabel">Data Obat</h4>
                 </div>
                 <div class="modal-body">
-                  <form action="#" method="post" class="form-horizontal form-label-left">
+                  <form action="<?php echo base_url("kasir/Pembelian_obat/cart") ?>" method="post" class="form-horizontal form-label-left">
 
                     <div class="form-group">
                       <label class="control-label col-md-3 col-sm-3 col-xs-12">ID Obat</label>
@@ -240,21 +240,7 @@
                             <th>Action</th>
                           </tr>
                         </thead>
-                        <tbody id="pembelian">
-                          <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                          </tr>
-                        </tbody>
+                        <tbody id="pembelian"></tbody>
                       </table>
                     </div>
                     <div class="form-group">
@@ -301,6 +287,7 @@
                 // $("#").val(data.);
               }
             })
-          })
+          });
+          
         });
       </script>

@@ -22,18 +22,6 @@
           <div class="modal fade bs-example-modal-lg" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-lg">
               <div class="modal-content">
-
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
-                    </button>
-                    <h4 class="modal-title" id="myModalLabel">Data Obat</h4>
-                  </div>
-                  <div class="modal-body">
-                    <form action="<?php echo base_url("owner/pembelianobat/tambah") ?>" method="post" class="form-horizontal form-label-left">
-                     <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Kode Pembelian</label>
-                        <div class="col-md-4 col-sm-9 col-xs-12">
-                          <input type="text" class="form-control" id="kode_isi" name="id_obat_isi" value="<?php  $kode ?>"  required="required">
                 <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
                   </button>
@@ -41,7 +29,7 @@
                 </div>
                 <div class="modal-body">
                   <form action="<?php echo base_url("owner/pembelianobat/tambah") ?>" method="post" class="form-horizontal form-label-left">
-                   <div class="form-group">
+                    <div class="form-group">
                       <label class="control-label col-md-3 col-sm-3 col-xs-12">ID Obat</label>
                       <div class="col-md-2 col-sm-9 col-xs-12">
                         <select class="form-control" id="id_obat_isi" name="id_obat_isi">
@@ -105,17 +93,6 @@
                       </div>
                     </div>
 
-                      <div class="ln_solid"></div>
-                      <div class="form-group">
-                        <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
-                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                          <button type="reset" class="btn btn-primary">Reset</button>
-                          <button type="button" data-dismiss="modal" id="add_cart" class="btn btn-success">Submit</button>
-                        </div>
-                      </div>    
-                    </form>
-                  </div>
-                   <div class="modal-footer">
                     <div class="ln_solid"></div>
                     <div class="form-group">
                       <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
@@ -126,7 +103,32 @@
                     </div>
                   </form>
                 </div>
-               <form class="form-horizontal form-label-left">
+                <div class="modal-footer">
+                  <div class="ln_solid"></div>
+                  <div class="form-group">
+                    <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      <button type="reset" class="btn btn-primary">Reset</button>
+                      <button type="button" data-dismiss="modal" id="add_cart" class="btn btn-success">Submit</button>
+                    </div>
+                  </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <?php foreach ($this->cart->contents() as $key) { ?>
+            <div class="modal fade edit_obat" role="dialog" aria-hidden="true">
+              <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Obat</h4>
+                  </div>
+                  <div class="modal-body">
+                    <form class="form-horizontal form-label-left">
                       <?php $cart   = $this->cart->get_item($key['rowid']) ?>
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">ID Obat <span class="required">*</span></label>
@@ -196,7 +198,7 @@
                       </div>
                     </form>
                   </div>
-                   <div class="modal-footer">
+                  <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-primary">Save changes</button>
                   </div>
@@ -204,7 +206,7 @@
                 </div>
               </div>
             </div>
-          <?php endforeach ?>
+          <?php } ?>
           <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
               <div class="x_panel">
@@ -237,66 +239,46 @@
                           </div>
                         </div>
                         <div class="form-group">
-                           <div class="col-md-10"></div> -->
+                          <div class="col-md-10"></div>
                           <div class="col-md-12">
                             <div class="form-group">
-                      </div>
-                      <div class="form-group">
-                        <!-- <div class="col-md-10"></div> -->
-                        <div class="col-md-12">
-                          <div class="form-group">
-                            <button type="button" class="btn btn-primary btn-round" data-toggle="modal" data-target=".bs-example-modal-lg"> + Tambah Data</button>
+                            </div>
+                            <div class="form-group">
+                              <!-- <div class="col-md-10"></div> -->
+                              <div class="col-md-12">
+                                <div class="form-group">
+                                  <button type="button" class="btn btn-primary btn-round" data-toggle="modal" data-target=".bs-example-modal-lg"> + Tambah Data</button>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                                <thead>
+                                  <tr>
+                                    <th>ID Obat</th>
+                                    <th>Nama Paten</th>
+                                    <th>Nama Generic</th>
+                                    <th>Nama Pabrik</th>
+                                    <th>Jenis</th>
+                                    <th>Kategori</th>
+                                    <th>Harga Beli</th>
+                                    <th>Exp</th>
+                                    <th>Jumlah</th>
+                                    <th>Subtotal</th>
+                                    <th>Action</th>
+                                  </tr>
+                                </thead>
+                                <tbody id="pembelian"></tbody>
+                              </table>
+                            </div>
+                            <div class="form-group">
+                            </div>
                           </div>
-                        </div>
-                      </div>
-                      <div class="form-group"> 
-                        <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
-                          <thead>
-                            <tr>
-                              <th>ID Obat</th>
-                              <th>Nama Paten</th>
-                              <th>Nama Generic</th>
-                              <th>Nama Pabrik</th>
-                              <th>Jenis</th>
-                              <th>Kategori</th>
-                              <th>Harga Beli</th>
-                              <th>Exp</th>
-                              <th>Jumlah</th>
-                              <th>Subtotal</th>
-                              <th>Action</th>
-                            </tr>
-                          </thead>
-                          <tbody id="pembelian"></tbody>
-                        </table>
-                      </div>
-                       <div class="form-group">
-                    </div>
-                    <div class="form-group">
-                      <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
-                        <thead>
-                          <tr>
-                            <th>ID Obat</th>
-                            <th>Nama Paten</th>
-                            <th>Nama Generic</th>
-                            <th>Nama Pabrik</th>
-                            <th>Jenis</th>
-                            <th>Kategori</th>
-                            <th>Harga Beli</th>
-                            <th>Exp</th>
-                            <th>Jumlah</th>
-                            <th>Subtotal</th>
-                            <th>Action</th>
-                          </tr>
-                        </thead>
-                        <tbody id="pembelian"></tbody>
-                      </table>
-                    </div>
-                      </div> 
-                    <div class="form-group">
-                      <div class="col-md-9 col-sm-9 col-xs-12 ">
-                        <button type="submit" id="submit" name="submit" class="btn btn-success">Submit</button>
-                      </div>
-                    </div>
+                          <div class="form-group">
+                            <div class="col-md-9 col-sm-9 col-xs-12 ">
+                              <button type="submit" id="submit" name="submit" class="btn btn-success">Submit</button>
+                            </div>
+                          </div>
                   </form>
                 </div>
               </div>
@@ -335,7 +317,7 @@
                   $("#nama_pabrik_isi").val(data.nama_pabrik);
                   $("#jenis_obat_isi").val(data.jenis);
                   $("#kategori_obat_isi").val(data.kategori);
-                  $("#harga_beli_isi").val(data.harga_beli);
+                  // $("#harga_beli_isi").val(data.harga_beli);
                 });
               }
             })
@@ -354,21 +336,6 @@
 
             $.ajax({
 
-                url     : "<?php echo base_url('owner/pembelianobat/keranjang_obat');?>",
-                method  : "POST",
-                data    : {obat: obat, nama_paten: nama_paten, qty: qty, harga: harga, nama_generic : nama_generic, nama_pabrik : nama_pabrik, jenis_obat : jenis_obat, kategori_obat : kategori_obat, exp : exp},
-                success: function(data){
-                  $('#pembelian').html(data);
-                  window.load();
-                  $("#id_obat_isi").val(null);
-                  $("#nama_paten_isi").val("");
-                  $("#jumlah_stok_isi").val("");
-                  $("#harga_beli_isi").val("");
-                  $("#nama_generic_isi").val("");
-                  $("#nama_pabrik_isi").val("");
-                  $("#jenis_obat_isi").val("");
-                  $("#kategori_obat_isi").val("");
-                }
               url: "<?php echo base_url('owner/pembelianobat/keranjang_obat'); ?>",
               method: "POST",
               data: {
@@ -384,7 +351,7 @@
               },
               success: function(data) {
                 $('#pembelian').html(data);
-                // window.load();
+                window.load();
                 $("#id_obat_isi").val(null);
                 $("#nama_paten_isi").val("");
                 $("#jumlah_stok_isi").val("");
@@ -403,21 +370,6 @@
             var exp = $("#single_cal3").val();
 
             $.ajax({
-                url     : "<?php echo base_url('owner/pembelianobat/updatekeranjang');?>",
-                method  : "POST",
-                data    : {rowid: rowid, qty: qty, exp: exp},
-                success: function(data){
-                  $('#pembelian').html(data);
-                 window.load();
-                  $("#id_obat_edit").val(null);
-                  $("#nama_paten_edit").val("");
-                  $("#jumlah_stok_edit").val("");
-                  $("#harga_beli_edit").val("");
-                  $("#nama_generic_edit").val("");
-                  $("#nama_pabrik_edit").val("");
-                  $("#jenis_obat_edit").val("");
-                  $("#kategori_obat_edit").val("");
-                }
               url: "<?php echo base_url('owner/pembelianobat/updatekeranjang'); ?>",
               method: "POST",
               data: {
@@ -427,7 +379,7 @@
               },
               success: function(data) {
                 $('#pembelian').html(data);
-                // window.load();
+                window.load();
                 $("#id_obat_edit").val(null);
                 $("#nama_paten_edit").val("");
                 $("#jumlah_stok_edit").val("");

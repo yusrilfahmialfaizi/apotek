@@ -48,4 +48,9 @@ class Penjualanmodel extends CI_Model
 	{
 		return $this->db->get_where('penjualan', array('id_penjualan' => $id_penjualan))->result();
 	}
+
+	function get_detail($id_penjualan)
+	{
+		return $this->db->get_where('detail_penjualan', array('id_penjualan' => $id_penjualan))->result();
+	}
 }

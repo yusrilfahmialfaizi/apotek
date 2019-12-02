@@ -1,11 +1,11 @@
-<?php 
+<?php
 	defined('BASEPATH') OR exit('No direct script access allowed');
 	/**
-	 * 
+	 *
 	 */
 	class Pembelianobat extends CI_Controller
 	{
-		
+
 		function __construct()
 		{
 			# code...
@@ -27,7 +27,7 @@
 			$this->load->view("content/owner/pembelian_obat", $data);
 			$this->load->view("partials/main/footer");
 		}
-		
+
 		function tambah()
 		{
 			$id_obat 		= $this->input->post("id_obat");
@@ -64,9 +64,9 @@
 
 		function keranjang_obat()
 		{
-			$tgl 			= $this->input->post("exp");
+			$tgl 		= $this->input->post("exp");
 			$exp 		= date("Y-m-d", strtotime($tgl));
-			$data = array(
+			$data 		= array(
 				'id' 			=> $this->input->post('obat'),
 				'name' 			=> $this->input->post("nama_paten"),
 				'qty'			=> $this->input->post("qty"),
@@ -102,8 +102,8 @@
 	                            <div class="form-group">
 	                              <div class="form-group">
 	                                   <button type="button" class="btn btn-primary btn-sm glyphicon glyphicon-pencil" data-toggle="modal" data-target=".edit_obat'.$key['rowid'].'"></button>
-	                                
-	                                  
+
+
 	                                   <button type="button" class="btn btn-danger btn-sm glyphicon glyphicon-remove " id="remove_cart" data-id="'.$key['rowid'].'"></button>
 	                            </div>
 	                          </td>
@@ -169,7 +169,7 @@
 				{
 					foreach ($this->cart->contents() as $key)
 					{
-					
+
 						$id_obat_praktik = $key['id'];
 						$exp = $key['exp'];
 						$count = $this->Pembelianmodel->count($id_obat_praktik,$exp);
@@ -196,7 +196,7 @@
 											$jumlah_stok 	= $w->jumlah_stok + $key['qty'];
 											$jumlah 		= $key['qty'] * $a->jumlah_biji;
 											$jumlahbiji 	= $jumlah + $w->jumlah_biji;
-											
+
 											$data_detail 	= array(
 												'id_obat_praktik'	=> $key['id'],
 												'exp'				=> $key['exp'],
@@ -215,7 +215,7 @@
 									}
 								}else{
 									# code...
-									$id = $key['id'];							
+									$id = $key['id'];
 									foreach ($this->Obatmodel->get_biji($id) as $a)
 									{
 										$jumlahbiji 	= $key['qty'] * $a->jumlah_biji;
@@ -233,7 +233,7 @@
 					$this->cart->destroy();
 					redirect("owner/pembelianobat");
 					}else{
-						foreach ($this->cart->contents() as $key) 
+						foreach ($this->cart->contents() as $key)
 						{
 							# code...
 							$where = array('id_obat_praktik' => $key['id']);
@@ -264,6 +264,5 @@
 				}
 			}
 		}
-		
+
 	}
-?>
