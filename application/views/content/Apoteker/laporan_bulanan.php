@@ -3,7 +3,7 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Laporan Penjualan Harian</h3>
+                <h3>Laporan Penjualan Bulanan</h3>
               </div>
 
               <div class="title_right">
@@ -38,13 +38,36 @@
                         <button type="button" name="print" id="print" onclick="print_d()" class="btn btn-success btn-md glyphicon glyphicon-print"> Print</button>
                       </div>
                     </div>
-                    <form action="<?php echo base_url("kasir/Laporan_harian") ?>" method="post">
-                      <div class="col-md-3 col-md-offset-9">
+                    <form action="<?php echo base_url("apoteker/Laporan_bulanan") ?>" method="post">
+
+                      <div class="col-md-2 col-md-offset-6">
                         <div class="form-group">
+                          <label for="">Bulan</label>
+                          <select class="form-control" id="bulan" name="bulan" required="required">
+                            <option value="01">Januari</option>
+                            <option value="02">Februari</option>
+                            <option value="03">Maret</option>
+                            <option value="04">April</option>
+                            <option value="05">Mei</option>
+                            <option value="06">Juni</option>
+                            <option value="07">Juli</option>
+                            <option value="08">Agustus</option>
+                            <option value="09">September</option>
+                            <option value="10">Oktober</option>
+                            <option value="11">November</option>
+                            <option value="12">Desember</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-md-2">
+                        <div class="form-group">
+                          <label for="">Tahun</label>
                           <div class="input-group">
-                            <input type="text" class="form-control has-feedback-left" id="single_cal2" placeholder="Expired" name="tanggal" aria-describedby="inputSuccess2Status4" required="required">
-                            <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
-                            <span id="inputSuccess2Status4" class="sr-only">(success)</span>
+                            <select class="form-control" id="tahun" name="tahun" required="required">
+                              <?php foreach ($year as $key) : ?>
+                                <option value="<?php echo $key->year ?>"><?php echo $key->year ?></option>
+                              <?php endforeach; ?>
+                            </select>
                             <span class="input-group-btn">
                               <button type="submit" class="btn btn-primary">Filter</button>
                             </span>
@@ -99,6 +122,6 @@
         <?php $this->load->view("partials/main/js/js") ?>
         <script>
           function print_d() {
-            window.open("<?php echo base_url("kasir/Laporan_harian/print") ?>", "_blank");
+            window.open("<?php echo base_url("apoteker/Laporan_bulanan/print") ?>", "_blank");
           }
         </script>

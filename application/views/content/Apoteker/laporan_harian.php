@@ -38,7 +38,7 @@
                         <button type="button" name="print" id="print" onclick="print_d()" class="btn btn-success btn-md glyphicon glyphicon-print"> Print</button>
                       </div>
                     </div>
-                    <form action="<?php echo base_url("kasir/Laporan_harian") ?>" method="post">
+                    <form action="<?php echo base_url("apoteker/Laporan_harian") ?>" method="post">
                       <div class="col-md-3 col-md-offset-9">
                         <div class="form-group">
                           <div class="input-group">
@@ -99,6 +99,6 @@
         <?php $this->load->view("partials/main/js/js") ?>
         <script>
           function print_d() {
-            window.open("<?php echo base_url("kasir/Laporan_harian/print") ?>", "_blank");
+            window.open("<?php echo base_url("apoteker/Laporan_harian/print") ?>", "_blank");
           }
         </script>
