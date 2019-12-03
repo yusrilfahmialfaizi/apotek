@@ -21,7 +21,7 @@ class Penjualan extends CI_Controller
 		}
 		$data["kode"]		= $this->Penjualanmodel->no_invoice();
 		$data["id_obat"]	= $this->Dataobat_model->ambil_data();
-		$this->load->view("partials/main/header/header_kasir");
+		$this->load->view("partials/main/header/header_menukasir");
 		$this->load->view("content/kasir/penjualan", $data);
 		$this->load->view("partials/main/footer");
 	}
