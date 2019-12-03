@@ -118,7 +118,7 @@
             </div>
           </div>
           <?php foreach ($this->cart->contents() as $key) { ?>
-            <div class="modal fade edit_obat" role="dialog" aria-hidden="true">
+            <div class="modal fade edit_obat<?php echo $key['rowid'] ?>" role="dialog" aria-hidden="true">
               <div class="modal-dialog modal-lg">
                 <div class="modal-content">
 
@@ -176,7 +176,7 @@
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Expired <span class="required">*</span></label>
                         <div class="col-md-4 col-sm-9 col-xs-12">
-                          <input type="text" class="form-control has-feedback-left" id="single_cal3" placeholder="Expired" name="exp" aria-describedby="inputSuccess2Status4" value="<?php echo $key['exp'] ?>" required="required">
+                          <input type="text" class="form-control has-feedback-left" id="single_cal3" placeholder="Expired" name="exp" aria-describedby="inputSuccess2Status4" value="<?php echo date("m/d/Y", strtotime($key['exp']))  ?>" required="required">
                           <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
                           <span id="inputSuccess2Status4" class="sr-only">(success)</span>
                         </div>
