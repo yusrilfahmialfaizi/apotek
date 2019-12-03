@@ -63,7 +63,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label for="qty">Qty</label>
-                                    <input type="number" id="qty" class="form-control" name="qty" min="0" value="1" required />
+                                    <input type="number" id="qty" class="form-control" name="qty" min="0" value="1" required disabled />
                                 </div>
                             </div>
 
@@ -228,6 +228,7 @@
                         html += '<option value=' + data[i].exp + '>' + data[i].exp + '</option>';
                     }
                     document.getElementById("submit").disabled = false;
+                    document.getElementById("qty").disabled = false;
                     $('#exp').html(html);
 
                 }
@@ -357,6 +358,17 @@
             // var hasil = (bayar_default + bayar) - total;
             $('#kembali').val(hasil);
         });
+
+        $("#qty").on("input", function() {
+            var qty = $("#qty").val();
+            var jumlah_stok = $("#jumlah_stok").val();
+            if (qty >= jumlah_stok) {
+                alert("Jumlah Stok tidak memadai");
+                document.getElementById("submit").disabled = true;
+            } else {
+                document.getElementById("submit").disabled = false;
+            }
+        })
 
         $("#selesai").on('click', function() {
             var id_penjualan = $("#no_invoice").val();
