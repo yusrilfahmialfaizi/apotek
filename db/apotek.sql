@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 27, 2019 at 01:33 PM
+-- Generation Time: Dec 04, 2019 at 02:10 AM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.10
 
@@ -67,7 +67,9 @@ CREATE TABLE `detail_obat` (
 INSERT INTO `detail_obat` (`id_detail_ob`, `id_obat`, `exp`, `jumlah_stok`) VALUES
 (1, 'B00001', '2019-11-15', 6),
 (2, 'B00001', '2019-11-06', 1),
-(3, 'B00002', '2019-11-03', 12);
+(3, 'B00002', '2019-11-03', 12),
+(4, 'B00001', '2019-12-03', 2),
+(5, 'B00002', '2019-12-03', 1);
 
 -- --------------------------------------------------------
 
@@ -93,7 +95,8 @@ INSERT INTO `detail_obat_praktik` (`id_detail_op`, `id_obat_praktik`, `exp`, `ju
 (23, 'B00002', '2019-10-13', 22, 264),
 (24, 'B00001', '2019-10-14', 1, 3),
 (25, 'B00001', '2019-10-20', 1, 4),
-(26, 'B00001', '2019-10-21', 1, 4);
+(26, 'B00001', '2019-10-21', 1, 4),
+(27, 'B00001', '2019-12-02', 100, 400);
 
 -- --------------------------------------------------------
 
@@ -110,6 +113,19 @@ CREATE TABLE `detail_pembelian` (
   `harga` int(11) DEFAULT NULL,
   `subtotal` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `detail_pembelian`
+--
+
+INSERT INTO `detail_pembelian` (`id_det_pembelian`, `id_pembelian`, `id_obat`, `qty`, `exp`, `harga`, `subtotal`) VALUES
+(1, 'Jl-2', 'B00001', 1, '2019-12-02', 1, 1),
+(2, 'Jl-3', 'B00001', 1, '2019-12-03', 1, 1),
+(3, 'Jl-4', 'B00001', 1, '2019-12-03', 1, 1),
+(4, 'Jl-5', 'B00001', 1, '2019-12-03', 1, 1),
+(5, 'Jl-6', 'B00001', 1, '2019-12-03', 1, 1),
+(6, 'Jl-7', 'B00002', 1, '2019-12-03', 1, 1),
+(7, 'Jl-7', 'B00001', 1, '2019-12-03', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -156,7 +172,8 @@ INSERT INTO `detail_pembelian_obat_praktik` (`id_det_pembelian`, `id_pembelian`,
 (81, 'JL-012', 'B00002', 1, '2019-10-14', 1, 1),
 (82, 'JL-013', 'B00001', 1, '2019-10-21', 1, 1),
 (83, 'JL-013', 'B00002', 1, '2019-10-14', 1, 1),
-(84, 'JL-014', 'B00002', 1, '2019-10-14', 1, 1);
+(84, 'JL-014', 'B00002', 1, '2019-10-14', 1, 1),
+(85, 'JL-300', 'B00001', 100, '2019-12-02', 2500, 250000);
 
 -- --------------------------------------------------------
 
@@ -204,7 +221,12 @@ INSERT INTO `detail_penjualan` (`id_det_penjualan`, `id_penjualan`, `id_obat`, `
 (11, '20191123000003', 'B00001', 1, 1500, 1500),
 (12, '20191124000001', 'B00001', 1, 1500, 1500),
 (13, '20191125000001', 'B00001', 1, 1500, 1500),
-(14, '20191125000002', 'B00001', 1, 1500, 1500);
+(14, '20191125000002', 'B00001', 1, 1500, 1500),
+(15, '20191130000001', 'B00001', 1, 1500, 1500),
+(16, '20191130000002', 'B00001', 1, 1500, 1500),
+(17, '20191130000003', 'B00001', 1, 1500, 1500),
+(18, '20191203000001', 'B00002', 7, 10000, 70000),
+(19, '20191203000002', 'B00001', 6, 1500, 9000);
 
 -- --------------------------------------------------------
 
@@ -239,12 +261,12 @@ INSERT INTO `kunjungan` (`id_kunjungan`, `no_rm`, `tgl_kunjungan`, `diagnosa_kep
 CREATE TABLE `laporan_bulanan` (
 `id_penjualan` varchar(14)
 ,`id_user` varchar(4)
-,`nama_user` varchar(30)
-,`jabatan` enum('Owner','Apoteker','Kasir')
 ,`tanggal` date
 ,`total_harga` int(11)
 ,`bayar` int(11)
 ,`kembalian` int(11)
+,`nama_user` varchar(30)
+,`jabatan` enum('Owner','Apoteker','Kasir')
 );
 
 -- --------------------------------------------------------
@@ -392,6 +414,19 @@ CREATE TABLE `pembelian` (
   `total_harga` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `pembelian`
+--
+
+INSERT INTO `pembelian` (`id_pembelian`, `id_user`, `id_supplier`, `tanggal`, `total_harga`) VALUES
+('Jl-1', 'A002', NULL, '2019-12-02', 1),
+('Jl-2', 'A002', NULL, '2019-12-02', 1),
+('Jl-3', 'A002', NULL, '2019-12-03', 1),
+('Jl-4', 'A002', 'Sup01', '2019-12-03', 1),
+('Jl-5', 'A002', 'Sup01', '2019-12-03', 1),
+('Jl-6', 'A002', 'Sup01', '2019-12-03', 1),
+('Jl-7', 'A002', 'Sup01', '2019-12-03', 2);
+
 -- --------------------------------------------------------
 
 --
@@ -423,7 +458,8 @@ INSERT INTO `pembelian_obat_praktik` (`id_pembelian`, `id_user`, `tanggal`, `tot
 ('JL-011', 'A001', '2019-10-13', 2),
 ('JL-012', 'A001', '2019-10-20', 2),
 ('JL-013', 'A001', '2019-10-20', 2),
-('JL-014', 'A001', '2019-10-20', 1);
+('JL-014', 'A001', '2019-10-20', 1),
+('JL-300', 'A001', '2019-12-02', 250000);
 
 -- --------------------------------------------------------
 
@@ -450,7 +486,12 @@ INSERT INTO `penjualan` (`id_penjualan`, `id_user`, `tanggal`, `total_harga`, `b
 ('20191123000003', 'A002', '2019-11-23', 1500, 5000, 3500),
 ('20191124000001', 'A002', '2019-11-24', 1500, 2500, 1000),
 ('20191125000001', 'A002', '2019-11-25', 1500, 0, -1500),
-('20191125000002', 'A002', '2019-11-25', 1500, 0, -1500);
+('20191125000002', 'A002', '2019-11-25', 1500, 0, -1500),
+('20191130000001', 'A002', '2019-11-30', 1500, 4000, 2500),
+('20191130000002', 'A002', '2019-11-30', 1500, 2976, 1476),
+('20191130000003', 'A002', '2019-11-30', 1500, 2000, 500),
+('20191203000001', 'A002', '2019-12-03', 2147483647, 2147483647, 2147483647),
+('20191203000002', 'A002', '2019-12-03', 9000, 50000, 41000);
 
 -- --------------------------------------------------------
 
@@ -465,6 +506,13 @@ CREATE TABLE `supplier` (
   `no_telepon` varchar(12) NOT NULL,
   `nama_pabrik` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `supplier`
+--
+
+INSERT INTO `supplier` (`id_supplier`, `nama`, `alamat`, `no_telepon`, `nama_pabrik`) VALUES
+('Sup01', 'Alex', 'Puger', '012345678', 'Kimia Farma');
 
 -- --------------------------------------------------------
 
@@ -488,7 +536,8 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id_user`, `nama_user`, `jenis_kelamin`, `alamat`, `jabatan`, `username`, `password`) VALUES
 ('A001', 'Achmad Syaid', 'Laki - laki', 'Tempurejo - Jember', 'Owner', 'own', '$2y$10$kOnZ0wcHXvb2DNOOD7rWHOGvX6OkY3KKdEa5xdaO4IzqOJSqDHvni'),
-('A002', 'Kasir', 'Laki - laki', 'Tempurejo -Jember', 'Kasir', 'kasir', '$2y$10$kPoIO3xNPkA39BK1jpTgY.Nc2w8jP55Cr5UG.rJatWFSKp97p6Jqu');
+('A002', 'Kasir', 'Laki - laki', 'Tempurejo -Jember', 'Kasir', 'kasir', '$2y$10$kPoIO3xNPkA39BK1jpTgY.Nc2w8jP55Cr5UG.rJatWFSKp97p6Jqu'),
+('A003', 'Alex', 'Laki - laki', 'Puger', 'Apoteker', 'Alex', '$2y$10$TRA3QyrIPIoDX/1U1bRGf.Qi1EWBykby4A4nrzfUoP4HthDWdjwhK');
 
 -- --------------------------------------------------------
 
@@ -506,7 +555,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `laporan_bulanan`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `laporan_bulanan`  AS  select `p`.`id_penjualan` AS `id_penjualan`,`u`.`id_user` AS `id_user`,`u`.`nama_user` AS `nama_user`,`u`.`jabatan` AS `jabatan`,`p`.`tanggal` AS `tanggal`,`p`.`total_harga` AS `total_harga`,`p`.`bayar` AS `bayar`,`p`.`kembalian` AS `kembalian` from (`penjualan` `p` join `user` `u`) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `laporan_bulanan`  AS  select `penjualan`.`id_penjualan` AS `id_penjualan`,`penjualan`.`id_user` AS `id_user`,`penjualan`.`tanggal` AS `tanggal`,`penjualan`.`total_harga` AS `total_harga`,`penjualan`.`bayar` AS `bayar`,`penjualan`.`kembalian` AS `kembalian`,`user`.`nama_user` AS `nama_user`,`user`.`jabatan` AS `jabatan` from (`penjualan` left join `user` on(`penjualan`.`id_user` = `user`.`id_user`)) ;
 
 --
 -- Indexes for dumped tables
@@ -646,31 +695,31 @@ ALTER TABLE `detail_kunjungan`
 -- AUTO_INCREMENT for table `detail_obat`
 --
 ALTER TABLE `detail_obat`
-  MODIFY `id_detail_ob` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_detail_ob` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `detail_obat_praktik`
 --
 ALTER TABLE `detail_obat_praktik`
-  MODIFY `id_detail_op` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id_detail_op` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `detail_pembelian`
 --
 ALTER TABLE `detail_pembelian`
-  MODIFY `id_det_pembelian` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_det_pembelian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `detail_pembelian_obat_praktik`
 --
 ALTER TABLE `detail_pembelian_obat_praktik`
-  MODIFY `id_det_pembelian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
+  MODIFY `id_det_pembelian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
 
 --
 -- AUTO_INCREMENT for table `detail_penjualan`
 --
 ALTER TABLE `detail_penjualan`
-  MODIFY `id_det_penjualan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_det_penjualan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- Constraints for dumped tables
