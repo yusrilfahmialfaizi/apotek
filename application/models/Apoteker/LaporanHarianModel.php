@@ -1,11 +1,11 @@
-	<?php 
-	defined('BASEPATH') OR exit('No direct script access allowed');
+	<?php
+	defined('BASEPATH') or exit('No direct script access allowed');
 	/**
-	 * 
+	 *
 	 */
 	class LaporanHarianModel extends CI_Model
 	{
-		
+
 		function __construct()
 		{
 			# code...
@@ -14,24 +14,24 @@
 
 		function ambil_data()
 		{
-			return $this->db->get("laporan_bulanan")->result();
+			return $this->db->get("laporan")->result();
 		}
 		function get_laporan()
 		{
-			return $this->db->get("laporan_bulanan")->result();
+			return $this->db->get("laporan")->result();
 		}
 		function getTransaksiMonth($date)
 		{
 			$this->db->where('DATE(tanggal)', $date);
-			return $this->db->get('laporan_bulanan')->result();
+			return $this->db->get('laporan')->result();
 		}
 		function getYear()
 		{
-			return $this->db->query("Select DISTINCT YEAR(tanggal) as year From laporan_bulanan")->result();
+			return $this->db->query("Select DISTINCT YEAR(tanggal) as year From laporan")->result();
 		}
 		function getDay()
 		{
-			return $this->db->query("Select DISTINCT DAY(tanggal) as day From laporan_bulanan")->result();
+			return $this->db->query("Select DISTINCT DAY(tanggal) as day From laporan")->result();
 		}
 	}
-?>
+	?>
