@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 04, 2019 at 02:10 AM
+-- Generation Time: Dec 04, 2019 at 02:16 AM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.10
 
@@ -255,10 +255,10 @@ INSERT INTO `kunjungan` (`id_kunjungan`, `no_rm`, `tgl_kunjungan`, `diagnosa_kep
 -- --------------------------------------------------------
 
 --
--- Stand-in structure for view `laporan_bulanan`
+-- Stand-in structure for view `laporan`
 -- (See below for the actual view)
 --
-CREATE TABLE `laporan_bulanan` (
+CREATE TABLE `laporan` (
 `id_penjualan` varchar(14)
 ,`id_user` varchar(4)
 ,`tanggal` date
@@ -551,11 +551,11 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- --------------------------------------------------------
 
 --
--- Structure for view `laporan_bulanan`
+-- Structure for view `laporan`
 --
-DROP TABLE IF EXISTS `laporan_bulanan`;
+DROP TABLE IF EXISTS `laporan`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `laporan_bulanan`  AS  select `penjualan`.`id_penjualan` AS `id_penjualan`,`penjualan`.`id_user` AS `id_user`,`penjualan`.`tanggal` AS `tanggal`,`penjualan`.`total_harga` AS `total_harga`,`penjualan`.`bayar` AS `bayar`,`penjualan`.`kembalian` AS `kembalian`,`user`.`nama_user` AS `nama_user`,`user`.`jabatan` AS `jabatan` from (`penjualan` left join `user` on(`penjualan`.`id_user` = `user`.`id_user`)) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `laporan`  AS  select `penjualan`.`id_penjualan` AS `id_penjualan`,`penjualan`.`id_user` AS `id_user`,`penjualan`.`tanggal` AS `tanggal`,`penjualan`.`total_harga` AS `total_harga`,`penjualan`.`bayar` AS `bayar`,`penjualan`.`kembalian` AS `kembalian`,`user`.`nama_user` AS `nama_user`,`user`.`jabatan` AS `jabatan` from (`penjualan` left join `user` on(`penjualan`.`id_user` = `user`.`id_user`)) ;
 
 --
 -- Indexes for dumped tables
