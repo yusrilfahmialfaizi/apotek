@@ -38,7 +38,7 @@
                         <button type="button" name="print" id="print" onclick="print_d()" class="btn btn-success btn-md glyphicon glyphicon-print"> Print</button>
                       </div>
                     </div>
-                    <form action="<?php echo base_url("kasir/Laporan_harian") ?>" method="post">
+                    <form>
                       <div class="col-md-3 col-md-offset-9">
                         <div class="form-group">
                           <div class="input-group">
@@ -46,7 +46,7 @@
                             <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
                             <span id="inputSuccess2Status4" class="sr-only">(success)</span>
                             <span class="input-group-btn">
-                              <button type="submit" class="btn btn-primary">Filter</button>
+                              <button type="button" class="btn btn-primary" id="filter">Filter</button>
                             </span>
                           </div>
                         </div>
@@ -67,24 +67,8 @@
                         <th>Kembalian</th>
                       </tr>
                     </thead>
-                    <?php $no = 1;
-                    foreach ($all as $key) { ?>
-                      <?php
-                        $id_penjualan = $key->id_penjualan;
-                        ?>
-                      <tbody>
-                        <tr>
-                          <td><?php echo $no++ ?></td>
-                          <td><?php echo $key->id_penjualan ?></td>
-                          <td><?php echo $key->nama_user ?></td>
-                          <td><?php echo $key->jabatan ?></td>
-                          <td><?php echo $key->tanggal ?></td>
-                          <td><?php echo $key->total_harga ?></td>
-                          <td><?php echo $key->bayar ?></td>
-                          <td><?php echo $key->kembalian ?></td>
-                        </tr>
-                      <?php } ?>
-                      </tbody>
+                    <tbody id="table">
+                    </tbody>
                   </table>
                 </div>
               </div>
@@ -99,6 +83,30 @@
         <?php $this->load->view("partials/main/js/js") ?>
         <script>
           function print_d() {
-            window.open("<?php echo base_url("kasir/Laporan_harian/print") ?>", "_blank");
+            var tanggal = $("#single_cal2").val();
+
+            window.open("<?php echo base_url("kasir/Laporan_harian/print/") ?>" + tanggal, "_blank");
           }
+        </script>
+        <script type="text/javascript">
+          $(document).ready(function() {
+
+            $("#filter").on("click", function() {
+              var tanggal = $("#single_cal2").val();
+
+              $.ajax({
+                url: "<?php echo base_url("kasir/laporan_harian/show_cart") ?>",
+                method: "POST",
+                data: {
+                  tanggal: tanggal
+                },
+                success: function(data) {
+                  $('#table').html(data);
+                }
+              })
+            });
+
+            $('#table').load("<?php echo base_url('kasir/Laporan_harian/load_cart'); ?>");
+
+          });
         </script>

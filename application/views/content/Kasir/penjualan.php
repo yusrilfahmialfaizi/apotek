@@ -38,7 +38,7 @@
                             <select class="form-control" id="id_obat_isi" name="id_obat_isi">
                                 <option value="&nbsp"></option>
                                 <?php foreach ($id_obat as $key) : ?>
-                                    <option><?php echo $key->id_obat ?></option>
+                                    <option value="<?php echo $key->id_obat ?>"><?php echo $key->id_obat ?> | <?php echo $key->nama_generic ?></option>
                                 <?php endforeach ?>
                             </select>
 
@@ -182,7 +182,7 @@
         $("#id_obat_isi").select2({
             placeholder: "Masukkan no Kode Obat",
             allowClear: true,
-            minimumInputLength: 3
+            minimumInputLength: 1
         });
 
         $("#id_obat_isi").on("change", function() {
@@ -227,7 +227,7 @@
                     for (i = 0; i < data.length; i++) {
                         html += '<option value=' + data[i].exp + '>' + data[i].exp + '</option>';
                     }
-                    document.getElementById("submit").disabled = false;
+                    document.getElementById("submit").disabled = true;
                     document.getElementById("qty").disabled = false;
                     $('#exp').html(html);
 
@@ -254,6 +254,8 @@
 
                         $("#jumlah_stok").val(data.jumlah_stok);
                     });
+                    document.getElementById("submit").disabled = false;
+
                 }
             });
         });
@@ -362,7 +364,7 @@
         $("#qty").on("input", function() {
             var qty = $("#qty").val();
             var jumlah_stok = $("#jumlah_stok").val();
-            if (qty >= jumlah_stok) {
+            if (qty > jumlah_stok) {
                 alert("Jumlah Stok tidak memadai");
                 document.getElementById("submit").disabled = true;
             } else {

@@ -20,6 +20,10 @@
 		{
 			return $this->db->get("laporan")->result();
 		}
+		function get_laporan_where($tanggal)
+		{
+			return $this->db->get_where("laporan", array('date(tanggal)' => $tanggal))->result();
+		}
 		function getTransaksiMonth($date)
 		{
 			$this->db->where('DATE(tanggal)', $date);

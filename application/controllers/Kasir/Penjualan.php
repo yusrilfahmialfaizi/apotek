@@ -99,6 +99,8 @@ class Penjualan extends CI_Controller
 					</tr>
 			';
 		return $output;
+
+		echo $this->show_cart();
 	}
 
 	function load_cart()

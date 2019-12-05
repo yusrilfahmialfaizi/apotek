@@ -1,7 +1,8 @@
     <!-- jQuery -->
     <script src="<?php echo base_url("assets/vendors/jquery/dist/jquery.min.js") ?>"></script>
     <!-- Cahined -->
-    <script src="<?php echo base_url("assets_apotek/plugins/jQuery-Chained-Selects/jquery.chained.js") ?>"></script>
+    <!-- <script src="<?php //echo base_url("assets_apotek/plugins/jQuery-Chained-Selects/jquery.chained.js")
+                        ?>"></script> -->
     <!-- Bootstrap -->
     <script src="<?php echo base_url("assets/vendors/bootstrap/dist/js/bootstrap.min.js") ?>"></script>
     <!-- FastClick -->
@@ -90,7 +91,7 @@
         $('#myDatepicker').datetimepicker();
 
         $('#myDatepicker2').datetimepicker({
-            format: 'DD.MM.YYYY'
+            format: 'YYYY-MM-DD'
         });
 
         $('#myDatepicker3').datetimepicker({

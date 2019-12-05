@@ -38,7 +38,7 @@
                         <button type="button" name="print" id="print" onclick="print_d()" class="btn btn-success btn-md glyphicon glyphicon-print"> Print</button>
                       </div>
                     </div>
-                    <form action="<?php echo base_url("apoteker/Laporan_bulanan") ?>" method="post">
+                    <form>
 
                       <div class="col-md-2 col-md-offset-6">
                         <div class="form-group">
@@ -69,7 +69,7 @@
                               <?php endforeach; ?>
                             </select>
                             <span class="input-group-btn">
-                              <button type="submit" class="btn btn-primary">Filter</button>
+                              <button type="button" class="btn btn-primary" id="filter">Filter</button>
                             </span>
                           </div>
                         </div>
@@ -90,24 +90,7 @@
                         <th>Kembalian</th>
                       </tr>
                     </thead>
-                    <?php $no = 1;
-                    foreach ($all as $key) { ?>
-                      <?php
-                        $id_penjualan = $key->id_penjualan;
-                        ?>
-                      <tbody>
-                        <tr>
-                          <td><?php echo $no++ ?></td>
-                          <td><?php echo $key->id_penjualan ?></td>
-                          <td><?php echo $key->nama_user ?></td>
-                          <td><?php echo $key->jabatan ?></td>
-                          <td><?php echo $key->tanggal ?></td>
-                          <td><?php echo $key->total_harga ?></td>
-                          <td><?php echo $key->bayar ?></td>
-                          <td><?php echo $key->kembalian ?></td>
-                        </tr>
-                      <?php } ?>
-                      </tbody>
+                    <tbody id="table"></tbody>
                   </table>
                 </div>
               </div>
@@ -122,6 +105,31 @@
         <?php $this->load->view("partials/main/js/js") ?>
         <script>
           function print_d() {
-            window.open("<?php echo base_url("apoteker/Laporan_bulanan/print") ?>", "_blank");
+            var bulan = $("#bulan").val();
+            var tahun = $("#tahun").val();
+
+            window.open("<?php echo base_url("apoteker/Laporan_bulanan/print/") ?>" + bulan + "/" + tahun, "_blank");
           }
+        </script>
+        <script type="text/javascript">
+          $(document).ready(function() {
+            $("#filter").on("click", function() {
+              var bulan = $("#bulan").val();
+              var tahun = $("#tahun").val();
+
+              $.ajax({
+                url: "<?php echo base_url("apoteker/laporan_bulanan/show_cart") ?>",
+                method: "POST",
+                data: {
+                  bulan: bulan,
+                  tahun: tahun
+                },
+                success: function(data) {
+                  $('#table').html(data);
+                }
+              })
+            });
+
+            $('#table').load("<?php echo base_url('apoteker/Laporan_bulanan/load_cart'); ?>");
+          })
         </script>
