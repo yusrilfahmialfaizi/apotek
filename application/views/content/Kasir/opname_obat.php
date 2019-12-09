@@ -6,16 +6,7 @@
         <h3>Data User</h3>
       </div>
 
-      <div class="title_right">
-        <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-          <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search for...">
-            <span class="input-group-btn">
-              <button class="btn btn-default" type="button">Go!</button>
-            </span>
-          </div>
-        </div>
-      </div>
+      <div class="title_right"></div>
     </div>
 
     <div class="clearfix"></div>
@@ -57,11 +48,11 @@
                         </div>
                         <div class="form-group">
                           <label class="control-label col-md-3 col-sm-3 col-xs-12">ID Obat</label>
-                          <div class="col-md-2 col-sm-9 col-xs-12">
+                          <div class="col-md-6 col-sm-9 col-xs-12">
                             <select class="form-control" id="id_obat" name="id_obat">
                               <option value="&nbsp"></option>
                               <?php foreach ($obat as $key) : ?>
-                                <option><?php echo $key->id_obat ?></option>
+                                <option value="<?php echo $key->id_obat ?>"><?php echo $key->id_obat ?> | <?php echo $key->nama_generic ?></option>
 
                               <?php endforeach ?>
                             </select>
@@ -218,11 +209,6 @@
                           </div>
                         </form>
                       </div>
-                      <!-- <div class="modal-footer">
-                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                              <button type="button" class="btn btn-primary">Save changes</button>
-                            </div> -->
-
                     </div>
                   </div>
                 </div>
@@ -278,7 +264,7 @@
     $("#id_obat").select2({
       placeholder: "Masukkan no Kode Obat",
       allowClear: true,
-      minimumInputLength: 3
+      minimumInputLength: 1
     });
 
     $("#id_obat").on("change", function() {

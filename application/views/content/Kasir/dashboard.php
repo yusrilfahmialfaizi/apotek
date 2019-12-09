@@ -2,44 +2,46 @@
       <div class="right_col" role="main">
         <!-- top tiles -->
         <div class="row tile_count">
-          <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+          <div class="col-md-4 col-sm-4 col-xs-6 tile_stats_count">
             <span class="count_top"><i class="fa fa-user"></i> Jumlah User</span>
-            <?php foreach ($jumlah_user as $key): ?>
+            <?php foreach ($jumlah_user as $key) : ?>
               <div class="count"><?php echo number_format($key->jumlah) ?></div>
             <?php endforeach ?>
             <!-- <span class="count_bottom"><i class="green">4% </i> <?php echo $jumlah_user ?></span> -->
           </div>
-          <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+          <div class="col-md-4 col-sm-4 col-xs-6 tile_stats_count">
             <span class="count_top"><i class="fa fa-money"></i> Pendapatan Hari ini</span>
-            <?php foreach ($pendapatan_harian as $key): ?>
-              <div class="count"><?php echo number_format($key->total_harga) ?></div>
+            <?php foreach ($pendapatan_harian as $key) : ?>
+              <div class="count">Rp. <?php echo number_format($key->total_harga) ?></div>
             <?php endforeach ?>
             <!-- <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>3% </i> From last Week</span> -->
           </div>
-          <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+          <div class="col-md-4 col-sm-4 col-xs-6 tile_stats_count">
             <span class="count_top"><i class="fa fa-money"></i> Pendapatan Bulan ini</span>
-            <?php foreach ($pendapatan_bulanan as $key): ?>
-              <div class="count"><?php echo number_format($key->total_harga) ?></div>
+            <?php foreach ($pendapatan_bulanan as $key) : ?>
+              <div class="count">Rp. <?php echo number_format($key->total_harga) ?></div>
             <?php endforeach ?>
             <!-- <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span> -->
           </div>
-          <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+        </div>
+        <div class="row tile_count">
+          <div class="col-md-4 col-sm-4 col-xs-6 tile_stats_count">
             <span class="count_top"><i class="fa fa-money"></i> Pendapatan Tahun Ini</span>
-            <?php foreach ($pendapatan_tahunan as $key): ?>
-              <div class="count"><?php echo number_format($key->total_harga) ?></div>
+            <?php foreach ($pendapatan_tahunan as $key) : ?>
+              <div class="count">Rp. <?php echo number_format($key->total_harga) ?></div>
             <?php endforeach ?>
             <!-- <span class="count_bottom"><i class="red"><i class="fa fa-sort-desc"></i>12% </i> From last Week</span> -->
           </div>
-          <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+          <div class="col-md-4 col-sm-4 col-xs-6 tile_stats_count">
             <span class="count_top"><i class="fa fa-credit-card"></i> Transaksi Hari ini</span>
-            <?php foreach ($transaksi_harian as $key): ?>
+            <?php foreach ($transaksi_harian as $key) : ?>
               <div class="count"><?php echo number_format($key->jumlah) ?></div>
             <?php endforeach ?>
             <!-- <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span> -->
           </div>
-          <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+          <div class="col-md-4 col-sm-4 col-xs-6 tile_stats_count">
             <span class="count_top"><i class="fa fa-credit-card"></i> Total Transaksi</span>
-            <?php foreach ($total_transaksi as $key): ?>
+            <?php foreach ($total_transaksi as $key) : ?>
               <div class="count"><?php echo number_format($key->jumlah) ?></div>
             <?php endforeach ?>
             <!-- <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span> -->
@@ -48,7 +50,9 @@
         <!-- /top tiles -->
 
         <div class="row">
-          <marquee><h1>Selamat Datang Di Sistem Informasi Klinik dan <b>Apotek Sa'id Hasan Farma</b></h1></marquee>
+          <marquee>
+            <h1>Selamat Datang Di Sistem Informasi Klinik dan <b>Apotek Sa'id Hasan Farma</b></h1>
+          </marquee>
         </div>
         <br />
 
@@ -65,6 +69,6 @@
       </div>
       <!-- /page content -->
       <?php $this->load->view("partials/main/foot") ?>
-    </div>
-  </div>
-  <?php $this->load->view("partials/main/js/js") ?>
+      </div>
+      </div>
+      <?php $this->load->view("partials/main/js/js") ?>

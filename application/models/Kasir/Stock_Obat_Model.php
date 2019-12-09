@@ -92,9 +92,13 @@ class Stock_Obat_Model extends CI_Model
 		return $this->db->delete('obat_praktik');
 	}
 
-	function stok()
+	function stok_praktik()
 	{
 		return $this->db->query("SELECT op.id_obat_praktik, op.nama_paten, op.nama_generic, op.nama_pabrik, op.jenis, op.kategori, do.exp, do.jumlah_stok FROM detail_obat_praktik AS do ,obat_praktik AS op WHERE do.id_obat_praktik = op.id_obat_praktik")->result();
+	}
+	function stok()
+	{
+		return $this->db->query("SELECT op.id_obat, op.nama_paten, op.nama_generic, op.nama_pabrik, op.jenis, op.kategori, do.exp, do.jumlah_stok FROM detail_obat AS do ,obat AS op WHERE do.id_obat = op.id_obat")->result();
 	}
 
 	function get_exp($id_obat_praktik)
@@ -207,5 +211,4 @@ class Stock_Obat_Model extends CI_Model
 		}
 		return $data;
 	}
-
 }

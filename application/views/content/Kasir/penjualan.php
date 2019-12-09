@@ -3,16 +3,11 @@
     <div class="">
         <div class="page-title">
             <div class="title_left">
-                <!-- <h3>Form Elements</h3> -->
             </div>
 
             <div class="title_right">
                 <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
                     <div class="input-group">
-                        <!-- <input type="text" class="form-control" placeholder="Search for...">
-                        <span class="input-group-btn"> -->
-                        <!-- <button class="btn btn-default" type="button">Go!</button> -->
-                        <!-- </span> -->
                     </div>
                 </div>
             </div>
@@ -32,7 +27,7 @@
                     </div>
                     <div class="x_content">
                         <br />
-                        <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+                        <form action="<?php echo base_url("kasir/penjualan/keranjang_belanja") ?>" method="post" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
 
                             <label for="id_obat_isi">ID Obat</label>
                             <select class="form-control" id="id_obat_isi" name="id_obat_isi">
@@ -69,7 +64,7 @@
 
                             <div class="ln_solid"></div>
                             <button class="btn btn-primary" type="reset">Reset</button>
-                            <button type="button" class="btn btn-success" id="submit" disabled>Tambah</button>
+                            <button type="submit" class="btn btn-success" id="submit" disabled>Tambah</button>
                         </form>
                     </div>
                 </div>
@@ -94,6 +89,7 @@
                                 <div class="form-group">
                                     <label for="no_invoice">No. Invoice</label>
                                     <input type="text" id="no_invoice" class="form-control" name="no_invoice" value="<?php echo $kode; ?>" readonly required />
+                                    <input type="hidden" id="id_tmp" class="form-control" name="id_tmp" value="<?php echo $this->session->userdata("id_tmp") ?>" readonly required />
                                 </div>
                             </div>
                             <div class="col-md-3">
@@ -109,7 +105,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                                <table id="datatable-fixed-header" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
                                             <th>ID Obat</th>
@@ -124,7 +120,47 @@
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
-                                    <tbody id="penjualan"></tbody>
+                                    <tbody>
+                                        <?php foreach ($data as $key) { ?>
+                                            <tr>
+                                                <td><?php echo $key->id_obat ?></td>
+                                                <td><?php echo $key->nama_paten ?></td>
+                                                <td><?php echo $key->nama_generic ?></td>
+                                                <td><?php echo $key->nama_pabrik ?></td>
+                                                <td><?php echo $key->jenis ?></td>
+                                                <td><?php echo number_format($key->harga) ?></td>
+                                                <td><?php echo $key->exp ?></td>
+                                                <td><?php echo $key->qty ?></td>
+                                                <td><?php echo number_format($key->sub_total) ?></td>
+                                                <td>
+                                                    <div class="form-group">
+                                                        <div class="form-group">
+                                                            <?php $tanggal =  date('Y/m/d', strtotime($key->exp)) ?>
+                                                            <a href="<?php echo base_url("kasir/penjualan/hapus_cart/$key->id_tmp/$key->id_obat/$tanggal") ?>" class="btn btn-danger btn-sm glyphicon glyphicon-remove " id="remove_cart"> Cancel</a>
+                                                        </div>
+                                                </td>
+                                            </tr>
+                                        <?php } ?>
+                                        <?php foreach ($total as $t) { ?>
+                                            <tr>
+                                                <td colspan="8">
+                                                    <h3>Total Harga</h3>
+                                                </td>
+                                                <td style="display: none;"></td>
+                                                <td style="display: none;"></td>
+                                                <td style="display: none;"></td>
+                                                <td style="display: none;"></td>
+                                                <td style="display: none;"></td>
+                                                <td style="display: none;"></td>
+                                                <td style="display: none;"></td>
+                                                <td style="display: none;"></td>
+                                                <td colspan="2">
+                                                    <input type="hidden" class="form-control" id="total" name="total" value="<?php echo $t->total_harga ?>" required="required">
+                                                    <h3>Rp. <?php echo number_format($t->total_harga) ?></h3>
+                                                </td>
+                                            </tr>
+                                        <?php } ?>
+                                    </tbody>
                                 </table>
                             </div>
 
@@ -175,9 +211,6 @@
 </script>
 <script>
     $(document).ready(function() {
-
-        $("#total").val("<?php echo $this->cart->total() ?>");
-
 
         $("#id_obat_isi").select2({
             placeholder: "Masukkan no Kode Obat",
@@ -256,98 +289,6 @@
                     });
                     document.getElementById("submit").disabled = false;
 
-                }
-            });
-        });
-
-        $('#submit').on('click', function() {
-            var id_obat = $("#id_obat_isi").val();
-            var nama_paten = $("#nama_paten_isi").val();
-            var nama_generic = $("#nama_generic_isi").val();
-            var nama_pabrik = $("#nama_pabrik_isi").val();
-            var jenis_obat = $("#jenis_obat").val();
-            var harga = $("#harga_per_lembar").val();
-            var exp = $("#exp").val();
-            var qty = $("#qty").val();
-
-            $.ajax({
-                url: "<?php echo base_url('kasir/penjualan/keranjang_belanja'); ?>",
-                method: "POST",
-                data: {
-                    id_obat: id_obat,
-                    nama_paten: nama_paten,
-                    nama_generic: nama_generic,
-                    nama_pabrik: nama_pabrik,
-                    harga: harga,
-                    jenis_obat: jenis_obat,
-                    qty: qty,
-                    exp: exp
-                },
-                success: function(data) {
-                    $('#penjualan').html(data);
-                    // window.load();
-                    $("#id_obat_isi").val();
-                    $("#nama_paten_isi").val("");
-                    $("#nama_generic_isi").val("");
-                    $("#nama_pabrik_isi").val("");
-                    $("#jenis_obat").val("");
-                    $("#harga_per_lembar").val("");
-                    $("#exp").val("");
-                    $("#jumlah_stok").val("");
-                    $("#bayar").val("");
-                    $("#kembali").val("");
-
-                    document.getElementById("submit").disabled = true;
-                }
-            });
-        });
-
-        $('#edit_cart').on('click', function() {
-            var rowid = $("#rowid").val();
-            var qty = $("#qty_edit").val();
-            var exp = $("#single_cal3").val();
-
-            $.ajax({
-                url: "<?php echo base_url('owner/pembelianobat/updatekeranjang'); ?>",
-                method: "POST",
-                data: {
-                    rowid: rowid,
-                    qty: qty,
-                    exp: exp
-                },
-                success: function(data) {
-                    $('#pembelian').html(data);
-                    $('#total_harga').html(data);
-                    // window.load();
-                    $("#id_obat_edit").val(null);
-                    $("#nama_paten_edit").val("");
-                    $("#jumlah_stok_edit").val("");
-                    $("#harga_beli_edit").val("");
-                    $("#nama_generic_edit").val("");
-                    $("#nama_pabrik_edit").val("");
-                    $("#jenis_obat_edit").val("");
-                    $("#kategori_obat_edit").val("");
-                }
-            });
-        });
-
-
-        $('#penjualan').load("<?php echo base_url('kasir/penjualan/load_cart'); ?>");
-
-
-        $(document).on('click', '#remove_cart', function() {
-            var row_id = $(this).attr("data-id");
-
-
-            $.ajax({
-                url: "<?php echo site_url('kasir/penjualan/hapus_cart'); ?>",
-                method: "POST",
-                data: {
-                    row_id: row_id
-                },
-                success: function(data) {
-                    $('#penjualan').html(data);
-                    $('#total_harga').html(data);
                 }
             });
         });

@@ -25,9 +25,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			$data['transaksi_harian'] = $this->Dashboard_model->jumlah_transaksi_harian();
 			$data['total_transaksi'] = $this->Dashboard_model->total_transaksi();
 			$this->load->view("partials/main/header/header_apoteker");
-			$this->load->view("content/apoteker/dashboard");
+			$this->load->view("content/apoteker/dashboard", $data);
 			$this->load->view("partials/main/footer");
 		}
 
 	}
-	?>

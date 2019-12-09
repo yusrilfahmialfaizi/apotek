@@ -19,6 +19,9 @@ class Penjualan extends CI_Controller
 		if ($this->session->userdata('status') != "Login" || $this->session->userdata("jabatan") != "Kasir") {
 			redirect("login");
 		}
+		$id_tmp = $this->session->userdata("id_tmp");
+		$data['total'] 		= $this->Penjualanmodel->sum($id_tmp);
+		$data['data']		= $this->Penjualanmodel->get_tmp($id_tmp);
 		$data["kode"]		= $this->Penjualanmodel->no_invoice();
 		$data["id_obat"]	= $this->Dataobat_model->ambil_data();
 		$this->load->view("partials/main/header/header_menukasir");
@@ -52,86 +55,65 @@ class Penjualan extends CI_Controller
 	{
 		$tgl 			= $this->input->post("exp");
 		$exp 			= date("Y-m-d", strtotime($tgl));
-		$data 			= array(
-			'id' 			=> $this->input->post('id_obat'),
-			'name' 			=> $this->input->post("nama_paten"),
-			'qty'			=> $this->input->post("qty"),
-			'price'			=> $this->input->post("harga"),
-			'nama_generic'	=> $this->input->post("nama_generic"),
-			'nama_pabrik'	=> $this->input->post("nama_pabrik"),
-			'jenis'			=> $this->input->post("jenis_obat"),
-			'exp'			=> $exp
-		);
+		$harga 			= $this->input->post("harga_per_lembar");
+		$qty 			= $this->input->post("qty");
+		$sub_total		= $harga * $qty;
+		$id_tmp 		= $this->session->userdata('id_tmp');
+		$id_obat 		= $this->input->post('id_obat_isi');
+		$where = array('id_tmp' => $id_tmp, 'id_obat' => $id_obat, 'exp' => $exp);
 
-		$this->cart->insert($data);
-		echo  $this->show_cart();
-	}
-
-	function show_cart()
-	{
-		$output = '';
-		foreach ($this->cart->contents() as $key) {
-			$output	.= '<tr>
-	                          <td>' . $key['id'] . '</td>
-	                          <td>' . $key['name'] . '</td>
-	                          <td>' . $key['nama_generic'] . '</td>
-	                          <td>' . $key['nama_pabrik'] . '</td>
-	                          <td>' . $key['jenis'] . '</td>
-	                          <td>' . number_format($key['price']) . '</td>
-	                          <td>' . $key['exp'] . '</td>
-	                          <td>' . $key['qty'] . '</td>
-	                          <td>' . number_format($key['subtotal']) . '</td>
-	                          <td>
-	                            <div class="form-group">
-	                              <div class="form-group">
-	                                   <button type="button" class="btn btn-danger btn-sm glyphicon glyphicon-remove " id="remove_cart" data-id="' . $key['rowid'] . '"> Cancel</button>
-	                            </div>
-	                          </td>
-	                        </tr>';
+		$count = $this->Penjualanmodel->count_tmp($id_tmp, $id_obat, $exp);
+		foreach ($count as $con) {
+			# code...
+			if ($con['jml'] > 0) {
+				$get = $this->Penjualanmodel->get_tmp($id_tmp);
+				foreach ($get as $d) {
+					# code...
+					$qty_tot = $d->qty + $qty;
+					$where = array('id_tmp' => $id_tmp, 'id_obat' => $id_obat, 'exp' => $exp);
+					$data_update		= array(
+						'id_tmp' 		=> $id_tmp,
+						'id_obat'		=> $id_obat,
+						'exp'			=> $exp,
+						'qty'			=> $qty_tot,
+						'harga'			=> $harga,
+						'sub_total'		=> $sub_total
+					);
+				}
+				$this->Penjualanmodel->update_tmp($where, $data_update);
+				redirect("kasir/penjualan");
+			} else {
+				$data 			= array(
+					'id_tmp' 		=> $id_tmp,
+					'id_obat'		=> $id_obat,
+					'exp'			=> $exp,
+					'qty'			=> $qty,
+					'harga'			=> $harga,
+					'sub_total'		=> $sub_total
+				);
+				$this->Penjualanmodel->detail_tmp($data);
+				redirect("kasir/penjualan");
+			}
 		}
-		$output .= '
-				<tr>
-					<th colspan="8"><h3>Total Harga</h3></th>
-					<th colspan="2">
-						<h3>' . 'Rp ' . number_format($this->cart->total()) . '</h3>
-						<input type = "hidden" class = "form-control" min = "0" id = "total" name = "total" value = "' . $this->cart->total() . '"  required = "required" >
-					</th>
-					</tr>
-			';
-		return $output;
-
-		echo $this->show_cart();
 	}
-
-	function load_cart()
-	{
-		echo $this->show_cart();
-	}
-
-	function updatekeranjang()
-	{
-		$rowid 	= $this->input->post('rowid');
-		$qty 	= $this->input->post('qty');
-		$exp 	= $this->input->post('exp');
-		$data 	= array(
-			'rowid'	=> $rowid,
-			'qty'	=> $qty,
-			'exp'	=> $exp
-		);
-		$this->cart->update($data);
-		echo $this->show_cart();
-	}
-
 	function hapus_cart()
 	{
-		$rowid	= $this->input->post('row_id');
+		$id_tmp		= $this->uri->segment(4);
+		$id_obat	= $this->uri->segment(5);
+		$year		= $this->uri->segment(6);
+		$month		= $this->uri->segment(7);
+		$date		= $this->uri->segment(8);
+		$exp		= $year . "-" . $month . "-" . $date;
 
 		$data 	= array(
-			'rowid' 	=> $rowid,
-			'qty'		=> 0
+			'id_tmp' 	=> $id_tmp,
+			'id_obat'	=> $id_obat,
+			'exp'		=> $exp
 		);
-		$this->cart->update($data);
-		echo $this->show_cart();
+		// print_r($data);
+		$this->Penjualanmodel->delete($data);
+		redirect("kasir/penjualan");
+		// $this->cart->update($data);
 	}
 
 	function save()

@@ -53,4 +53,38 @@ class Penjualanmodel extends CI_Model
 	{
 		return $this->db->get_where('detail_penjualan', array('id_penjualan' => $id_penjualan))->result();
 	}
+	function detail_tmp($data)
+	{
+		$this->db->insert('detail_tmp', $data);
+	}
+	function update_tmp($where, $data_update)
+	{
+		$this->db->where($where);
+		$this->db->update('detail_tmp', $data_update);
+	}
+	function delete($data)
+	{
+		$this->db->where($data);
+		$this->db->delete('detail_tmp');
+	}
+	function get_tmp($id_tmp)
+	{
+		$this->db->from('detail_tmp');
+		$this->db->where('id_tmp', $id_tmp);
+		$this->db->join('obat', "obat.id_obat = detail_tmp.id_obat", "left");
+		return $this->db->get()->result();
+	}
+
+	function count_tmp($id_tmp, $id_obat, $exp)
+	{
+		return $this->db->query("SELECT COUNT('id_detail_tmp') AS jml FROM detail_tmp WHERE id_tmp = '$id_tmp' AND id_obat = '$id_obat' AND exp = '$exp'")->result_array();
+	}
+
+	function sum($id_tmp)
+	{
+		$this->db->select("SUM(sub_total) as total_harga");
+		$this->db->from('detail_tmp');
+		$this->db->where('id_tmp', $id_tmp);
+		return $this->db->get()->result();
+	}
 }
