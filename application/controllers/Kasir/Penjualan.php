@@ -60,7 +60,7 @@ class Penjualan extends CI_Controller
 		$sub_total		= $harga * $qty;
 		$id_tmp 		= $this->session->userdata('id_tmp');
 		$id_obat 		= $this->input->post('id_obat_isi');
-		$where = array('id_tmp' => $id_tmp, 'id_obat' => $id_obat, 'exp' => $exp);
+		$where 			= array('id_tmp' => $id_tmp, 'id_obat' => $id_obat, 'exp' => $exp);
 
 		$count = $this->Penjualanmodel->count_tmp($id_tmp, $id_obat, $exp);
 		foreach ($count as $con) {
@@ -125,6 +125,8 @@ class Penjualan extends CI_Controller
 		$total_harga	= $this->input->post("total");
 		$bayar 			= $this->input->post("bayar");
 		$kembali 		= $this->input->post("kembali");
+		$id_tmp 		= $this->session->userdata("id_tmp");
+		$tmp 			= $this->Penjualanmodel->get_tmp($id_tmp);
 
 		$data_penjualan  = array(
 			'id_penjualan'	=> $id_penjualan,
@@ -134,33 +136,27 @@ class Penjualan extends CI_Controller
 			'bayar'			=> $bayar,
 			'kembalian'		=> $kembali
 		);
+		$this->Penjualanmodel->data_penjualan($data_penjualan);
 
 
-		if ($this->cart->contents()) {
+		if ($tmp) {
 			# code...
-			foreach ($this->cart->contents() as $cart) {
+			foreach ($tmp as $cart) {
 				# code...
 				$keranjang = array(
 					'id_penjualan' 	=> $id_penjualan,
-					'id_obat'		=> $cart['id'],
-					'qty'			=> $cart['qty'],
-					'harga'			=> $cart['price'],
-					'sub_total'		=> $cart['subtotal']
+					'id_obat'		=> $cart->id_obat,
+					'exp'			=> $cart->exp,
+					'qty'			=> $cart->qty,
+					'harga'			=> $cart->harga,
+					'sub_total'		=> $cart->sub_total
 				);
-			}
-			if ($data_penjualan != null && $keranjang != null) {
-				# code...
-				$this->Penjualanmodel->data_penjualan($data_penjualan);
 				$this->Penjualanmodel->detail_penjualan($keranjang);
-				$this->cart->destroy();
-				$msg = "success";
-				$data = array('msg' => $msg, 'no_invoice' => $id_penjualan);
-				echo json_encode($data);
-			} else {
-				$msg = "denied";
-				$data = array('msg' => $msg,);
-				echo json_encode($data);
 			}
+			$this->Penjualanmodel->hapus_detail_tmp($id_tmp);
+			$msg = "success";
+			$data = array('msg' => $msg, 'no_invoice' => $id_penjualan);
+			echo json_encode($data);
 		}
 	}
 }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 04, 2019 at 02:16 AM
+-- Generation Time: Dec 10, 2019 at 08:48 AM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.10
 
@@ -65,11 +65,12 @@ CREATE TABLE `detail_obat` (
 --
 
 INSERT INTO `detail_obat` (`id_detail_ob`, `id_obat`, `exp`, `jumlah_stok`) VALUES
-(1, 'B00001', '2019-11-15', 6),
-(2, 'B00001', '2019-11-06', 1),
-(3, 'B00002', '2019-11-03', 12),
-(4, 'B00001', '2019-12-03', 2),
-(5, 'B00002', '2019-12-03', 1);
+(1, 'B00001', '2019-11-15', 4),
+(2, 'B00001', '2019-11-06', 0),
+(3, 'B00002', '2019-11-03', 9),
+(4, 'B00001', '2019-12-03', 1),
+(5, 'B00002', '2019-12-03', 0),
+(6, 'B00001', '2019-12-21', 12);
 
 -- --------------------------------------------------------
 
@@ -125,7 +126,8 @@ INSERT INTO `detail_pembelian` (`id_det_pembelian`, `id_pembelian`, `id_obat`, `
 (4, 'Jl-5', 'B00001', 1, '2019-12-03', 1, 1),
 (5, 'Jl-6', 'B00001', 1, '2019-12-03', 1, 1),
 (6, 'Jl-7', 'B00002', 1, '2019-12-03', 1, 1),
-(7, 'Jl-7', 'B00001', 1, '2019-12-03', 1, 1);
+(7, 'Jl-7', 'B00001', 1, '2019-12-03', 1, 1),
+(8, 'Jl-1000', 'B00001', 12, '2019-12-21', 1000, 12000);
 
 -- --------------------------------------------------------
 
@@ -206,6 +208,7 @@ CREATE TABLE `detail_penjualan` (
   `id_det_penjualan` int(11) NOT NULL,
   `id_penjualan` varchar(14) DEFAULT NULL,
   `id_obat` varchar(6) DEFAULT NULL,
+  `exp` date DEFAULT NULL,
   `qty` int(11) DEFAULT NULL,
   `harga` int(11) DEFAULT NULL,
   `sub_total` int(11) DEFAULT NULL
@@ -215,18 +218,85 @@ CREATE TABLE `detail_penjualan` (
 -- Dumping data for table `detail_penjualan`
 --
 
-INSERT INTO `detail_penjualan` (`id_det_penjualan`, `id_penjualan`, `id_obat`, `qty`, `harga`, `sub_total`) VALUES
-(9, '20191123000001', 'B00001', 1, 1500, 1500),
-(10, '20191123000002', 'B00001', 1, 1500, 1500),
-(11, '20191123000003', 'B00001', 1, 1500, 1500),
-(12, '20191124000001', 'B00001', 1, 1500, 1500),
-(13, '20191125000001', 'B00001', 1, 1500, 1500),
-(14, '20191125000002', 'B00001', 1, 1500, 1500),
-(15, '20191130000001', 'B00001', 1, 1500, 1500),
-(16, '20191130000002', 'B00001', 1, 1500, 1500),
-(17, '20191130000003', 'B00001', 1, 1500, 1500),
-(18, '20191203000001', 'B00002', 7, 10000, 70000),
-(19, '20191203000002', 'B00001', 6, 1500, 9000);
+INSERT INTO `detail_penjualan` (`id_det_penjualan`, `id_penjualan`, `id_obat`, `exp`, `qty`, `harga`, `sub_total`) VALUES
+(9, '20191123000001', 'B00001', NULL, 1, 1500, 1500),
+(10, '20191123000002', 'B00001', NULL, 1, 1500, 1500),
+(11, '20191123000003', 'B00001', NULL, 1, 1500, 1500),
+(12, '20191124000001', 'B00001', NULL, 1, 1500, 1500),
+(13, '20191125000001', 'B00001', NULL, 1, 1500, 1500),
+(14, '20191125000002', 'B00001', NULL, 1, 1500, 1500),
+(15, '20191130000001', 'B00001', NULL, 1, 1500, 1500),
+(16, '20191130000002', 'B00001', NULL, 1, 1500, 1500),
+(17, '20191130000003', 'B00001', NULL, 1, 1500, 1500),
+(18, '20191203000001', 'B00002', NULL, 7, 10000, 70000),
+(19, '20191203000002', 'B00001', NULL, 6, 1500, 9000),
+(20, '20191205000001', 'B00001', NULL, 1, 1500, 1500),
+(21, '20191206000001', 'B00002', NULL, 1, 10000, 10000),
+(22, '20191210000001', 'B00001', '2019-11-15', 1, 1500, 1500),
+(23, '20191210000002', 'B00001', '2019-11-06', 2, 1500, 1500),
+(24, '20191210000002', 'B00001', '2019-11-15', 1, 1500, 1500),
+(25, '20191210000002', 'B00001', '2019-12-03', 1, 1500, 1500),
+(26, '20191210000003', 'B00001', '2019-11-06', 2, 1500, 1500),
+(27, '20191210000003', 'B00001', '2019-11-15', 1, 1500, 1500),
+(28, '20191210000003', 'B00001', '2019-12-03', 1, 1500, 1500),
+(29, '20191210000004', 'B00001', '2019-11-06', 2, 1500, 1500),
+(30, '20191210000004', 'B00001', '2019-11-15', 1, 1500, 1500),
+(31, '20191210000004', 'B00001', '2019-12-03', 1, 1500, 1500),
+(32, '20191210000005', 'B00001', '2019-11-06', 2, 1500, 1500),
+(33, '20191210000005', 'B00001', '2019-11-15', 1, 1500, 1500),
+(34, '20191210000005', 'B00001', '2019-12-03', 1, 1500, 1500),
+(35, '20191210000006', 'B00001', '2019-11-06', 1, 1500, 1500),
+(36, '20191210000006', 'B00001', '2019-11-15', 1, 1500, 1500),
+(37, '20191210000007', 'B00001', '2019-11-06', 1, 1500, 1500),
+(38, '20191210000007', 'B00001', '2019-11-15', 1, 1500, 1500),
+(39, '20191210000008', 'B00001', '2019-11-06', 1, 1500, 1500),
+(40, '20191210000008', 'B00001', '2019-11-15', 1, 1500, 1500),
+(41, '20191210000009', 'B00001', '2019-11-06', 1, 1500, 1500),
+(42, '20191210000009', 'B00001', '2019-11-15', 1, 1500, 1500),
+(43, '20191210000010', 'B00001', '2019-11-06', 1, 1500, 1500),
+(44, '20191210000010', 'B00001', '2019-11-15', 1, 1500, 1500),
+(45, '20191210000011', 'B00001', '2019-11-06', 1, 1500, 1500),
+(46, '20191210000012', 'B00001', '2019-11-15', 1, 1500, 1500),
+(47, '20191210000012', 'B00002', '2019-11-03', 1, 10000, 10000),
+(48, '20191210000013', 'B00002', '2019-12-03', 1, 10000, 10000),
+(49, '20191210000013', 'B00001', '2019-12-03', 1, 1500, 1500);
+
+--
+-- Triggers `detail_penjualan`
+--
+DELIMITER $$
+CREATE TRIGGER `pengurangan` AFTER INSERT ON `detail_penjualan` FOR EACH ROW BEGIN
+UPDATE detail_obat SET jumlah_stok = jumlah_stok - New.qty WHERE id_obat = new.id_obat AND exp = new.exp;
+END
+$$
+DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `detail_tmp`
+--
+
+CREATE TABLE `detail_tmp` (
+  `id_detail_tmp` int(11) NOT NULL,
+  `id_tmp` varchar(5) CHARACTER SET latin1 DEFAULT NULL,
+  `id_obat` varchar(6) CHARACTER SET latin1 DEFAULT NULL,
+  `exp` date DEFAULT NULL,
+  `qty` int(11) DEFAULT NULL,
+  `harga` int(11) DEFAULT NULL,
+  `sub_total` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `detail_tmp`
+--
+
+INSERT INTO `detail_tmp` (`id_detail_tmp`, `id_tmp`, `id_obat`, `exp`, `qty`, `harga`, `sub_total`) VALUES
+(18, 'TMP04', 'B00001', '2019-11-15', 1, 1500, 1500),
+(19, 'TMP04', 'B00001', '2019-11-06', 1, 1500, 1500),
+(22, 'TMP05', 'B00001', '2019-11-06', 2, 1500, 1500),
+(23, 'TMP05', 'B00001', '2019-11-15', 1, 1500, 1500),
+(24, 'TMP05', 'B00001', '2019-12-03', 1, 1500, 1500);
 
 -- --------------------------------------------------------
 
@@ -293,7 +363,8 @@ CREATE TABLE `obat` (
 
 INSERT INTO `obat` (`id_obat`, `nama_paten`, `nama_generic`, `nama_pabrik`, `jenis`, `kategori`, `harga_per_biji`, `harga_per_lembar`, `harga_beli`) VALUES
 ('B00001', 'Mixagrip', 'Mixagrip', 'Kalbe', 'Bebas', 'Tablet', 200, 1500, 1000),
-('B00002', 'Paracetamol', 'Paracetamol', 'Kimia Farma', 'Bebas', 'Tablet', 1000, 10000, 8000);
+('B00002', 'Paracetamol', 'Paracetamol', 'Kimia Farma', 'Bebas', 'Tablet', 1000, 10000, 8000),
+('BJ0003', 'Paramex', 'Pilek', 'Kalbe', 'Bebas', 'Tablet', 200, 3000, 2000);
 
 -- --------------------------------------------------------
 
@@ -345,15 +416,10 @@ CREATE TABLE `opname_obat` (
 
 INSERT INTO `opname_obat` (`id_opname`, `id_user`, `id_obat`, `exp`, `stok`, `stok_nyata`, `selisih`, `ket`) VALUES
 ('OB000001', 'A001', 'B00001', '2019-11-06', 1, 1, 0, 'pas'),
-('OB000002', 'A001', 'B00001', '2019-11-15', 5, 6, -1, 'salah input');
-
---
--- Triggers `opname_obat`
---
-DELIMITER $$
-CREATE TRIGGER `opname` AFTER INSERT ON `opname_obat` FOR EACH ROW UPDATE obat SET obat.stok_obat = new.stok_nyata WHERE opname_obat.id_obat = obat.id_obat
-$$
-DELIMITER ;
+('OB000002', 'A001', 'B00001', '2019-11-15', 5, 6, -1, 'salah input'),
+('OB000003', 'A002', 'B00001', '2019-11-15', 6, 6, 0, 'pas'),
+('OB000004', 'A002', 'B00001', '2019-11-15', 6, 5, 1, 'belum tercatat'),
+('OB000005', 'A002', 'B00002', '2019-11-03', 12, 10, 2, 'belum tercatat');
 
 -- --------------------------------------------------------
 
@@ -420,6 +486,7 @@ CREATE TABLE `pembelian` (
 
 INSERT INTO `pembelian` (`id_pembelian`, `id_user`, `id_supplier`, `tanggal`, `total_harga`) VALUES
 ('Jl-1', 'A002', NULL, '2019-12-02', 1),
+('Jl-1000', 'A002', 'Sup01', '2019-12-06', 12000),
 ('Jl-2', 'A002', NULL, '2019-12-02', 1),
 ('Jl-3', 'A002', NULL, '2019-12-03', 1),
 ('Jl-4', 'A002', 'Sup01', '2019-12-03', 1),
@@ -491,7 +558,22 @@ INSERT INTO `penjualan` (`id_penjualan`, `id_user`, `tanggal`, `total_harga`, `b
 ('20191130000002', 'A002', '2019-11-30', 1500, 2976, 1476),
 ('20191130000003', 'A002', '2019-11-30', 1500, 2000, 500),
 ('20191203000001', 'A002', '2019-12-03', 2147483647, 2147483647, 2147483647),
-('20191203000002', 'A002', '2019-12-03', 9000, 50000, 41000);
+('20191203000002', 'A002', '2019-12-03', 9000, 50000, 41000),
+('20191205000001', 'A002', '2019-12-05', 1500, 3000, 1500),
+('20191206000001', 'A002', '2019-12-06', 10000, 0, 0),
+('20191210000001', 'A002', '2019-12-10', 3000, 20000, 17000),
+('20191210000002', 'A002', '2019-12-10', 4500, 5000, 500),
+('20191210000003', 'A002', '2019-12-10', 4500, 0, 0),
+('20191210000004', 'A002', '2019-12-10', 4500, 0, 0),
+('20191210000005', 'A002', '2019-12-10', 4500, 5000, 500),
+('20191210000006', 'A002', '2019-12-10', 3000, 2000, -1000),
+('20191210000007', 'A002', '2019-12-10', 3000, 5000, 2000),
+('20191210000008', 'A002', '2019-12-10', 3000, 7000, 4000),
+('20191210000009', 'A002', '2019-12-10', 3000, 3000, 0),
+('20191210000010', 'A002', '2019-12-10', 3000, 3000, 0),
+('20191210000011', 'A002', '2019-12-10', 1500, 2000, 500),
+('20191210000012', 'A002', '2019-12-10', 11500, 12000, 500),
+('20191210000013', 'A002', '2019-12-10', 11500, 12000, 500);
 
 -- --------------------------------------------------------
 
@@ -513,6 +595,29 @@ CREATE TABLE `supplier` (
 
 INSERT INTO `supplier` (`id_supplier`, `nama`, `alamat`, `no_telepon`, `nama_pabrik`) VALUES
 ('Sup01', 'Alex', 'Puger', '012345678', 'Kimia Farma');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tmp`
+--
+
+CREATE TABLE `tmp` (
+  `id_tmp` varchar(5) CHARACTER SET latin1 NOT NULL,
+  `total_harga` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tmp`
+--
+
+INSERT INTO `tmp` (`id_tmp`, `total_harga`) VALUES
+('TMP01', 0),
+('TMP02', 0),
+('TMP03', 0),
+('TMP04', 0),
+('TMP05', 0),
+('TMP06', 0);
 
 -- --------------------------------------------------------
 
@@ -608,6 +713,14 @@ ALTER TABLE `detail_penjualan`
   ADD KEY `id_obat` (`id_obat`);
 
 --
+-- Indexes for table `detail_tmp`
+--
+ALTER TABLE `detail_tmp`
+  ADD PRIMARY KEY (`id_detail_tmp`),
+  ADD KEY `id_tmp` (`id_tmp`),
+  ADD KEY `id_obat` (`id_obat`);
+
+--
 -- Indexes for table `kunjungan`
 --
 ALTER TABLE `kunjungan`
@@ -676,6 +789,12 @@ ALTER TABLE `supplier`
   ADD PRIMARY KEY (`id_supplier`);
 
 --
+-- Indexes for table `tmp`
+--
+ALTER TABLE `tmp`
+  ADD PRIMARY KEY (`id_tmp`);
+
+--
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
@@ -695,7 +814,7 @@ ALTER TABLE `detail_kunjungan`
 -- AUTO_INCREMENT for table `detail_obat`
 --
 ALTER TABLE `detail_obat`
-  MODIFY `id_detail_ob` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_detail_ob` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `detail_obat_praktik`
@@ -707,7 +826,7 @@ ALTER TABLE `detail_obat_praktik`
 -- AUTO_INCREMENT for table `detail_pembelian`
 --
 ALTER TABLE `detail_pembelian`
-  MODIFY `id_det_pembelian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_det_pembelian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `detail_pembelian_obat_praktik`
@@ -719,7 +838,13 @@ ALTER TABLE `detail_pembelian_obat_praktik`
 -- AUTO_INCREMENT for table `detail_penjualan`
 --
 ALTER TABLE `detail_penjualan`
-  MODIFY `id_det_penjualan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_det_penjualan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+
+--
+-- AUTO_INCREMENT for table `detail_tmp`
+--
+ALTER TABLE `detail_tmp`
+  MODIFY `id_detail_tmp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- Constraints for dumped tables
@@ -764,6 +889,13 @@ ALTER TABLE `detail_pembelian_obat_praktik`
 ALTER TABLE `detail_penjualan`
   ADD CONSTRAINT `detail_penjualan_ibfk_2` FOREIGN KEY (`id_penjualan`) REFERENCES `penjualan` (`id_penjualan`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `detail_penjualan_ibfk_3` FOREIGN KEY (`id_obat`) REFERENCES `obat` (`id_obat`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `detail_tmp`
+--
+ALTER TABLE `detail_tmp`
+  ADD CONSTRAINT `detail_tmp_ibfk_1` FOREIGN KEY (`id_tmp`) REFERENCES `tmp` (`id_tmp`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `detail_tmp_ibfk_2` FOREIGN KEY (`id_obat`) REFERENCES `obat` (`id_obat`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `kunjungan`

@@ -87,4 +87,9 @@ class Penjualanmodel extends CI_Model
 		$this->db->where('id_tmp', $id_tmp);
 		return $this->db->get()->result();
 	}
+
+	function hapus_detail_tmp($id_tmp)
+	{
+		$this->db->delete('detail_tmp', array('id_tmp' => $id_tmp));
+	}
 }
