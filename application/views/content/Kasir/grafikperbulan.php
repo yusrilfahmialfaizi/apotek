@@ -59,6 +59,42 @@
         </div>
       </div>
     </div>
+    <div class="row">
+      <div class="col-md-6 col-sm-6 col-xs-12">
+        <div class="x_panel">
+          <div class="x_title">
+            <h2>Grafik Penjualan<small>Barang</small></h2>
+            <ul class="nav navbar-right panel_toolbox">
+              <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+              </li>
+              <li><a class="close-link"><i class="fa fa-close"></i></a>
+              </li>
+            </ul>
+            <div class="clearfix"></div>
+          </div>
+          <div class="x_content">
+            <form action="<?php echo base_url("kasir/grafikperbulan") ?>" method="post">
+              <div class="col-md-offset-8">
+                <div class="form-group">
+                  <label for="">Nama Obat dan Pabrik</label>
+                  <div class="input-group">
+                    <select class="form-control" id="id_obat" name="id_obat" required="required">
+                      <?php foreach ($obat as $key) : ?>
+                        <option value="<?php echo $key->id_obat ?>"><?php echo $key->nama_paten ?> | <?php echo $key->nama_pabrik ?></option>
+                      <?php endforeach; ?>
+                    </select>
+                    <span class="input-group-btn">
+                      <button type="submit" class="btn btn-primary">Filter</button>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </form>
+            <canvas id="grafikbarang"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <?php
@@ -66,6 +102,12 @@
     $total_penjualan_pertahun[] = $data_penjualan->total_penjualan;
     $tanggal_pertahun[] = $data_penjualan->tanggal;
   }
+  ?>
+  <?php
+   foreach ($data_barang as $data_penjualan_barang) {
+     $total_penjualan_barang[] = $data_penjualan_barang->total_penjualan_barang;
+   //   $merk[] = $data_penjualan_barang->merk;
+   }
   ?>
   <!-- /page content -->
   <?php $this->load->view("partials/main/foot") ?>
@@ -109,6 +151,26 @@
           pointHoverBorderColor: "rgba(220,220,220,1)",
           pointBorderWidth: 1,
           data: <?php echo json_encode($total_penjualan_pertahun); ?>
+        }]
+      }
+    })
+  }
+  if ($("#grafikbarang").length) {
+    var f = document.getElementById("grafikbarang");
+    new Chart(f, {
+      type: "line",
+      data: {
+        labels: ["Januari","Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"],
+        datasets: [{
+          label: "Grafik penjualan barang",
+          backgroundColor: "rgba(38, 185, 154, 0.31)",
+          borderColor: "rgba(38, 185, 154, 0.7)",
+          pointBorderColor: "rgba(38, 185, 154, 0.7)",
+          pointBackgroundColor: "rgba(38, 185, 154, 0.7)",
+          pointHoverBackgroundColor: "#fff",
+          pointHoverBorderColor: "rgba(220,220,220,1)",
+          pointBorderWidth: 1,
+          data: <?php echo json_encode($total_penjualan_barang); ?>
         }]
       }
     })
