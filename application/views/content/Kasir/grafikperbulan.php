@@ -74,8 +74,20 @@
           </div>
           <div class="x_content">
             <form action="<?php echo base_url("kasir/grafikperbulan") ?>" method="post">
-              <div class="col-md-offset-8">
+              <div class="col-md-offset-2">
                 <div class="form-group">
+                  <label for="">Tahun</label>
+                  <!-- <div class="input-group"> -->
+                  <select class="form-control" id="tahun_barang" name="tahun_barang" required="required">
+                    <?php foreach ($year as $key) : ?>
+                      <option value="<?php echo $key->year ?>"><?php echo $key->year ?></option>
+                    <?php endforeach; ?>
+                  </select>
+                  <!-- </div> -->
+                  <!-- </div> -->
+                  <!-- </div> -->
+                  <!-- <div class="col-md-4"> -->
+                  <!-- <div class="form-group"> -->
                   <label for="">Nama Obat dan Pabrik</label>
                   <div class="input-group">
                     <select class="form-control" id="id_obat" name="id_obat" required="required">
@@ -104,10 +116,12 @@
   }
   ?>
   <?php
-   foreach ($data_barang as $data_penjualan_barang) {
-     $total_penjualan_barang[] = $data_penjualan_barang->total_penjualan_barang;
-   //   $merk[] = $data_penjualan_barang->merk;
-   }
+  foreach ($data_barang as $barang) {
+    $total_penjualan_barang[] = $barang;
+    // $total_penjualan_barang[] = $data_penjualan_barang->total_penjualan_barang;
+    //   $merk[] = $data_penjualan_barang->merk;
+    // echo $total_penjualan_barang;
+  }
   ?>
   <!-- /page content -->
   <?php $this->load->view("partials/main/foot") ?>
@@ -120,7 +134,7 @@
     new Chart(f, {
       type: "line",
       data: {
-        labels: ["Januari","Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"],
+        labels: ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"],
         datasets: [{
           label: "Grafik penjualan per Bulan",
           backgroundColor: "rgba(38, 185, 154, 0.31)",
@@ -160,7 +174,7 @@
     new Chart(f, {
       type: "line",
       data: {
-        labels: ["Januari","Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"],
+        labels: ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"],
         datasets: [{
           label: "Grafik penjualan barang",
           backgroundColor: "rgba(38, 185, 154, 0.31)",
