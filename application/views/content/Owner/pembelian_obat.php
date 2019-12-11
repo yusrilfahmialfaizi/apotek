@@ -6,16 +6,7 @@
               <h3>Data Pembelian Obat</h3>
             </div>
 
-            <div class="title_right">
-              <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-                <div class="input-group">
-                  <input type="text" class="form-control" placeholder="Search for...">
-                  <span class="input-group-btn">
-                    <button class="btn btn-default" type="button">Go!</button>
-                  </span>
-                </div>
-              </div>
-            </div>
+            <div class="title_right"></div>
           </div>
 
           <div class="clearfix"></div>
@@ -35,7 +26,7 @@
                         <select class="form-control" id="id_obat_isi" name="id_obat_isi">
                           <option value="&nbsp"></option>
                           <?php foreach ($id_obat_isi as $key) : ?>
-                            <option><?php echo $key->id_obat_praktik ?></option>
+                            <option value="<?php echo $key->id_obat_praktik ?>"><?php echo $key->id_obat_praktik ?> | <?php echo $key->nama_generic ?></option>
 
                           <?php endforeach ?>
                         </select>
@@ -101,17 +92,6 @@
                         <button type="button" data-dismiss="modal" id="add_cart" class="btn btn-success">Submit</button>
                       </div>
                     </div>
-                  </form>
-                </div>
-                <div class="modal-footer">
-                  <div class="ln_solid"></div>
-                  <div class="form-group">
-                    <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
-                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                      <button type="reset" class="btn btn-primary">Reset</button>
-                      <button type="button" data-dismiss="modal" id="add_cart" class="btn btn-success">Submit</button>
-                    </div>
-                  </div>
                   </form>
                 </div>
               </div>
@@ -198,11 +178,6 @@
                       </div>
                     </form>
                   </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                  </div>
-
                 </div>
               </div>
             </div>
@@ -296,7 +271,7 @@
           $("#id_obat_isi").select2({
             placeholder: "Masukkan no Kode Obat",
             allowClear: true,
-            minimumInputLength: 3
+            minimumInputLength: 1
           });
 
           $("#id_obat_isi").on('change', function() {
@@ -351,7 +326,6 @@
               },
               success: function(data) {
                 $('#pembelian').html(data);
-                window.load();
                 $("#id_obat_isi").val(null);
                 $("#nama_paten_isi").val("");
                 $("#jumlah_stok_isi").val("");

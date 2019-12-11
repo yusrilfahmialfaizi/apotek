@@ -26,7 +26,7 @@
                         <select class="form-control" id="id_obat_isi" name="id_obat_isi">
                           <option value="&nbsp"></option>
                           <?php foreach ($id as $key) : ?>
-                            <option><?php echo $key->id_obat ?></option>
+                            <option value="<?php echo $key->id_obat ?>"><?php echo $key->id_obat ?> | <?php echo $key->nama_generic ?></option>
 
                           <?php endforeach ?>
                         </select>
@@ -222,7 +222,7 @@
                             <select class="form-control" id="id_supplier" name="id_supplier" required>
                               <option value="&nbsp"></option>
                               <?php foreach ($sp as $key) : ?>
-                                <option><?php echo $key->id_supplier ?></option>
+                                <option value="<?php echo $key->id_supplier ?>"><?php echo $key->id_supplier ?> | <?php echo $key->nama ?></option>
 
                               <?php endforeach ?>
                             </select>
@@ -306,12 +306,12 @@
           $("#id_obat_isi").select2({
             placeholder: "Masukkan no Kode Obat",
             allowClear: true,
-            minimumInputLength: 3
+            minimumInputLength: 1
           });
           $("#id_supplier").select2({
             placeholder: "Masukkan ID Supplier",
             allowClear: true,
-            minimumInputLength: 3
+            minimumInputLength: 1
           });
 
           $("#id_supplier").on("change", function() {
@@ -411,7 +411,6 @@
               },
               success: function(data) {
                 $('#pembelian').html(data);
-                // window.load();
                 $("#id_obat_edit").val(null);
                 $("#nama_paten_edit").val("");
                 $("#jumlah_stok_edit").val("");

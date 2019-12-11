@@ -54,7 +54,7 @@
         <table>
             <?php foreach ($detail as $det) { ?>
                 <tr>
-                    <td><?php echo $det->id_obat ?></td>
+                    <td><?php echo $det->id_obat ?> | <?php echo $det->nama_paten ?></td>
                 </tr>
                 <tr>
                     <td><?php echo number_format($det->harga) ?> X <?php echo number_format($det->qty) ?> = <?php echo number_format($det->sub_total) ?></td>

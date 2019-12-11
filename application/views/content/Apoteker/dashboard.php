@@ -51,7 +51,7 @@
 
         <div class="row">
           <marquee>
-            <h1>Selamat Datang Di Sistem Informasi Klinik dan <b>Apotek Sa'id Hasan Farma</b></h1>
+            <h1>Selamat Datang Di Sistem Informasi <b>Klinik dan Apotek Sa'id Hasan Farma</b></h1>
           </marquee>
         </div>
         <br />
