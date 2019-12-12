@@ -51,7 +51,10 @@ class Penjualanmodel extends CI_Model
 
 	function get_detail($id_penjualan)
 	{
-		return $this->db->get_where('detail_penjualan', array('id_penjualan' => $id_penjualan))->result();
+		$this->db->from('detail_penjualan');
+		$this->db->where('id_penjualan', $id_penjualan);
+		$this->db->join('obat', 'detail_penjualan.id_obat = obat.id_obat', 'left');
+		return $this->db->get_where()->result();
 	}
 	function detail_tmp($data)
 	{

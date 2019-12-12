@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 10, 2019 at 08:48 AM
+-- Generation Time: Dec 12, 2019 at 04:20 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.10
 
@@ -67,10 +67,11 @@ CREATE TABLE `detail_obat` (
 INSERT INTO `detail_obat` (`id_detail_ob`, `id_obat`, `exp`, `jumlah_stok`) VALUES
 (1, 'B00001', '2019-11-15', 4),
 (2, 'B00001', '2019-11-06', 0),
-(3, 'B00002', '2019-11-03', 9),
-(4, 'B00001', '2019-12-03', 1),
+(3, 'B00002', '2019-11-03', -1000091),
+(4, 'B00001', '2019-12-03', 0),
 (5, 'B00002', '2019-12-03', 0),
-(6, 'B00001', '2019-12-21', 12);
+(6, 'B00001', '2019-12-21', 12),
+(7, 'B00001', '2019-12-12', 1);
 
 -- --------------------------------------------------------
 
@@ -97,7 +98,8 @@ INSERT INTO `detail_obat_praktik` (`id_detail_op`, `id_obat_praktik`, `exp`, `ju
 (24, 'B00001', '2019-10-14', 1, 3),
 (25, 'B00001', '2019-10-20', 1, 4),
 (26, 'B00001', '2019-10-21', 1, 4),
-(27, 'B00001', '2019-12-02', 100, 400);
+(27, 'B00001', '2019-12-02', 100, 400),
+(28, 'B00001', '0000-00-00', 1200, 4800);
 
 -- --------------------------------------------------------
 
@@ -127,7 +129,8 @@ INSERT INTO `detail_pembelian` (`id_det_pembelian`, `id_pembelian`, `id_obat`, `
 (5, 'Jl-6', 'B00001', 1, '2019-12-03', 1, 1),
 (6, 'Jl-7', 'B00002', 1, '2019-12-03', 1, 1),
 (7, 'Jl-7', 'B00001', 1, '2019-12-03', 1, 1),
-(8, 'Jl-1000', 'B00001', 12, '2019-12-21', 1000, 12000);
+(8, 'Jl-1000', 'B00001', 12, '2019-12-21', 1000, 12000),
+(9, 'JL-302', 'B00001', 1, '2019-12-12', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -175,7 +178,8 @@ INSERT INTO `detail_pembelian_obat_praktik` (`id_det_pembelian`, `id_pembelian`,
 (82, 'JL-013', 'B00001', 1, '2019-10-21', 1, 1),
 (83, 'JL-013', 'B00002', 1, '2019-10-14', 1, 1),
 (84, 'JL-014', 'B00002', 1, '2019-10-14', 1, 1),
-(85, 'JL-300', 'B00001', 100, '2019-12-02', 2500, 250000);
+(85, 'JL-300', 'B00001', 100, '2019-12-02', 2500, 250000),
+(86, 'JL-3001', 'B00001', 1200, '0000-00-00', 2000, 2400000);
 
 -- --------------------------------------------------------
 
@@ -259,7 +263,9 @@ INSERT INTO `detail_penjualan` (`id_det_penjualan`, `id_penjualan`, `id_obat`, `
 (46, '20191210000012', 'B00001', '2019-11-15', 1, 1500, 1500),
 (47, '20191210000012', 'B00002', '2019-11-03', 1, 10000, 10000),
 (48, '20191210000013', 'B00002', '2019-12-03', 1, 10000, 10000),
-(49, '20191210000013', 'B00001', '2019-12-03', 1, 1500, 1500);
+(49, '20191210000013', 'B00001', '2019-12-03', 1, 1500, 1500),
+(50, '20191210000014', 'B00001', '2019-12-03', 1, 1500, 1500),
+(51, '20191212000001', 'B00002', '2019-11-03', 1000100, 10000, 2147483647);
 
 --
 -- Triggers `detail_penjualan`
@@ -320,7 +326,8 @@ CREATE TABLE `kunjungan` (
 INSERT INTO `kunjungan` (`id_kunjungan`, `no_rm`, `tgl_kunjungan`, `diagnosa_keperawatan`, `intervensi`, `tarif`) VALUES
 ('201909260002', 'RM000001', '2019-09-26 01:17:09', 'asd', 'asd', 123),
 ('201910290001', 'RM000001', '2019-10-29 10:11:34', 'asda', 'asd', 123),
-('201910290002', 'RM000001', '2019-10-29 10:20:44', 'asdsad', 'asdsad', 123123213);
+('201910290002', 'RM000001', '2019-10-29 10:20:44', 'asdsad', 'asdsad', 123123213),
+('201912120001', 'RM000002', '2019-12-12 01:24:31', 'tremor berlebih sampek ke tulang tulang', 'bedah', 2147483647);
 
 -- --------------------------------------------------------
 
@@ -464,7 +471,8 @@ CREATE TABLE `pasien` (
 --
 
 INSERT INTO `pasien` (`no_rm`, `nama`, `jenis_kelamin`, `tgl_lahir`, `usia`, `alamat`) VALUES
-('RM000001', 'Yusril Fahmi Al Faizi', 'Laki - laki', '1998-09-24', 20, 'Tempurejo - Jember');
+('RM000001', 'Yusril Fahmi Al Faizi', 'Laki - laki', '1998-09-24', 20, 'Tempurejo - Jember'),
+('RM000002', 'Muhammad Yusuf', 'Perempuan', '2019-12-12', 0, 'Jember');
 
 -- --------------------------------------------------------
 
@@ -489,6 +497,7 @@ INSERT INTO `pembelian` (`id_pembelian`, `id_user`, `id_supplier`, `tanggal`, `t
 ('Jl-1000', 'A002', 'Sup01', '2019-12-06', 12000),
 ('Jl-2', 'A002', NULL, '2019-12-02', 1),
 ('Jl-3', 'A002', NULL, '2019-12-03', 1),
+('JL-302', 'A002', 'Sup01', '2019-12-12', 1),
 ('Jl-4', 'A002', 'Sup01', '2019-12-03', 1),
 ('Jl-5', 'A002', 'Sup01', '2019-12-03', 1),
 ('Jl-6', 'A002', 'Sup01', '2019-12-03', 1),
@@ -526,7 +535,8 @@ INSERT INTO `pembelian_obat_praktik` (`id_pembelian`, `id_user`, `tanggal`, `tot
 ('JL-012', 'A001', '2019-10-20', 2),
 ('JL-013', 'A001', '2019-10-20', 2),
 ('JL-014', 'A001', '2019-10-20', 1),
-('JL-300', 'A001', '2019-12-02', 250000);
+('JL-300', 'A001', '2019-12-02', 250000),
+('JL-3001', 'A001', '2019-12-12', 2400000);
 
 -- --------------------------------------------------------
 
@@ -573,7 +583,9 @@ INSERT INTO `penjualan` (`id_penjualan`, `id_user`, `tanggal`, `total_harga`, `b
 ('20191210000010', 'A002', '2019-12-10', 3000, 3000, 0),
 ('20191210000011', 'A002', '2019-12-10', 1500, 2000, 500),
 ('20191210000012', 'A002', '2019-12-10', 11500, 12000, 500),
-('20191210000013', 'A002', '2019-12-10', 11500, 12000, 500);
+('20191210000013', 'A002', '2019-12-10', 11500, 12000, 500),
+('20191210000014', 'A002', '2019-12-10', 1500, 2000, 500),
+('20191212000001', 'A002', '2019-12-12', 2147483647, 2147483647, 2147483647);
 
 -- --------------------------------------------------------
 
@@ -642,7 +654,8 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`id_user`, `nama_user`, `jenis_kelamin`, `alamat`, `jabatan`, `username`, `password`) VALUES
 ('A001', 'Achmad Syaid', 'Laki - laki', 'Tempurejo - Jember', 'Owner', 'own', '$2y$10$kOnZ0wcHXvb2DNOOD7rWHOGvX6OkY3KKdEa5xdaO4IzqOJSqDHvni'),
 ('A002', 'Kasir', 'Laki - laki', 'Tempurejo -Jember', 'Kasir', 'kasir', '$2y$10$kPoIO3xNPkA39BK1jpTgY.Nc2w8jP55Cr5UG.rJatWFSKp97p6Jqu'),
-('A003', 'Alex', 'Laki - laki', 'Puger', 'Apoteker', 'Alex', '$2y$10$TRA3QyrIPIoDX/1U1bRGf.Qi1EWBykby4A4nrzfUoP4HthDWdjwhK');
+('A003', 'Alex', 'Laki - laki', 'Puger', 'Apoteker', 'Alex', '$2y$10$TRA3QyrIPIoDX/1U1bRGf.Qi1EWBykby4A4nrzfUoP4HthDWdjwhK'),
+('A004', 'Nugroho', 'Laki - laki', 'Nganjuk', 'Apoteker', 'yusuf', '$2y$10$bPKTxuVtSdeu.RzImaQ5T.rFEDCkchJGuwKTchTcKfO8Ncmj2XLki');
 
 -- --------------------------------------------------------
 
@@ -814,37 +827,37 @@ ALTER TABLE `detail_kunjungan`
 -- AUTO_INCREMENT for table `detail_obat`
 --
 ALTER TABLE `detail_obat`
-  MODIFY `id_detail_ob` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_detail_ob` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `detail_obat_praktik`
 --
 ALTER TABLE `detail_obat_praktik`
-  MODIFY `id_detail_op` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id_detail_op` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `detail_pembelian`
 --
 ALTER TABLE `detail_pembelian`
-  MODIFY `id_det_pembelian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_det_pembelian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `detail_pembelian_obat_praktik`
 --
 ALTER TABLE `detail_pembelian_obat_praktik`
-  MODIFY `id_det_pembelian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
+  MODIFY `id_det_pembelian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
 
 --
 -- AUTO_INCREMENT for table `detail_penjualan`
 --
 ALTER TABLE `detail_penjualan`
-  MODIFY `id_det_penjualan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id_det_penjualan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT for table `detail_tmp`
 --
 ALTER TABLE `detail_tmp`
-  MODIFY `id_detail_tmp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id_detail_tmp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- Constraints for dumped tables
