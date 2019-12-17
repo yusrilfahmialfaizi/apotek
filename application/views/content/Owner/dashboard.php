@@ -63,8 +63,6 @@
           </marquee>
         </div>
 
-        <br />
-
         <div class="row">
         </div>
         <div class="row">
