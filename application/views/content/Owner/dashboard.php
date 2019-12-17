@@ -47,13 +47,22 @@
             <!-- <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span> -->
           </div>
         </div>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br>
         <!-- /top tiles -->
-
         <div class="row">
-          <marquee>
-            <h1>Selamat Datang Di Sistem Informasi <b>Klinik dan Apotek Sa'id Hasan Farma</b></h1>
+          <marquee scrollamount="10" bgcolor="#D9DEE4">
+            <h1>
+              <img src="<?php echo base_url("assets\images\LogoPPNI.png") ?>" style="height: 30px; width: 30px" alt="Logo PPNI"> Selamat Datang Di Sistem Informasi <b>Klinik dan Apotek Sa'id Hasan Farma </b>
+              <img src="<?php echo base_url("assets\images\LogoPPNI.png") ?>" style="height: 30px; width: 30px" alt="Logo PPNI"> Selamat Datang Di Sistem Informasi <b>Klinik dan Apotek Sa'id Hasan Farma </b>
+              <img src="<?php echo base_url("assets\images\LogoPPNI.png") ?>" style="height: 30px; width: 30px" alt="Logo PPNI"> Selamat Datang Di Sistem Informasi <b>Klinik dan Apotek Sa'id Hasan Farma </b>
+              <img src="<?php echo base_url("assets\images\LogoPPNI.png") ?>" style="height: 30px; width: 30px" alt="Logo PPNI"> Selamat Datang Di Sistem Informasi <b>Klinik dan Apotek Sa'id Hasan Farma </b>
+              <img src="<?php echo base_url("assets\images\LogoPPNI.png") ?>" style="height: 30px; width: 30px" alt="Logo PPNI"> Selamat Datang Di Sistem Informasi <b>Klinik dan Apotek Sa'id Hasan Farma </b>
+              <img src="<?php echo base_url("assets\images\LogoPPNI.png") ?>" style="height: 30px; width: 30px" alt="Logo PPNI"> Selamat Datang Di Sistem Informasi <b>Klinik dan Apotek Sa'id Hasan Farma </b>
+              <img src="<?php echo base_url("assets\images\LogoPPNI.png") ?>" style="height: 30px; width: 30px" alt="Logo PPNI">
+            </h1>
           </marquee>
         </div>
+
         <br />
 
         <div class="row">
@@ -69,6 +78,6 @@
       </div>
       <!-- /page content -->
       <?php $this->load->view("partials/main/foot") ?>
-      </div>
-      </div>
-      <?php $this->load->view("partials/main/js/js") ?>
+    </div>
+  </div>
+  <?php $this->load->view("partials/main/js/js") ?>
