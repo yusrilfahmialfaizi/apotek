@@ -24,6 +24,15 @@ class Loginmodel extends CI_Model
 		return $this->db->get('user')->result();
 	}
 
+	function cek_tmp($username)
+	{
+		$this->db->select('id_tmp');
+		$this->db->from('tmp');
+		$this->db->join('user', 'user.id_user = tmp.id_user', 'left');
+		$this->db->where('username', $username);
+		return $this->db->get()->result();
+	}
+
 	function tmp()
 	{
 		$this->db->select('MAX(RIGHT(tmp.id_tmp,2)) AS id_tmp', FALSE);

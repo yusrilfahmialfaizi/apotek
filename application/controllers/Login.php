@@ -42,6 +42,7 @@ class Login extends CI_Controller
 						'jabatan' 		=> $key->jabatan,
 						'status'		=> "Login"
 					);
+
 					$this->session->set_userdata($data_session);
 					redirect("owner/dashboard");
 				} else if ($key->username == $username && password_verify($password, $key->password) && $key->jabatan == "Apoteker") {
@@ -57,24 +58,22 @@ class Login extends CI_Controller
 					);
 					$this->session->set_userdata($data_session);
 					redirect("apoteker/dashboard");
-					// echo "apoteker";
 				} else if ($key->username == $username && password_verify($password, $key->password) && $key->jabatan == "Kasir") {
 					# code...
-					$id_tmp = $this->Loginmodel->tmp();
-					$data_session = array(
-						'id_user'		=> $key->id_user,
-						'nama'			=> $key->nama_user,
-						'jenis_kelamin'	=> $key->jenis_kelamin,
-						'alamat'		=> $key->alamat,
-						'jabatan' 		=> $key->jabatan,
-						'id_tmp'		=> $id_tmp,
-						'status'		=> "Login"
-					);
-					$data_tmp = array('id_tmp' => $id_tmp, "total_harga" => 0);
-					$this->Loginmodel->tambah_tmp($data_tmp);
+					$tmp = $this->Loginmodel->cek_tmp($username);
+					foreach ($tmp as $temp) {
+						$data_session = array(
+							'id_user'		=> $key->id_user,
+							'nama'			=> $key->nama_user,
+							'jenis_kelamin'	=> $key->jenis_kelamin,
+							'alamat'		=> $key->alamat,
+							'jabatan' 		=> $key->jabatan,
+							'id_tmp'		=> $temp->id_tmp,
+							'status'		=> "Login"
+						);
+					}
 					$this->session->set_userdata($data_session);
 					redirect("kasir/dashboard");
-					// echo "kasir";
 				} else {
 					$this->session->set_flashdata("gagal", "Username / Password salah !!!");
 					redirect("login");

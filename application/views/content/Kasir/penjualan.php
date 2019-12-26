@@ -58,7 +58,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label for="qty">Qty</label>
-                                    <input type="number" id="qty" class="form-control" name="qty" min="0" value="1" required disabled />
+                                    <input type="number" id="qty" class="form-control" name="qty" min="0" value="0" required disabled />
                                 </div>
                             </div>
 
