@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 27, 2019 at 02:47 AM
+-- Generation Time: Dec 27, 2019 at 03:59 AM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.10
 
@@ -65,13 +65,7 @@ CREATE TABLE `detail_obat` (
 --
 
 INSERT INTO `detail_obat` (`id_detail_ob`, `id_obat`, `exp`, `jumlah_stok`) VALUES
-(1, 'B00001', '2019-11-15', 4),
-(2, 'B00001', '2019-11-06', 0),
-(3, 'B00002', '2019-11-03', -1000091),
-(4, 'B00001', '2019-12-03', 0),
-(5, 'B00002', '2019-12-03', 0),
-(6, 'B00001', '2019-12-21', 12),
-(7, 'B00001', '2019-12-12', 1);
+(8, 'BJ0001', '2019-12-27', 1);
 
 -- --------------------------------------------------------
 
@@ -116,6 +110,14 @@ CREATE TABLE `detail_pembelian` (
   `harga` int(11) DEFAULT NULL,
   `subtotal` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `detail_pembelian`
+--
+
+INSERT INTO `detail_pembelian` (`id_det_pembelian`, `id_pembelian`, `id_obat`, `qty`, `exp`, `harga`, `subtotal`) VALUES
+(10, 'JL-1', 'BJ0001', 1, '2019-12-27', 1, 1),
+(11, 'JL-2', 'BJ0001', 1, '2019-12-27', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -202,6 +204,13 @@ CREATE TABLE `detail_penjualan` (
   `harga` int(11) DEFAULT NULL,
   `sub_total` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `detail_penjualan`
+--
+
+INSERT INTO `detail_penjualan` (`id_det_penjualan`, `id_penjualan`, `id_obat`, `exp`, `qty`, `harga`, `sub_total`) VALUES
+(52, '20191227000001', 'BJ0001', '2019-12-27', 1, 3, 3);
 
 --
 -- Triggers `detail_penjualan`
@@ -293,9 +302,7 @@ CREATE TABLE `obat` (
 --
 
 INSERT INTO `obat` (`id_obat`, `nama_paten`, `nama_generic`, `nama_pabrik`, `jenis`, `kategori`, `harga_per_biji`, `harga_per_lembar`, `harga_beli`) VALUES
-('B00001', 'Mixagrip', 'Mixagrip', 'Kalbe', 'Bebas', 'Tablet', 200, 1500, 1000),
-('B00002', 'Paracetamol', 'Paracetamol', 'Kimia Farma', 'Bebas', 'Tablet', 1000, 10000, 8000),
-('BJ0003', 'Paramex', 'Pilek', 'Kalbe', 'Bebas', 'Tablet', 200, 3000, 2000);
+('BJ0001', 'Mixagrip', 'Flue', 'Kalbe', 'Bebas', 'Tablet', 3, 3, 8);
 
 -- --------------------------------------------------------
 
@@ -340,14 +347,6 @@ CREATE TABLE `opname_obat` (
   `selisih` int(11) DEFAULT NULL,
   `ket` tinytext DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `opname_obat`
---
-
-INSERT INTO `opname_obat` (`id_opname`, `id_user`, `id_obat`, `exp`, `stok`, `stok_nyata`, `selisih`, `ket`) VALUES
-('OB000001', 'A001', 'B00001', '2019-11-06', 1, 1, 0, 'pas'),
-('OB000002', 'A001', 'B00001', '2019-11-15', 5, 6, -1, 'salah input');
 
 -- --------------------------------------------------------
 
@@ -408,6 +407,14 @@ CREATE TABLE `pembelian` (
   `total_harga` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `pembelian`
+--
+
+INSERT INTO `pembelian` (`id_pembelian`, `id_user`, `id_supplier`, `tanggal`, `total_harga`) VALUES
+('JL-1', 'A002', 'Sup01', '2019-12-27', 1),
+('JL-2', 'A002', 'Sup01', '2019-12-27', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -457,6 +464,13 @@ CREATE TABLE `penjualan` (
   `bayar` int(11) DEFAULT NULL,
   `kembalian` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `penjualan`
+--
+
+INSERT INTO `penjualan` (`id_penjualan`, `id_user`, `tanggal`, `total_harga`, `bayar`, `kembalian`) VALUES
+('20191227000001', 'A002', '2019-12-27', 3, 5, 2);
 
 -- --------------------------------------------------------
 
@@ -693,7 +707,7 @@ ALTER TABLE `detail_kunjungan`
 -- AUTO_INCREMENT for table `detail_obat`
 --
 ALTER TABLE `detail_obat`
-  MODIFY `id_detail_ob` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_detail_ob` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `detail_obat_praktik`
@@ -705,7 +719,7 @@ ALTER TABLE `detail_obat_praktik`
 -- AUTO_INCREMENT for table `detail_pembelian`
 --
 ALTER TABLE `detail_pembelian`
-  MODIFY `id_det_pembelian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_det_pembelian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `detail_pembelian_obat_praktik`
@@ -717,13 +731,13 @@ ALTER TABLE `detail_pembelian_obat_praktik`
 -- AUTO_INCREMENT for table `detail_penjualan`
 --
 ALTER TABLE `detail_penjualan`
-  MODIFY `id_det_penjualan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id_det_penjualan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT for table `detail_tmp`
 --
 ALTER TABLE `detail_tmp`
-  MODIFY `id_detail_tmp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id_detail_tmp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- Constraints for dumped tables
@@ -786,8 +800,9 @@ ALTER TABLE `kunjungan`
 -- Constraints for table `opname_obat`
 --
 ALTER TABLE `opname_obat`
-  ADD CONSTRAINT `opname_obat_ibfk_1` FOREIGN KEY (`id_obat`) REFERENCES `obat` (`id_obat`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `opname_obat_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `opname_obat_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `opname_obat_ibfk_4` FOREIGN KEY (`id_obat`) REFERENCES `obat` (`id_obat`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `opname_obat_ibfk_5` FOREIGN KEY (`id_obat`) REFERENCES `obat` (`id_obat`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `opname_obat_praktik`
