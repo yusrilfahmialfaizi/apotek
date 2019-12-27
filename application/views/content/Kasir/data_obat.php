@@ -122,7 +122,6 @@
                                 </div>
                             </div>
                             <?php foreach ($obat as $key) : ?>
-
                                 <div class="modal fade bs-example-modal-lga<?php echo $key->id_obat ?> " tabindex="-1" role="dialog" aria-hidden="true">
                                     <div class="modal-dialog modal-lg">
                                         <div class="modal-content">
@@ -249,7 +248,7 @@
                                             <div class="form-group">
                                                 <a href="#" class="btn btn-primary btn-sm glyphicon glyphicon-pencil" data-toggle="modal" data-target=".bs-example-modal-lga<?php echo $key->id_obat ?>"></a>
 
-                                                <a id="id_obat_hapus" name="id_obat_hapus" href="#" data-toggle="modal" data-target="#delete" class="btn btn-danger btn-sm glyphicon glyphicon-remove"></a>
+                                                <a id="id_obat_hapus" name="id_obat_hapus" href="#" data-toggle="modal" data-target="#delete<?php echo $key->id_obat ?>" class="btn btn-danger btn-sm glyphicon glyphicon-remove"></a>
                                             </div>
                                         </td>
                                     </tr>
@@ -267,21 +266,22 @@
 </div>
 </div>
 <?php $this->load->view("partials/main/js/js") ?>
-
-<div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Hapus Data?</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <div class="modal-body">INGAT !!! Data yang sudah terhapus tidak dapat di kembalikan lagi.</div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="<?php echo base_url("kasir/data_obat/hapus/$key->id_obat") ?>">Hapus</a>
+<?php foreach ($obat as $key) : ?>
+    <div class="modal fade" id="delete<?php echo $key->id_obat ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Hapus Data?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">INGAT !!! Data yang sudah terhapus tidak dapat di kembalikan lagi.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="<?php echo base_url("kasir/data_obat/hapus/$key->id_obat") ?>">Hapus</a>
+                </div>
             </div>
         </div>
     </div>
-</div>
+<?php endforeach ?>
