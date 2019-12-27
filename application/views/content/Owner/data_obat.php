@@ -125,11 +125,6 @@
                         </div>
                       </form>
                     </div>
-                    <!-- <div class="modal-footer">
-                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                              <button type="button" class="btn btn-primary">Save changes</button>
-                            </div> -->
-
                   </div>
                 </div>
               </div>
@@ -175,9 +170,9 @@
                             <div class="col-md-4 col-sm-9 col-xs-12">
                               <select required class="form-control" id="jenis_isi" name="jenis_isi">
                                 <option>--Pilih--</option>
-                                <option>Bebas</option>
-                                <option>Bebas Terbatas</option>
-                                <option>Narkotik / Psikotropik</option>
+                                <option <?php if ($key->jenis == "Bebas") { ?> selected="selected" <?php } ?>>Bebas</option>
+                                <option <?php if ($key->jenis == "Bebas Terbatas") { ?> selected="selected" <?php } ?>>Bebas Terbatas</option>
+                                <option <?php if ($key->jenis == "Narkotik / Psikotropik") { ?> selected="selected" <?php } ?>>Narkotik / Psikotropik</option>
                               </select>
                             </div>
                           </div>
@@ -187,11 +182,11 @@
                             <div class="col-md-4 col-sm-9 col-xs-12">
                               <select required class="form-control" id="kategori_isi" name="kategori_isi">
                                 <option>--Pilih--</option>
-                                <option>Tablet</option>
-                                <option>Sirup</option>
-                                <option>Salep</option>
-                                <option>Kapsul</option>
-                                <option>Racikan</option>
+                                <option <?php if ($key->kategori == "Tablet") { ?> selected="selected" <?php } ?>>Tablet</option>
+                                <option <?php if ($key->kategori == "Sirup") { ?> selected="selected" <?php } ?>>Sirup</option>
+                                <option <?php if ($key->kategori == "Salep") { ?> selected="selected" <?php } ?>>Salep</option>
+                                <option <?php if ($key->kategori == "Kapsul") { ?> selected="selected" <?php } ?>>Kapsul</option>
+                                <option <?php if ($key->kategori == "Racikan") { ?> selected="selected" <?php } ?>>Racikan</option>
                               </select>
                             </div>
                           </div>
@@ -270,7 +265,7 @@
                       <div class="form-group">
                         <a href="#" class="btn btn-primary btn-sm glyphicon glyphicon-pencil" data-toggle="modal" data-target=".bs-example-modal-lga<?php echo $key->id_obat_praktik ?>"></a>
 
-                        <a id="id_obat_hapus" name="id_obat_hapus" href="#" data-toggle="modal" data-target="#delete" class="btn btn-danger btn-sm glyphicon glyphicon-remove"></a>
+                        <a id="id_obat_hapus" name="id_obat_hapus" href="#" data-toggle="modal" data-target="#delete<?php echo $key->id_obat_praktik ?>" class="btn btn-danger btn-sm glyphicon glyphicon-remove"></a>
                       </div>
                     </td>
                   </tr>
@@ -288,21 +283,23 @@
 </div>
 </div>
 <?php $this->load->view("partials/main/js/js") ?>
-
-<div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Hapus Data?</h5>
-        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">×</span>
-        </button>
-      </div>
-      <div class="modal-body">INGAT !!! Data yang sudah terhapus tidak dapat di kembalikan lagi.</div>
-      <div class="modal-footer">
-        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-        <a class="btn btn-primary" href="<?php echo base_url("owner/dataobatpraktik/hapus/$key->id_obat_praktik") ?>">Hapus</a>
+<?php foreach ($obat as $key) { ?>
+  # code...
+  <div class="modal fade" id="delete<?php echo $key->id_obat_praktik ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Hapus Data?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">INGAT !!! Data yang sudah terhapus tidak dapat di kembalikan lagi.</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <a class="btn btn-primary" href="<?php echo base_url("owner/dataobatpraktik/hapus/$key->id_obat_praktik") ?>">Hapus</a>
+        </div>
       </div>
     </div>
   </div>
-</div>
+<?php } ?>

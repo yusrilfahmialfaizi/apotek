@@ -61,6 +61,8 @@ class Login extends CI_Controller
 				} else if ($key->username == $username && password_verify($password, $key->password) && $key->jabatan == "Kasir") {
 					# code...
 					$tmp = $this->Loginmodel->cek_tmp($username);
+					// print_r($tmp);
+
 					foreach ($tmp as $temp) {
 						$data_session = array(
 							'id_user'		=> $key->id_user,
@@ -72,6 +74,7 @@ class Login extends CI_Controller
 							'status'		=> "Login"
 						);
 					}
+					// print_r($data_session);
 					$this->session->set_userdata($data_session);
 					redirect("kasir/dashboard");
 				} else {

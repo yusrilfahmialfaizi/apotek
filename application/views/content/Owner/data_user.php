@@ -103,11 +103,6 @@
                         </div>
                       </form>
                     </div>
-                    <!-- <div class="modal-footer">
-                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                              <button type="button" class="btn btn-primary">Save changes</button>
-                            </div> -->
-
                   </div>
                 </div>
               </div>
@@ -141,8 +136,8 @@
                             <div class="col-md-4 col-sm-9 col-xs-12">
                               <select class="form-control" id="jenis_kelamin" name="jenis_kelamin">
                                 <option>--Pilih--</option>
-                                <option>Laki - laki</option>
-                                <option>Perempuan</option>
+                                <option <?php if ($key->jenis_kelamin == "Laki - laki") { ?> selected="selected" <?php } ?>>Laki - laki</option>
+                                <option <?php if ($key->jenis_kelamin == "Perempuan") { ?> selected="selected" <?php } ?>>Perempuan</option>
                               </select>
                             </div>
                           </div>
@@ -158,9 +153,9 @@
                             <div class="col-md-4 col-sm-9 col-xs-12">
                               <select class="form-control" id="jabatan" name="jabatan" required="required">
                                 <option>--Pilih--</option>
-                                <option>Owner</option>
-                                <option>Apoteker</option>
-                                <option>Kasir</option>
+                                <option <?php if ($key->jabatan == "Owner") { ?> selected="selected" <?php } ?>>Owner</option>
+                                <option <?php if ($key->jabatan == "Apoteker") { ?> selected="selected" <?php } ?>>Apoteker</option>
+                                <option <?php if ($key->jabatan == "Kasir") { ?> selected="selected" <?php } ?>>Kasir</option>
                               </select>
                             </div>
                           </div>

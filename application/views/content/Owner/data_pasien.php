@@ -19,15 +19,6 @@
             <ul class="nav navbar-right panel_toolbox">
               <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
               </li>
-              <!-- <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                        <ul class="dropdown-menu" role="menu">
-                          <li><a href="#">Settings 1</a>
-                          </li>
-                          <li><a href="#">Settings 2</a>
-                          </li>
-                        </ul>
-                      </li> -->
               <li><a class="close-link"><i class="fa fa-close"></i></a>
               </li>
             </ul>
@@ -102,11 +93,6 @@
                         </div>
                       </form>
                     </div>
-                    <!-- <div class="modal-footer">
-                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                              <button type="button" class="btn btn-primary">Save changes</button>
-                            </div> -->
-
                   </div>
                 </div>
               </div>
@@ -124,12 +110,6 @@
                       <div class="modal-body">
                         <form action="<?php echo base_url("owner/datauser/edit") ?>" method="post" class="form-horizontal form-label-left">
                           <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12">AutoComplete</label>
-                            <div class="col-md-9 col-sm-9 col-xs-12">
-                              <input type="text" name="country" id="autocomplete-custom-append" class="form-control col-md-10" />
-                            </div>
-                          </div>
-                          <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12">No. RM</label>
                             <div class="col-md-2 col-sm-9 col-xs-12">
                               <input type="text" class="form-control" id="no_rm" name="no_rm" value="<?php echo $key->no_rm ?>" readonly="readonly" required="required">
@@ -146,8 +126,8 @@
                             <div class="col-md-4 col-sm-9 col-xs-12">
                               <select class="form-control" id="jenis_kelamin" name="jenis_kelamin">
                                 <option>--Pilih--</option>
-                                <option>Laki - laki</option>
-                                <option>Perempuan</option>
+                                <option <?php if ($key->jenis_kelamin == "Laki - laki") { ?> selected="selected" <?php } ?>>Laki - laki</option>
+                                <option <?php if ($key->jenis_kelamin == "Perempuan") { ?> selected="selected" <?php } ?>>Perempuan</option>
                               </select>
                             </div>
                           </div>
@@ -182,11 +162,6 @@
                           </div>
                         </form>
                       </div>
-                      <!-- <div class="modal-footer">
-                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                              <button type="button" class="btn btn-primary">Save changes</button>
-                            </div> -->
-
                     </div>
                   </div>
                 </div>
@@ -218,7 +193,7 @@
                       <div class="form-group">
                         <a href="#" class="btn btn-primary btn-sm glyphicon glyphicon-pencil" data-toggle="modal" data-target=".bs-example-modal-lga<?php echo $key->no_rm ?>"></a>
 
-                        <a id="id_user_hapus" name="id_user_hapus" href="#" data-toggle="modal" data-target="#delete" class="btn btn-danger btn-sm glyphicon glyphicon-remove"></a>
+                        <a id="id_user_hapus" name="id_user_hapus" href="#" data-toggle="modal" data-target="#delete<?php echo $key->no_rm ?>" class="btn btn-danger btn-sm glyphicon glyphicon-remove"></a>
                       </div>
                     </td>
                   </tr>
@@ -237,21 +212,22 @@
 </div>
 <?php $this->load->view("partials/main/js/js") ?>
 <?php $this->load->view("partials/main/js/js_datapasien") ?>
-
-<div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Hapus Data?</h5>
-        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">×</span>
-        </button>
-      </div>
-      <div class="modal-body">INGAT !!! Data yang sudah terhapus tidak dapat di kembalikan lagi.</div>
-      <div class="modal-footer">
-        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-        <a class="btn btn-primary" href="<?php echo base_url("owner/datapasien/hapus/$key->no_rm") ?>">Hapus</a>
+<?php foreach ($pasien as $key) : ?>
+  <div class="modal fade" id="delete<?php echo $key->no_rm ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Hapus Data?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">INGAT !!! Data yang sudah terhapus tidak dapat di kembalikan lagi.</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <a class="btn btn-primary" href="<?php echo base_url("owner/datapasien/hapus/$key->no_rm") ?>">Hapus</a>
+        </div>
       </div>
     </div>
   </div>
-</div>
+<?php endforeach ?>

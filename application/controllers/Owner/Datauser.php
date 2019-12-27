@@ -50,8 +50,10 @@ class Datauser extends CI_Controller
 		);
 
 		$this->Usermodel->tambahdata($data);
-		$data_tmp = array('id_tmp' => $id_tmp, "id_user" => $id_user);
-		$this->Loginmodel->tambah_tmp($data_tmp);
+		if ($jabatan == "Kasir") {
+			$data_tmp = array('id_tmp' => $id_tmp, "id_user" => $id_user);
+			$this->Loginmodel->tambah_tmp($data_tmp);
+		}
 		redirect("owner/datauser");
 	}
 
