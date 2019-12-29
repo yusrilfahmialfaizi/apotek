@@ -184,7 +184,6 @@
 </div>
 <?php $this->load->view("partials/main/js/js") ?>
 <?php foreach ($supplier as $key) : ?>
-
     <div class="modal fade" id="delete<?php echo $key->id_supplier ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">

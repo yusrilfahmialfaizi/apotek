@@ -298,7 +298,6 @@
             var bayar = $('#bayar').val();
             var bayar_default = 0;
             var hasil = (bayar_default + bayar) - total;
-            // var hasil = (bayar_default + bayar) - total;
             $('#kembali').val(hasil);
         });
 
