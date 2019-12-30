@@ -44,7 +44,7 @@ class Login extends CI_Controller
 					);
 
 					$this->session->set_userdata($data_session);
-					redirect("owner/dashboard");
+					redirect(site_url("owner/dashboard"));
 				} else if ($key->username == $username && password_verify($password, $key->password) && $key->jabatan == "Apoteker") {
 					# code...
 
