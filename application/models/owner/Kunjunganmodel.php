@@ -82,7 +82,7 @@
 		{
 			return $this->db->query("SELECT kunjungan.id_kunjungan, kunjungan.no_rm, pasien.nama, 
 			kunjungan.tgl_kunjungan, kunjungan.diagnosa_keperawatan, kunjungan.intervensi, kunjungan.tarif 
-			From Kunjungan, Pasien WHERE kunjungan.no_rm = pasien.no_rm")->result();
+			From kunjungan, pasien WHERE kunjungan.no_rm = pasien.no_rm")->result();
 		}
 
 		function detail_kunjungan($id_kunjungan)
