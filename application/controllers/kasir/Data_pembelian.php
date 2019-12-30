@@ -10,7 +10,7 @@ class Data_pembelian extends CI_Controller
 	{
 		# code...
 		parent::__construct();
-		$this->load->model("Kasir/Pembelianobat_model");
+		$this->load->model("kasir/Pembelianobat_model");
 	}
 
 	function index()

@@ -10,8 +10,8 @@ class Penjualan extends CI_Controller
 	{
 		# code...
 		parent::__construct();
-		$this->load->model("Kasir/Penjualanmodel");
-		$this->load->model("Kasir/Dataobat_model");
+		$this->load->model("kasir/Penjualanmodel");
+		$this->load->model("kasir/Dataobat_model");
 	}
 
 	function index()

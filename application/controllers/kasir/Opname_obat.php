@@ -11,7 +11,7 @@ class Opname_obat extends CI_Controller
 		# code...
 		parent::__construct();
 		$this->load->model("kasir/Opnamemodel");
-		$this->load->model("Owner/Obatmodel");
+		$this->load->model("owner/Obatmodel");
 	}
 
 	function index()
