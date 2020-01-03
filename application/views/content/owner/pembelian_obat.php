@@ -254,6 +254,9 @@
                               <button type="submit" id="submit" name="submit" class="btn btn-success">Submit</button>
                             </div>
                           </div>
+                        </div>
+                      </div>
+                    </div>
                   </form>
                 </div>
               </div>
@@ -374,7 +377,7 @@
 
 
             $.ajax({
-              url: "<?php echo site_url('owner/pembelianobat/hapus_cart'); ?>",
+              url: "<?php echo base_url('owner/pembelianobat/hapus_cart'); ?>",
               method: "POST",
               data: {
                 row_id: row_id
