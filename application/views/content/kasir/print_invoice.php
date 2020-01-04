@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,45 +7,47 @@
     <title>Document</title>
     <style type="text/css" media="print">
         @page {
-            /* size: landscape; */
-            margin: 0;
+    /* size: landscape; */
+    margin: 0;
 
-        }
+  }
 
-        .body {
-            /* margin: 0in 0.2in 0in 0.3in; */
-            margin: 1.6cm;
-            mso-header-margin: .5in;
-            mso-footer-margin: .5in;
-            mso-paper-source: 4;
-            font-family: Arial, Helvetica, sans-serif;
-        }
+  .body {
+    margin:0in 0.2in 0in 0.3in;
+    /* margin: 1.6cm;
+    mso-header-margin:.5in;
+    mso-footer-margin:.5in;
+    mso-paper-source:4; */
+    font-family: Arial, Helvetica, sans-serif;
+   }
 
-        .footer {
-            position: absolute;
-            /* right:0; */
-            bottom: 0;
-        }
+   .footer{
+    position:absolute;
+    /* right:0; */
+    bottom:0;
+  }
+  p, td{
+      font-size: 12px;
+  }
 
-        p,
-        td {
-            font-size: 12px;
-        }
     </style>
 </head>
-
-<body onload="window.print();">
-    <h5 style="text-align:center;">SA'ID HASAN FARMA<br>Jln. KH. Abdul Aziz No. 12345 <br> Kauman - Tempurejo, Tempurejo, Jember</h5>
-    <?php foreach ($data as $inv) { ?>
+<!--  -->
+<body >
+<h5 style="text-align:center;">SA'ID HASAN FARMA<br>Jln. KH. Abdul Aziz No. 12345 <br> Kauman - Tempurejo, Tempurejo, Jember</h5>
+<?php foreach ($data as $inv) { ?>
         <table>
             <tr>
-                <td><?php echo $inv->id_penjualan ?></td>
+                <td>No Nota </td>
+                <td> : <?php echo $inv->id_penjualan ?></td>
             </tr>
             <tr>
-                <td> <?php echo date('d-m-y h:m:s') ?></td>
+                <td>Tanggal & Waktu </td>
+                <td> : <?php echo date('d-m-y h:m:s') ?></td>
             </tr>
             <tr>
-                <td> <?php echo $this->session->userdata("nama") ?></td>
+                <td>Kasir</td>
+                <td> : <?php echo $this->session->userdata("nama") ?></td>
             </tr>
         </table>
         <hr style="border-top : dotted 1px;">
@@ -77,8 +78,13 @@
             </tr>
         </table>
     <?php } ?>
-    <hr style="border-top : dotted 1px;">
-    <p style="text-align:center;">Layanan Konsumen : 088XXXXXXXXX</p>
-</body>
+    <hr style="border-top : dotted 1px;">    
+    <p style="text-align:center;">Layanan Konsumen : 0812-1625-2415</p>
 
+</body>
+<script>
+    window.print();
+    window.history.back();
+     
+</script>
 </html>

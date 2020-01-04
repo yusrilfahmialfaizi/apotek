@@ -222,7 +222,7 @@
             var id_obat = $("#id_obat_isi").val();
 
             $.ajax({
-                url: "<?php echo base_url("Kasir/Penjualan/data_obat") ?>",
+                url: "<?php echo base_url("kasir/Penjualan/data_obat") ?>",
                 type: "POST",
                 dataType: "JSON",
                 data: {
@@ -245,7 +245,7 @@
         $('#id_obat_isi').change(function() {
             var id_obat = $(this).val();
             $.ajax({
-                url: "<?php echo base_url('Kasir/penjualan/get_exp'); ?>",
+                url: "<?php echo base_url('kasir/Penjualan/get_exp'); ?>",
                 method: "POST",
                 data: {
                     id_obat: id_obat
@@ -274,7 +274,7 @@
             var exp = $("#exp").val();
 
             $.ajax({
-                url: "<?php echo base_url("Kasir/Penjualan/data_stok") ?>",
+                url: "<?php echo base_url("kasir/Penjualan/data_stok") ?>",
                 type: "POST",
                 dataType: "JSON",
                 data: {
@@ -319,7 +319,7 @@
             var kembali = $("#kembali").val();
 
             $.ajax({
-                url: "<?php echo base_url("kasir/penjualan/save") ?>",
+                url: "<?php echo base_url("kasir/Penjualan/save") ?>",
                 type: "POST",
                 data: {
                     id_penjualan: id_penjualan,
@@ -331,7 +331,7 @@
                 cache: false,
                 success: function(data) {
                     if (data.msg == "success") {
-                        window.open("<?php echo base_url("kasir/invoice/index/") ?>" + $("#no_invoice").val(), "_blank ");
+                        window.open("<?php echo base_url("kasir/Invoice/index/") ?>" + $("#no_invoice").val(), "_blank ");
                         location.reload(true);
                     }
                 }
