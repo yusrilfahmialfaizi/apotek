@@ -24,6 +24,8 @@ class Dashboard extends CI_Controller
 		$data['pendapatan_tahunan'] = $this->Dashboard_model->jumlah_pendapatan_tahunan();
 		$data['transaksi_harian'] = $this->Dashboard_model->jumlah_transaksi_harian();
 		$data['total_transaksi'] = $this->Dashboard_model->total_transaksi();
+		$data['zakat_tarif'] = $this->Dashboard_model->zakat_tarif_bulanan();
+		$data['zakat_apotek'] = $this->Dashboard_model->zakat_pendapatan_bulanan();
 		$this->load->view("partials/main/header/header_owner");
 		$this->load->view("content/owner/dashboard", $data);
 		$this->load->view("partials/main/footer");

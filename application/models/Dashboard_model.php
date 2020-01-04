@@ -35,6 +35,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			return $this->db->query("SELECT COUNT(id_penjualan) AS jumlah FROM penjualan")->result();
 		}
 
+		function zakat_tarif_bulanan()
+		{
+			// return $this->db->query("SELECT (SUM(tarif) * (2.5 / 100)) as zakat_tarif FROM kunjungan WHERE month(tgl_kunjungan) = month(now()) AND year(tgl_kunjungan) = year(now())")->result();
+			return $this->db->query("SELECT (SUM(tarif) ) as zakat_tarif FROM kunjungan WHERE month(tgl_kunjungan) = 12 AND year(tgl_kunjungan) = 2019")->result();
+
+		}
+
+		function zakat_pendapatan_bulanan()
+		{
+			return $this->db->query("SELECT (SUM(total_harga) * (2.5 / 100)) as zakat_apotek FROM penjualan WHERE month(tanggal) = month(now()) AND year(tanggal) = year(now())")->result();
+		}
+
 	}
 
 	?>
