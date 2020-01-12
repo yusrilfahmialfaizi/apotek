@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 12, 2020 at 09:51 AM
+-- Generation Time: Jan 12, 2020 at 06:46 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -858,7 +858,7 @@ ALTER TABLE `pembelian`
 -- Constraints for table `pembelian_obat_praktik`
 --
 ALTER TABLE `pembelian_obat_praktik`
-  ADD CONSTRAINT `pembelian_obat_praktik_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `pembelian_obat_praktik_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `penjualan`
