@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 12, 2020 at 06:46 PM
+-- Generation Time: Jan 13, 2020 at 02:05 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -238,9 +238,9 @@ CREATE TABLE `kunjungan` (
 --
 
 INSERT INTO `kunjungan` (`id_kunjungan`, `no_rm`, `tgl_kunjungan`, `diagnosa_keperawatan`, `intervensi`, `tarif`) VALUES
-('201909260002', 'RM000001', '2019-09-26 01:17:09', 'asd', 'asd', 123),
-('201910290001', 'RM000001', '2019-10-29 10:11:34', 'asda', 'asd', 123),
-('201910290002', 'RM000001', '2019-10-29 10:20:44', 'asdsad', 'asdsad', 123123213),
+('201909260002', 'RM000001', '2019-09-26 01:17:09', 'URTI', 'advice (angtipiretik, analgetik, decongestan)\r\ncold compress, consume alot of water, enough rest', 50000),
+('201910290001', 'RM000001', '2019-10-29 10:11:34', 'URTI', 'advice (angtipiretik, analgetik, decongestan)\r\ncold compress, consume alot of water, enough rest', 50000),
+('201910290002', 'RM000001', '2019-10-29 10:20:44', 'URTI', 'advice (angtipiretik, analgetik, decongestan)\r\ncold compress, consume alot of water, enough rest', 50000),
 ('202001050001', 'RM000002', '2020-01-05 08:12:13', 'URTI', 'advice (angtipiretik, analgetik, decongestan)\r\ncold compress, consume alot of water, enough rest', 50000);
 
 -- --------------------------------------------------------

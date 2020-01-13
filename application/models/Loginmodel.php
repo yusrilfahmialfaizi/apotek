@@ -56,8 +56,12 @@ class Loginmodel extends CI_Model
 		$this->db->insert('tmp', $data_tmp);
 	}
 
-	function hapus_tmp($id_tmp)
+	// function hapus_tmp($id_tmp)
+	// {
+	// 	$this->db->delete('tmp', array('id_tmp' => $id_tmp));
+	// }
+	function hapus_tmp($id_user)
 	{
-		$this->db->delete('tmp', array('id_tmp' => $id_tmp));
+		$this->db->delete('tmp', array('id_user' => $id_user));
 	}
 }

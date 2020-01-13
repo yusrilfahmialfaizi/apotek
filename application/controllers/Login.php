@@ -90,8 +90,8 @@ class Login extends CI_Controller
 
 	function logout()
 	{
-		$id_tmp = $this->session->userdata("id_tmp");
-		$this->Loginmodel->hapus_tmp($id_tmp);
+		// $id_tmp = $this->session->userdata("id_tmp");
+		// $this->Loginmodel->hapus_tmp($id_tmp);
 		$this->session->sess_destroy();
 		redirect("login");
 	}

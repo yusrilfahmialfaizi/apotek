@@ -85,10 +85,11 @@ class Datauser extends CI_Controller
 	function hapus($hapus)
 	{
 		$id_user = $hapus;
+		
 
 		$this->Usermodel->hapusdata($id_user);
 		// $id_tmp = $this->session->userdata("id_tmp");
-		// $this->Loginmodel->hapus_tmp($id_tmp);
+		$this->Loginmodel->hapus_tmp($id_user);
 		redirect("owner/datauser");
 	}
 
